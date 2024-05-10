@@ -6,6 +6,6 @@ namespace Entities.Concrete.TableModels
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Description { get; set; }
+        public string Feedback { get; set; }
     }
 }
