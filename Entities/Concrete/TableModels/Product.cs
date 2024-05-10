@@ -16,6 +16,7 @@ namespace Entities.Concrete.TableModels
         public string ImgUrl { get; set; }
         public double Price
         {
+          
             get
             {
                 var newPrice = _price * (100 - PrecentOfDiscount) / 100;
