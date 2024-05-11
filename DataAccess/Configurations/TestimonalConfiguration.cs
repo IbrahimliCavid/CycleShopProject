@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Configurations
 {
-    public class ContactConfiguration : IEntityTypeConfiguration<Contact>
+    public class TestimonalConfiguration : IEntityTypeConfiguration<Testimonial>
     {
-        public void Configure(EntityTypeBuilder<Contact> builder)
+        public void Configure(EntityTypeBuilder<Testimonial> builder)
         {
-            builder.ToTable("Contacts");
+            builder.ToTable("Testimonials");
             builder.Property(x => x.Id)
                 .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment: 1);
             builder.Property(x => x.Name)
@@ -23,9 +23,9 @@ namespace DataAccess.Configurations
             builder.Property(x => x.Surname)
                 .IsRequired()
                 .HasMaxLength(100);
-            builder.Property(x=>x.Message)
+            builder.Property(x => x.Feedback)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(2000);
             //Has not relationship
         }
     }

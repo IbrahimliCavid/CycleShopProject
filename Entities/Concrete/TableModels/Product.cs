@@ -6,7 +6,7 @@ namespace Entities.Concrete.TableModels
     public class Product : BaseEntity
     {
         [NotMapped]
-        private double _price = 0;
+        private double _price;
         public Product()
         {
             Carts = new HashSet<Cart>();
@@ -27,10 +27,10 @@ namespace Entities.Concrete.TableModels
                 _price = value;
             }
         }
-        public byte PrecentOfDiscount { get; set; } = 0;
+        public bool IsHomePage {  get; set; }
+        public byte PrecentOfDiscount { get; set; }
         [NotMapped]
         public byte StarRating { get; set; }
-        public int ShopId { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }
         public virtual Category Category { get; set; }
     }

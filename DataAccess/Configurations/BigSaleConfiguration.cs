@@ -17,13 +17,13 @@ namespace DataAccess.Configurations
         {
             builder.ToTable("BigSales");
             builder.Property(x => x.Id)
-                 .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE);
+                 .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE,increment:1);
             builder.Property(x => x.ImgUrl)
                 .IsRequired()
                 .HasMaxLength(200);
-            builder.HasIndex(x => x.ImgUrl)
-                .IsUnique();
             builder.HasIndex(x => new { x.ImgUrl, x.Deleted });
+
+            //Has Not Relationship
         }
     }
 }

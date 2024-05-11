@@ -17,7 +17,14 @@ namespace DataAccess.Configurations
             builder.ToTable("Carts");
             builder.Property(x => x.Id)
                 .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment: 1);
-           
+
+
+            //Relationship between Carts and Products
+            builder.HasMany(x => x.Products)
+                .WithMany(x => x.Carts)
+                .UsingEntity(x => x.ToTable("CartProducts"));
+
+            //The relationship between Cart and Order is defined in the OrderConfiguration class.
         }
     }
 }

@@ -29,7 +29,7 @@ namespace DataAccess.Configurations
                 .HasMaxLength (500);
             builder.HasIndex(x => new { x.InstagramLink, x.FacebookLink, x.TwitterLink, x.EmailLink, x.Deleted })
                 .IsUnique();
-           
+            //Has Not Relationship
         }
     }
 }

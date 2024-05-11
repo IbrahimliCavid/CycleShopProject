@@ -27,7 +27,7 @@ namespace DataAccess.SqlServerDbContext
         public DbSet<Product> Products {  get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ShippingAdress> ShippingAdresses { get; set; }
-        public DbSet<Subcribe> Subcribes { get; set; }
+        public DbSet<Subscribe> Subcribes { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<User> Users { get; set; }
     }

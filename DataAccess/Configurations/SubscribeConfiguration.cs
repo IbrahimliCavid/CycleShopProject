@@ -10,22 +10,18 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Configurations
 {
-    public class ContactConfiguration : IEntityTypeConfiguration<Contact>
+    public class SubscribeConfiguration : IEntityTypeConfiguration<Subscribe>
     {
-        public void Configure(EntityTypeBuilder<Contact> builder)
+        public void Configure(EntityTypeBuilder<Subscribe> builder)
         {
-            builder.ToTable("Contacts");
+            builder.ToTable("Subscribes");
             builder.Property(x => x.Id)
                 .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment: 1);
-            builder.Property(x => x.Name)
-                .IsRequired()
-                .HasMaxLength(100);
-            builder.Property(x => x.Surname)
-                .IsRequired()
-                .HasMaxLength(100);
-            builder.Property(x=>x.Message)
-                .IsRequired()
-                .HasMaxLength(100);
+            builder.Property(x => x.Email)
+                .IsRequired();
+            builder.HasIndex(x => new {x.Email, x.Deleted})
+                .IsUnique();
+
             //Has not relationship
         }
     }

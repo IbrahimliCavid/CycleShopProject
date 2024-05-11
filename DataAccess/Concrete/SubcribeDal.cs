@@ -4,6 +4,6 @@ using Entities.Concrete.TableModels;
 
 namespace DataAccess.Concrete
 {
-    public class SubcribeDal : BaseRepository<Subcribe, ApplicationDbContext> { }
+    public class SubcribeDal : BaseRepository<Subscribe, ApplicationDbContext> { }
 
 }

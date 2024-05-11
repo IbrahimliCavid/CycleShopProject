@@ -3,5 +3,5 @@ using Entities.Concrete.TableModels;
 
 namespace DataAccess.Abstract
 {
-    public interface ISubcribeDal : IBaseRepository<Subcribe> { }
+    public interface ISubcribeDal : IBaseRepository<Subscribe> { }
 }

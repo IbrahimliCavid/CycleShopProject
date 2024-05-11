@@ -22,6 +22,11 @@ namespace DataAccess.Configurations
                 .HasMaxLength(100);
             builder.HasIndex(x => new { x.Name, x.Deleted })
                 .IsUnique();
+           
+            //Relationship between Category and Products
+            builder.HasMany(x=>x.Products)
+                .WithOne(x=>x.Category)
+                .HasForeignKey(x=>x.CategoryId);
         }
     }
 }

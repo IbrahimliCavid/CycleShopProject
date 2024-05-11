@@ -11,6 +11,6 @@ namespace Entities.Concrete.TableModels
         public string InstagramLink {  get; set; }
         public string TwitterLink {  get; set; }
         public string EmailLink {  get; set; }
-
+    
     }
 }

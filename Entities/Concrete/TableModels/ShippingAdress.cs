@@ -4,7 +4,6 @@ namespace Entities.Concrete.TableModels
 {
     public class ShippingAdress : BaseEntity
     {
-        public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PostalCode { get; set; }
@@ -14,6 +13,7 @@ namespace Entities.Concrete.TableModels
         public string City { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+        public int UserId { get; set; }
         public User User { get; set; }
     }
 }

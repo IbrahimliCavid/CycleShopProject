@@ -24,9 +24,12 @@ namespace DataAccess.Configurations
                 .IsRequired();
             builder.HasIndex(x => new {x.ActivityInfo, x.Deleted})
                 .IsUnique();
+
+            //Relationship between About and Activity
             builder.HasOne(x => x.About)
                 .WithMany(x => x.Activities)
                 .HasForeignKey(x => x.AboutId);
+
                 
         }
     }

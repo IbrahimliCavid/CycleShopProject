@@ -2,7 +2,7 @@
 
 namespace Entities.Concrete.TableModels
 {
-    public class Subcribe : BaseEntity
+    public class Subscribe : BaseEntity
     {
         public string Email { get; set; }
     }

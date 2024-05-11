@@ -24,7 +24,8 @@ namespace DataAccess.Configurations
             builder.Property(x => x.Description)
                 .IsRequired()
                 .HasMaxLength(2000);
-
+            // No configuration needed here
+            // as it's a mirrored relationship of ActivityConfiguration
         }
     }
 }
