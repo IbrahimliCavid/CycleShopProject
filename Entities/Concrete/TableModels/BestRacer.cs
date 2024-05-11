@@ -8,9 +8,9 @@ namespace Entities.Concrete.TableModels
         public string Surname { get; set; }
         public string Info { get; set; }
         public string FacebookLink { get; set; }
-        public string InstagramLink {  get; set; }
-        public string TwitterLink {  get; set; }
-        public string EmailLink {  get; set; }
-    
+        public string InstagramLink { get; set; }
+        public string TwitterLink { get; set; }
+        public string EmailLink { get; set; }
+
     }
 }

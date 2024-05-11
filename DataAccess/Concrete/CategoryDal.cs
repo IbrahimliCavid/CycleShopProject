@@ -4,6 +4,6 @@ using Entities.Concrete.TableModels;
 
 namespace DataAccess.Concrete
 {
-    public class CategoryDal : BaseRepository<Category, ApplicationDbContext> { }
+    public class CategoryDal : BaseRepository<CycleCategory, ApplicationDbContext> { }
 
 }

@@ -16,17 +16,29 @@ namespace DataAccess.Configurations
         {
 
             builder.ToTable("BestRacers");
-        builder.Property(x => x.Id)
-                .UseIdentityColumn(seed:DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment:1);
+            builder.Property(x => x.Id)
+                    .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment: 1);
             builder.Property(x => x.Name)
                 .IsRequired()
                 .HasMaxLength(100);
-            builder.Property(x=>x.Surname)
+            builder.Property(x => x.Surname)
                 .IsRequired()
                 .HasMaxLength(100);
-            builder.Property(x=>x.Info)
+            builder.Property(x => x.Info)
                 .IsRequired()
-                .HasMaxLength (500);
+                .HasMaxLength(500);
+            builder.Property(x => x.FacebookLink)
+                .IsRequired()
+                .HasMaxLength(150);
+            builder.Property(x => x.InstagramLink)
+                .IsRequired()
+                .HasMaxLength(150);
+            builder.Property(x => x.TwitterLink)
+                .IsRequired()
+                .HasMaxLength(150); 
+            builder.Property(x => x.EmailLink)
+                .IsRequired()
+                .HasMaxLength(150);
             builder.HasIndex(x => new { x.InstagramLink, x.FacebookLink, x.TwitterLink, x.EmailLink, x.Deleted })
                 .IsUnique();
             //Has Not Relationship

@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Configurations
 {
-    public class CategoryCounfiguration : IEntityTypeConfiguration<Category>
+    public class CategoryCounfiguration : IEntityTypeConfiguration<CycleCategory>
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
+        public void Configure(EntityTypeBuilder<CycleCategory> builder)
         {
             builder.ToTable("Categories");
             builder.Property(x=>x.Id)

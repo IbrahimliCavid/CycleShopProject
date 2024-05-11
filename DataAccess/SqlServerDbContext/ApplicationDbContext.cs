@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,12 +17,17 @@ namespace DataAccess.SqlServerDbContext
             optionsBuilder.UseSqlServer("Data Source = Localhost; Initial Catalog = MyCycleDb; Integrated Security = true; Encrypt = false;");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
+
         public DbSet<About> Abouts { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<BestRacer> BestRacers { get; set; }
         public DbSet<BigSale> BigSales { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<Category> Categories {  get; set; }
+        public DbSet<CycleCategory> Categories {  get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products {  get; set; }

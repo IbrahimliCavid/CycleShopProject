@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
-
+    <title>Cycle Store DashBoard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Custom fonts for this template-->
     <link href="~/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -18,6 +18,8 @@
 
     <!-- Custom styles for this template-->
     <link href="~/admin/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link href="~/admin/vendor/datatables/datatables.bootstrap4.min.css" rel="stylesheet" />
 
 </head>
 
@@ -42,9 +44,18 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                <a class="nav-link" asp-action="Index" asp-controller="BestRacer">
+                    <svg version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve" width="18px" height="18px" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css">
+                                                                                                                                                                                                                                                                                                                                                                                    .st0 {
+                                                                                                                                                                                                                                                                                                                                                                                        fill: none;
+                                                                                                                                                                                                                                                                                                                                                                                        stroke: #000000;
+                                                                                                                                                                                                                                                                                                                                                                                        stroke-width: 2;
+                                                                                                                                                                                                                                                                                                                                                                                        stroke-linecap: round;
+                                                                                                                                                                                                                                                                                                                                                                                        stroke-linejoin: round;
+                                                                                                                                                                                                                                                                                                                                                                                        stroke-miterlimit: 10;
+                                                                                                                                                                                                                                                                                                                                                                                    }
+</style> <path class="st0" d="M21.5,3c-1.9,0.1-3.7,0.8-5,2.1L15.6,6h0c1.5,0,2.9,0.7,3.8,1.9C20,8.6,20.9,9,21.9,9c1.9,0,3.4-1.6,3.1-3.5 C24.7,4,23.2,2.9,21.5,3z"></path> <circle class="st0" cx="6" cy="24" r="5"></circle> <circle class="st0" cx="26" cy="24" r="5"></circle> <path class="st0" d="M26,14h-5l-3.2-3.2c-1-1-2.7-1.1-3.8-0.1l-3.5,3c-0.8,0.7-0.7,1.9,0.2,2.5L17,20l-2,6"></path> <line class="st0" x1="18.5" y1="11.5" x2="12.2" y2="17"></line> <circle cx="6" cy="24" r="1"></circle> <circle cx="26" cy="24" r="1"></circle> </g></svg>
+                    <span>Best Racers</span>
                 </a>
             </li>
 
@@ -54,7 +65,7 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-      
+
         </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
@@ -277,64 +288,78 @@
                 <div class="container-fluid">
                     @RenderBody()
                 </div>
-                </div>
-                <!-- End of Main Content -->
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2021</span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
-
             </div>
-            <!-- End of Content Wrapper -->
-
-        </div>
-        <!-- End of Page Wrapper -->
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
                     </div>
                 </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="~/admin/vendor/jquery/jquery.min.js"></script>
-        <script src="~/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="~/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="~/admin/js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/admin/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="~/admin/vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="~/admin/vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="~/admin/js/demo/chart-area-demo.js"></script>
-        <script src="~/admin/js/demo/chart-pie-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="~/admin/js/demo/chart-area-demo.js"></script>
+    <script src="~/admin/js/demo/chart-pie-demo.js"></script>
+
+    <script src="~/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/admin/js/demo/datatables-demo.js"></script>
+
+    <script src="~/admin/vendor/sweetalert2/sweetalert2.all.js"></script>
+    <script src="~/admin/vendor/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="~/admin/vendor/sweetalert2/sweetalert2.js"></script>
+    <script src="~/admin/vendor/sweetalert2/sweetalert2.min.js"></script>
+
+ 
+    @RenderSection("Scripts", false)
 
 </body>
 

@@ -28,7 +28,7 @@ namespace DataAccess.Configurations
             builder.HasIndex(x => new { x.Email, x.UserName, x.Deleted })
                 .IsUnique();
 
-            //Relationship User and ShippingAdresses
+            //Relationship between User and ShippingAdresses
             builder.HasMany(x => x.ShippingAdresses)
                 .WithOne(x => x.User)
                 .HasForeignKey(x => x.UserId);

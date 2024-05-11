@@ -15,19 +15,11 @@ namespace DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-        //      public int CartId { get; set; }
-        //public int ShippingAdressId { get; set; }
-        //public decimal SubTotal { get; set; }
-        //public float Delivery { get; set; }
-        //public float Commision { get; set; }
-        //public float GrandTotal { get; set; }
-        //public bool IsDelivery { get; set; }
-        //public virtual Cart Cart { get; set; }
-        //public virtual ShippingAdress ShippingAdress { get; set; }
         builder.ToTable("Orders");
             builder.Property(x => x.Id)
                 .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment:1);
             builder.Property(x=>x.SubTotal)
+                 .HasPrecision(7, 2)
                 .IsRequired();
             builder.Property(x=>x.Delivery)
                 .IsRequired();

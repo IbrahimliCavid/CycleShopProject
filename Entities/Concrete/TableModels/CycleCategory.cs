@@ -2,9 +2,9 @@
 
 namespace Entities.Concrete.TableModels
 {
-    public class Category : BaseEntity
+    public class CycleCategory : BaseEntity
     {
-        public Category()
+        public CycleCategory()
         {
             Products = new HashSet<Product>();
         }

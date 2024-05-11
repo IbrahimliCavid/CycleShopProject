@@ -3,5 +3,5 @@ using Entities.Concrete.TableModels;
 
 namespace DataAccess.Abstract
 {
-    public interface ICategoryDal : IBaseRepository<Category> { }
+    public interface ICategoryDal : IBaseRepository<CycleCategory> { }
 }

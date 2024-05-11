@@ -54,13 +54,10 @@ namespace DataAccess.Configurations
             builder.Property(x => x.ImgUrl)
                 .IsRequired()
                 .HasMaxLength(200);
-          
             builder.Property(x => x.Price)
                 .IsRequired();
             builder.Property(x => x.PrecentOfDiscount)
             .HasDefaultValue(0);
-            builder.Property(x => x.StarRating)
-                .HasDefaultValue(5);
             builder.Property(x => x.IsHomePage)
                 .HasDefaultValue(false);
             builder.HasIndex(x => new { x.Name, x.ImgUrl, x.Deleted });

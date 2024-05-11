@@ -28,10 +28,10 @@ namespace Entities.Concrete.TableModels
             }
         }
         public bool IsHomePage {  get; set; }
-        public byte PrecentOfDiscount { get; set; }
+        public float PrecentOfDiscount { get; set; }
         [NotMapped]
         public byte StarRating { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }
-        public virtual Category Category { get; set; }
+        public virtual CycleCategory Category { get; set; }
     }
 }
