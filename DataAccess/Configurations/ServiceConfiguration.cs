@@ -15,10 +15,6 @@ namespace DataAccess.Configurations
         public void Configure(EntityTypeBuilder<Service> builder)
         {
 
-            //     public string Title { get; set; }
-            //public string Description { get; set; }
-            //public bool IsHomePage { get; set; }
-            //public string ImgUrl { get; set; }
             builder.ToTable("Services");
             builder.Property(x => x.Id)
                 .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment: 1);

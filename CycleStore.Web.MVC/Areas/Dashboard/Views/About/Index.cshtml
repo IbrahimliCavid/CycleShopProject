@@ -1,11 +1,11 @@
-﻿@model List<BestRacer>;
+﻿@model List<About>;
 
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <form action="BestRacer/Create" method="get">
+                <form action="About/Create" method="get">
                     <p>
                         <button class="btn btn-primary">@DefaultConstantValue.DEFAULT_BUTTON_NAME_ADD</button>
                     </p>
@@ -13,9 +13,8 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Surname</th>
-                            <th>Info</th>
+                            <th>Header</th>
+                            <th>Description</th>
                             <th>Deleted</th>
                             <th>Created Date</th>
                             <th>Last Update Date</th>
@@ -26,9 +25,8 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.Name</td>
-                                <td>@item.Surname</td>
-                                <td>@item.Info</td>
+                                <td>@item.Title</td>
+                                <td>@item.Description</td>
                                 <td>@item.Deleted</td>
                                 <td>@item.CreatedDate</td>
                                 <td>@item.LastUpdateDate</td>
@@ -36,7 +34,7 @@
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a> |
-                                    <a item-value="@item" item-title="@item.Name" class="btnDelete">
+                                    <a item-value="@item.Id" item-title="@item.Title" class="btnDelete">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
@@ -67,7 +65,7 @@
                     let itemTitle = e.currentTarget.attributes[1].value;
                     $.ajax({
                         method: "POST",
-                        url: "bestracer/delete/",
+                        url: "about/delete/",
                         data: {
                             id: itemId
                         }
@@ -78,7 +76,7 @@
                         icon: 'success',
 
                     }).then((result) => {
-                        window.location = "bestracer"
+                        window.location = "about"
                     })
 
                 }

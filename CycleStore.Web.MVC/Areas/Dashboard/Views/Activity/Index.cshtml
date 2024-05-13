@@ -1,11 +1,11 @@
-﻿@model List<BestRacer>;
+﻿@* @model List<About>;
 
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <form action="BestRacer/Create" method="get">
+                <form action="About/Create" method="get">
                     <p>
                         <button class="btn btn-primary">@DefaultConstantValue.DEFAULT_BUTTON_NAME_ADD</button>
                     </p>
@@ -19,7 +19,6 @@
                             <th>Deleted</th>
                             <th>Created Date</th>
                             <th>Last Update Date</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +35,7 @@
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a> |
-                                    <a item-value="@item" item-title="@item.Name" class="btnDelete">
+                                    <a item-value="@item.Id" item-title="@item.Name" class="btnDelete">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
@@ -67,7 +66,7 @@
                     let itemTitle = e.currentTarget.attributes[1].value;
                     $.ajax({
                         method: "POST",
-                        url: "bestracer/delete/",
+                        url: "foodcategory/delete/",
                         data: {
                             id: itemId
                         }
@@ -78,11 +77,11 @@
                         icon: 'success',
 
                     }).then((result) => {
-                        window.location = "bestracer"
+                        window.location = "foodcategory"
                     })
 
                 }
             })
         })
     </script>
-}
+} *@

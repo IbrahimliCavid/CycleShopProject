@@ -21,9 +21,12 @@ namespace Buisness.Concrete
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
-        public IResult Delete(BestRacer entity)
+        public IResult Delete(int id)
         {
-            throw new NotImplementedException();
+            var data = GetById(id).Data;
+            data.Deleted = id;
+            _bestRacerDal.Update(data);
+            return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
         public IResult Update(BestRacer entity)

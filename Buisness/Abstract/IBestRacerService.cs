@@ -11,7 +11,7 @@ namespace Buisness.Abstract
     public interface IBestRacerService
     {
         IResult Add(BestRacer entity);
-        IResult Delete(BestRacer entity);
+        IResult Delete(int id);
         IResult Update(BestRacer entity);
 
         IDataResult<BestRacer> GetById(int id);
