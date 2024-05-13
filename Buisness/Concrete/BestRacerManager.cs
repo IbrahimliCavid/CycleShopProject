@@ -39,7 +39,7 @@ namespace Buisness.Concrete
 
         public IDataResult<List<BestRacer>> GetAll()
         {
-            return new SuccessDataResult<List<BestRacer>>(_bestRacerDal.GetAll());
+            return new SuccessDataResult<List<BestRacer>>(_bestRacerDal.GetAll(x=> x.Deleted == 0));
         }
 
         public IDataResult<BestRacer> GetById(int id)

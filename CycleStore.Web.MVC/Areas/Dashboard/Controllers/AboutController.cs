@@ -45,5 +45,14 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
                 return RedirectToAction("Index");
             return View(about);
         }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var result = _aboutManager.Delete(id);
+            if (result.IsSuccess)
+                return RedirectToAction("Index");
+            return View(result);
+        }
     }
 }

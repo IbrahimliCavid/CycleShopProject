@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Buisness.Abstract
 {
-    public interface IAbouService
+    public interface IAboutService
     {
         IResult Add(About entity);
         IResult Update(About entity);
-        IResult Delete(About entity);
+        IResult Delete(int id);
         IDataResult<About> GetById(int id);
         IDataResult<List<About>> GetAll();
     }

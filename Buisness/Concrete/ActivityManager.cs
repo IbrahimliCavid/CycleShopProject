@@ -18,7 +18,7 @@ namespace Buisness.Concrete
             throw new NotImplementedException();
         }
 
-        public IResult Delete(Activity activity)
+        public IResult Delete(int id)
         {
             throw new NotImplementedException();
         }

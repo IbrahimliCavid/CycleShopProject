@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Buisness.Concrete
 {
-    public class AboutManager : IAbouService
+    public class AboutManager : IAboutService
     {
         AboutDal _aboutDal = new AboutDal(); 
         public IResult Add(About entity)
@@ -21,15 +21,17 @@ namespace Buisness.Concrete
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
-        public IResult Delete(About entity)
+        public IResult Delete(int id)
         {
-            _aboutDal.Delete(entity);
+            var data = GetById(id).Data;
+            data.Deleted = id;
+            _aboutDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
         public IDataResult<List<About>> GetAll()
         {
-            return new SuccessDataResult<List<About>>(_aboutDal.GetAll());
+            return new SuccessDataResult<List<About>>(_aboutDal.GetAll(x => x.Deleted == 0));
         }
 
         public IDataResult<About> GetById(int id)

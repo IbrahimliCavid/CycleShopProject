@@ -47,7 +47,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
             return View(bestRacer);
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult Delete(int id)
         {
             var result = _bestRacerManager.Delete(id);

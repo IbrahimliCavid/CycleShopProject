@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,12 +43,23 @@ namespace Core.DataAccess.Concret
             }
         }
 
-        public List<TEntity> GetAll()
-        {
+        //public List<TEntity> GetAll()
+        //{
 
-            using (TContext context = new TContext())
+        //    using (TContext context = new TContext())
+        //    {
+        //        return context.Set<TEntity>().ToList();
+        //    }
+        //}
+
+        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter)
+        {
+           using (TContext contex = new TContext())
             {
-                return context.Set<TEntity>().ToList();
+                if(filter == null)
+                    return contex.Set<TEntity>().ToList();
+                else 
+                    return contex.Set<TEntity>().Where(filter).ToList();
             }
         }
 

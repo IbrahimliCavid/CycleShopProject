@@ -12,7 +12,7 @@ namespace Buisness.Abstract
     {
         
         IResult Add(Activity activity);
-        IResult Delete(Activity activity);
+        IResult Delete(int id);
         IResult Update(Activity activity);
         IDataResult<Activity> GetById(int id);
         IDataResult<List<Activity>> GetAll();
