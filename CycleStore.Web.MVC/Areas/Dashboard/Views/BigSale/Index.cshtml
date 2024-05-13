@@ -1,11 +1,11 @@
-﻿@model List<About>;
+﻿@model List<BigSale>;
 
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <form action="About/Create" method="get">
+                <form action="BigSale/Create" method="get">
                     <p>
                         <button class="btn btn-primary">@DefaultConstantValue.DEFAULT_BUTTON_NAME_ADD</button>
                     </p>
@@ -13,8 +13,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Header</th>
-                            <th>Description</th>
+                            <th>Photo Url</th>
                             <th>Created Date</th>
                             <th>Last Update Date</th>
                             <th></th>
@@ -24,15 +23,14 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.Title</td>
-                                <td>@item.Description</td>
+                                <td>@item.ImgUrl</td>
                                 <td>@item.CreatedDate</td>
                                 <td>@item.LastUpdateDate</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a> |
-                                    <a item-value="@item.Id" item-title="@item.Title" class="btnDelete">
+                                    <a item-value="@item.Id" item-title="@item.ImgUrl" class="btnDelete">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
@@ -63,7 +61,7 @@
                     let itemTitle = e.currentTarget.attributes[1].value;
                     $.ajax({
                         method: "POST",
-                        url: "about/delete/",
+                        url: "bigsale/delete/",
                         data: {
                             id: itemId
                         }
@@ -74,7 +72,7 @@
                         icon: 'success',
 
                     }).then((result) => {
-                        window.location = "about"
+                        window.location = "bigsale"
                     })
 
                 }
@@ -82,5 +80,5 @@
         })
     </script>
 
- 
+   
 }

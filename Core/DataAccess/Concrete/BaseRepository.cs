@@ -43,15 +43,6 @@ namespace Core.DataAccess.Concret
             }
         }
 
-        //public List<TEntity> GetAll()
-        //{
-
-        //    using (TContext context = new TContext())
-        //    {
-        //        return context.Set<TEntity>().ToList();
-        //    }
-        //}
-
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter)
         {
            using (TContext contex = new TContext())
@@ -63,7 +54,7 @@ namespace Core.DataAccess.Concret
             }
         }
 
-        public TEntity GetByID(int id)
+        public TEntity GetById (int id)
         {
             using (TContext context = new TContext()) 
             {

@@ -1,5 +1,4 @@
-﻿using Buisness.Abstract;
-using Buisness.BaseMessage;
+﻿using Buisness.BaseMessage;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Concrete;
@@ -12,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace Buisness.Concrete
 {
-    public class BestRacerManager : IBestRacerService
+    public class UserManager
     {
-       public readonly BestRacerDal _bestRacerDal = new BestRacerDal();
-        public IResult Add(BestRacer entity)
+        UserDal _userDal = new UserDal();
+        public IResult Add(User entity)
         {
-            _bestRacerDal.Add(entity);
+            _userDal.Add(entity);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
@@ -25,28 +24,25 @@ namespace Buisness.Concrete
         {
             var data = GetById(id).Data;
             data.Deleted = id;
-            _bestRacerDal.Update(data);
+            _userDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
-        }
 
-        public IResult Update(BestRacer entity)
+        }
+        public IResult Update(User entity)
         {
             entity.LastUpdateDate = DateTime.Now;
-            _bestRacerDal.Update(entity);
-
+            _userDal.Update(entity);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
-
-        public IDataResult<List<BestRacer>> GetAll()
+        public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<BestRacer>>(_bestRacerDal.GetAll(x=> x.Deleted == 0));
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(x => x.Deleted == 0));
         }
 
-        public IDataResult<BestRacer> GetById(int id)
+        public IDataResult<User> GetById(int id)
         {
-            return new SuccessDataResult<BestRacer>(_bestRacerDal.GetById(id));
+            return new SuccessDataResult<User>(_userDal.GetById(id));
         }
 
-      
     }
 }

@@ -2,12 +2,13 @@
 
 namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
 {
+    [Area("Dashboard")]
     public class ActivityController : Controller
     {
-        [Area("Dashboard")]
         public IActionResult Index()
         {
             return View();
         }
+
     }
 }

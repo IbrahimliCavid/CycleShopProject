@@ -14,7 +14,7 @@ namespace Buisness.Concrete
 {
     public class AboutManager : IAboutService
     {
-        AboutDal _aboutDal = new AboutDal(); 
+        private readonly AboutDal _aboutDal = new AboutDal(); 
         public IResult Add(About entity)
         {
             _aboutDal.Add(entity);
@@ -29,6 +29,14 @@ namespace Buisness.Concrete
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
+
+        public IResult Update(About entity)
+        {
+            entity.LastUpdateDate = DateTime.Now;
+            _aboutDal.Update(entity);
+
+            return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
+        }
         public IDataResult<List<About>> GetAll()
         {
             return new SuccessDataResult<List<About>>(_aboutDal.GetAll(x => x.Deleted == 0));
@@ -36,15 +44,8 @@ namespace Buisness.Concrete
 
         public IDataResult<About> GetById(int id)
         {
-            return new SuccessDataResult<About>(_aboutDal.GetByID(id));
+            return new SuccessDataResult<About>(_aboutDal.GetById(id));
         }
 
-        public IResult Update(About entity)
-        {
-            entity.LastUpdateDate = DateTime.Now;
-           _aboutDal.Update(entity);
-
-            return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
-        }
     }
 }

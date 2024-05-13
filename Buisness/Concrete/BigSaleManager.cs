@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace Buisness.Concrete
 {
-    public class BestRacerManager : IBestRacerService
+    public class BigSaleManager : IBigSaleService
     {
-       public readonly BestRacerDal _bestRacerDal = new BestRacerDal();
-        public IResult Add(BestRacer entity)
+        BigSaleDal _bigSaleDal = new BigSaleDal();
+        public IResult Add(BigSale entity)
         {
-            _bestRacerDal.Add(entity);
+            _bigSaleDal.Add(entity);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
@@ -25,28 +25,26 @@ namespace Buisness.Concrete
         {
             var data = GetById(id).Data;
             data.Deleted = id;
-            _bestRacerDal.Update(data);
+            _bigSaleDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
+            
         }
-
-        public IResult Update(BestRacer entity)
+        public IResult Update(BigSale entity)
         {
             entity.LastUpdateDate = DateTime.Now;
-            _bestRacerDal.Update(entity);
-
+            _bigSaleDal.Update(entity);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
-
-        public IDataResult<List<BestRacer>> GetAll()
+        public IDataResult<List<BigSale>> GetAll()
         {
-            return new SuccessDataResult<List<BestRacer>>(_bestRacerDal.GetAll(x=> x.Deleted == 0));
+            return new  SuccessDataResult<List<BigSale>>(_bigSaleDal.GetAll(x=>x.Deleted == 0));
         }
 
-        public IDataResult<BestRacer> GetById(int id)
+        public IDataResult<BigSale> GetById(int id)
         {
-            return new SuccessDataResult<BestRacer>(_bestRacerDal.GetById(id));
+            return new SuccessDataResult<BigSale>(_bigSaleDal.GetById(id));
         }
 
-      
+     
     }
 }

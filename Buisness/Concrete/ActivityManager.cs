@@ -12,7 +12,7 @@ namespace Buisness.Concrete
 {
     public class ActivityManager : IActivityService
     {
-        ActivityDal _activityDal = new ActivityDal();
+       public readonly ActivityDal _activityDal = new ActivityDal();
         public IResult Add(Activity activity)
         {
             throw new NotImplementedException();

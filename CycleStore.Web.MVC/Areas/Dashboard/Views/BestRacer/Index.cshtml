@@ -16,7 +16,6 @@
                             <th>Name</th>
                             <th>Surname</th>
                             <th>Info</th>
-                            <th>Deleted</th>
                             <th>Created Date</th>
                             <th>Last Update Date</th>
                             <th></th>
@@ -29,7 +28,6 @@
                                 <td>@item.Name</td>
                                 <td>@item.Surname</td>
                                 <td>@item.Info</td>
-                                <td>@item.Deleted</td>
                                 <td>@item.CreatedDate</td>
                                 <td>@item.LastUpdateDate</td>
                                 <td>
@@ -53,14 +51,14 @@
     <script>
         $(".btnDelete").click(function (e) {
             Swal.fire({
-                title: 'Əminsən?',
-                text: "Geri döndərə bilməyəcəksiz!",
+                title: '@UIMessage.DEFAULT_WARNING_CONFIRM_MESSAGE',
+                text: "@UIMessage.DEFAULT_WARNING_RETURN_MESSAGE",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
-                cancelButtonText: "Ləğv et",
+                cancelButtonText: "@DefaultConstantValue.DEFAULT_BUTTON_NAME_CANCEL",
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Bəli '
+                confirmButtonText: '@DefaultConstantValue.DEFAULT_BUTTON_NAME_CONFIRM '
             }).then((result) => {
                 if (result.isConfirmed) {
                     let itemId = e.currentTarget.attributes[0].value;
@@ -73,8 +71,8 @@
                         }
                     })
                     Swal.fire({
-                        title: 'Silindi!',
-                        text: "'" + itemTitle + "' silindi",
+                        title: '@UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE',
+                        text: "'" + itemTitle + "' @UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE",
                         icon: 'success',
 
                     }).then((result) => {
@@ -85,4 +83,6 @@
             })
         })
     </script>
+
+   
 }

@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace Buisness.Concrete
 {
-    public class BestRacerManager : IBestRacerService
+    public class ContactManager : IContactService
     {
-       public readonly BestRacerDal _bestRacerDal = new BestRacerDal();
-        public IResult Add(BestRacer entity)
+        private readonly ContactDal _contactDal = new ContactDal();
+        public IResult Add(Contact contact)
         {
-            _bestRacerDal.Add(entity);
+           _contactDal.Add(contact);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
@@ -25,28 +25,26 @@ namespace Buisness.Concrete
         {
             var data = GetById(id).Data;
             data.Deleted = id;
-            _bestRacerDal.Update(data);
+            _contactDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IResult Update(BestRacer entity)
+        public IResult Update(Contact contact)
         {
-            entity.LastUpdateDate = DateTime.Now;
-            _bestRacerDal.Update(entity);
-
+            contact.LastUpdateDate = DateTime.Now;
+           _contactDal.Update(contact);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
-
-        public IDataResult<List<BestRacer>> GetAll()
+        public IDataResult<List<Contact>> GetAll()
         {
-            return new SuccessDataResult<List<BestRacer>>(_bestRacerDal.GetAll(x=> x.Deleted == 0));
+            return new SuccessDataResult<List<Contact>>(_contactDal.GetAll(x=>x.Deleted == 0));
         }
 
-        public IDataResult<BestRacer> GetById(int id)
+        public IDataResult<Contact> GetById(int id)
         {
-            return new SuccessDataResult<BestRacer>(_bestRacerDal.GetById(id));
+            return new SuccessDataResult<Contact>(_contactDal.GetById(id));
         }
 
-      
+    
     }
 }
