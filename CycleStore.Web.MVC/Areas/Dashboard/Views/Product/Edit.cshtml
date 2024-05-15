@@ -3,11 +3,11 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" method="post">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label">Product Name</label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control"/>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -29,26 +29,24 @@
                 <input asp-for="PrecentOfDiscount" class="form-control" type="number" step="any" min="0" max="100" />
                 <span asp-validation-for="PrecentOfDiscount" class="text-danger"></span>
             </div>
-          
-              <div class="form-group">
+
+            <div class="form-group">
                 <label asp-for="ImgUrl" class="control-label">Photo</label>
-                <input asp-for="ImgUrl" class="form-control"  />
+                <input asp-for="ImgUrl" class="form-control" />
                 <span asp-validation-for="ImgUrl" class="text-danger"></span>
             </div>
-           
+
             <div class="form-group">
                 <label asp-for="StarRating" class="control-label">Rating</label>
-                <input asp-for="StarRating" class="form-control" type="number"  min="1"  max="5"/>
+                <input asp-for="StarRating" class="form-control" type="number" min="1" max="5"  />
                 <span asp-validation-for="StarRating" class="text-danger"></span>
             </div>
             <div class="form-group d-flex align-items-center">
                 <span style="margin-right:1rem;">Is Home Page?:</span>
-                <input asp-for="IsHomePage" type="checkbox" />
+                <input asp-for="IsHomePage" type="checkbox" checked="@Model.IsHomePage"/>
             </div>
 
-
-               
-
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <input type="submit" value="@DefaultConstantValue.DEFAULT_BUTTON_NAME_ADD" class="btn btn-primary" />
             </div>
@@ -59,3 +57,5 @@
 <div>
     <a asp-action="Index">@DefaultConstantValue.DEFAULT_BUTTON_NAME_TO_BACK</a>
 </div>
+
+

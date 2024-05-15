@@ -4,6 +4,7 @@ using DataAccess.SqlServerDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240515162327_BestRacerAddImgUrl")]
+    partial class BestRacerAddImgUrl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,6 +80,9 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1000L);
 
+                    b.Property<int>("AboutId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ActivityInfo")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -88,7 +94,7 @@ namespace DataAccess.Migrations
                     b.Property<int>("Deleted")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsHomePage")
+                    b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
@@ -97,6 +103,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AboutId");
 
                     b.HasIndex("ActivityInfo", "Deleted")
                         .IsUnique();
@@ -390,9 +398,6 @@ namespace DataAccess.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<byte>("StarRating")
-                        .HasColumnType("tinyint");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -641,6 +646,17 @@ namespace DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Entities.Concrete.TableModels.Activity", b =>
+                {
+                    b.HasOne("Entities.Concrete.TableModels.About", "About")
+                        .WithMany("Activities")
+                        .HasForeignKey("AboutId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("About");
+                });
+
             modelBuilder.Entity("Entities.Concrete.TableModels.Cart", b =>
                 {
                     b.HasOne("Entities.Concrete.TableModels.User", "User")
@@ -691,6 +707,11 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.TableModels.About", b =>
+                {
+                    b.Navigation("Activities");
                 });
 
             modelBuilder.Entity("Entities.Concrete.TableModels.CycleCategory", b =>

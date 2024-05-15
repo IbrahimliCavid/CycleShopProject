@@ -3,5 +3,8 @@ using Entities.Concrete.TableModels;
 
 namespace DataAccess.Abstract
 {
-    public interface IProductDal: IBaseRepository<Product> { }
+    public interface IProductDal: IBaseRepository<Product>
+    {
+        List<Product> GetCycleWithCycleCategories();
+    }
 }

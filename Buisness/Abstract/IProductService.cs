@@ -14,6 +14,6 @@ namespace Buisness.Abstract
         IResult Update(Product entity);
         IResult Delete(int id);
         IDataResult<Product> GetById(int id);
-        IDataResult<List<Product>> GetAll();
+        IDataResult<List<Product>> GetProductWithCycleCategoryId();
     }
 }

@@ -5,8 +5,8 @@ namespace Entities.Concrete.TableModels
 {
     public class Product : BaseEntity
     {
-        [NotMapped]
-        private double _price;
+        //[NotMapped]
+        //private double _price;
         public Product()
         {
             Carts = new HashSet<Cart>();
@@ -14,22 +14,29 @@ namespace Entities.Concrete.TableModels
         public string Name { get; set; }
         public int CategoryId { get; set; }
         public string ImgUrl { get; set; }
-        public double Price
+        //public double Price {
+        //    get 
+        //    {
+        //        return _price;
+        //    } 
+        //    set {
+        //        _price = Price;
+        //    } 
+        //}
+        public double Price { get; set; }
+        [NotMapped]
+        public double NewPrice
         {
-          
+
             get
             {
-                var newPrice = _price * (100 - PrecentOfDiscount) / 100;
-                return newPrice;
-            } 
-            set
-            {
-                _price = value;
+                return Price * (100 - PrecentOfDiscount) / 100; ;
             }
+
         }
-        public bool IsHomePage {  get; set; }
+        public bool IsHomePage { get; set; }
         public float PrecentOfDiscount { get; set; }
-        [NotMapped]
+   
         public byte StarRating { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }
         public virtual CycleCategory Category { get; set; }

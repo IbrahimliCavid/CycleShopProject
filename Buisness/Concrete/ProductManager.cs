@@ -37,14 +37,15 @@ namespace Buisness.Concrete
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
 
-        public IDataResult<List<Product>> GetAll()
-        {
-            return new SuccessDataResult<List<Product>>(_prdouctDal.GetAll(x => x.Deleted == 0));
-        }
-
+    
         public IDataResult<Product> GetById(int id)
         {
             return new SuccessDataResult<Product>(_prdouctDal.GetById(id));
+        }
+
+        public IDataResult<List<Product>> GetProductWithCycleCategoryId()
+        {
+            return new SuccessDataResult<List<Product>>(_prdouctDal.GetCycleWithCycleCategories());
         }
     }
 }

@@ -7,6 +7,7 @@ namespace Entities.Concrete.TableModels
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Info { get; set; }
+        public string ImgUrl {  get; set; }
         public string FacebookLink { get; set; }
         public string InstagramLink { get; set; }
         public string TwitterLink { get; set; }

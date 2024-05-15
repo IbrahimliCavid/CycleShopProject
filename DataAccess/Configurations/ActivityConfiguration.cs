@@ -20,17 +20,12 @@ namespace DataAccess.Configurations
             builder.Property(x => x.ActivityInfo)
                 .IsRequired()
                 .HasMaxLength(500);
-            builder.Property(x => x.AboutId)
-                .IsRequired();
             builder.HasIndex(x => new {x.ActivityInfo, x.Deleted})
                 .IsUnique();
-            builder.Property(x => x.IsActive)
+            builder.Property(x => x.IsHomePage)
                 .HasDefaultValue(false);
 
-            //Relationship between About and Activity
-            builder.HasOne(x => x.About)
-                .WithMany(x => x.Activities)
-                .HasForeignKey(x => x.AboutId);
+            // Has not Relationship
 
                 
         }
