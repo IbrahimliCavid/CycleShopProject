@@ -37,10 +37,6 @@ namespace DataAccess.Configurations
 
             // No configuration needed here
             // as it's a mirrored relationship of CategoryConfiguration and CartConfiguration
-
-
-
-
         }
     }
 }

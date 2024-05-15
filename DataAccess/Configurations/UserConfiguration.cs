@@ -32,6 +32,8 @@ namespace DataAccess.Configurations
             builder.HasMany(x => x.ShippingAdresses)
                 .WithOne(x => x.User)
                 .HasForeignKey(x => x.UserId);
+
+            //The relationship between User and Cart is defined in the CartConfiguration class.
         }
     }
 }

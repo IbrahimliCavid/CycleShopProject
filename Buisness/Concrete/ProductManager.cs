@@ -2,7 +2,6 @@
 using Buisness.BaseMessage;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
-using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.TableModels;
 using System;
@@ -13,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace Buisness.Concrete
 {
-    public class ActivityManager : IActivityService
+    public class ProductManager : IProductService
     {
-       public readonly ActivityDal _activityDal = new ActivityDal();
-        public IResult Add(Activity entity)
+        public readonly ProductDal _prdouctDal = new ProductDal();
+        public IResult Add(Product entity)
         {
-            _activityDal.Add(entity);
+            _prdouctDal.Add(entity);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
@@ -26,27 +25,26 @@ namespace Buisness.Concrete
         {
             var data = GetById(id).Data;
             data.Deleted = id;
-            _activityDal.Update(data);
+            _prdouctDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IResult Update(Activity entity)
+        public IResult Update(Product entity)
         {
             entity.LastUpdateDate = DateTime.Now;
-            _activityDal.Update(entity);
+            _prdouctDal.Update(entity);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
 
-        public IDataResult<List<Activity>> GetAll()
+        public IDataResult<List<Product>> GetAll()
         {
-            return new SuccessDataResult<List<Activity>>(_activityDal.GetAll(x => x.Deleted == 0));
+            return new SuccessDataResult<List<Product>>(_prdouctDal.GetAll(x => x.Deleted == 0));
         }
 
-        public IDataResult<Activity> GetById(int id)
+        public IDataResult<Product> GetById(int id)
         {
-            return new SuccessDataResult<Activity>(_activityDal.GetById(id));
+            return new SuccessDataResult<Product>(_prdouctDal.GetById(id));
         }
-
     }
 }

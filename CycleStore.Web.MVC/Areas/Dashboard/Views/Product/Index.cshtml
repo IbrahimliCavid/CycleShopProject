@@ -1,11 +1,11 @@
-﻿@model List<CycleCategory>;
+﻿@model List<Product>;
 
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <form action="CycleCategory/Create" method="get">
+                <form action="Product/Create" method="get">
                     <p>
                         <button class="btn btn-primary">@DefaultConstantValue.DEFAULT_BUTTON_NAME_ADD</button>
                     </p>
@@ -14,8 +14,11 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Created Date</th>
-                            <th>Last Update Date</th>
+                            <th>Photo</th>
+                            <th>Price</th>
+                            <th>IsHomePage</th>
+                            <th>PrecentOfDiscount</th>
+                            <th>Category</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -24,8 +27,11 @@
                         {
                             <tr>
                                 <td>@item.Name</td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.LastUpdateDate</td>
+                                <td> <img src="@item.ImgUrl" alt="Product Photo" /> </td>
+                                <td>@item.Price</td>
+                                <td>@item.IsHomePage</td>
+                                <td>@item.PrecentOfDiscount</td>
+                                <td>@item.Category.Name</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>

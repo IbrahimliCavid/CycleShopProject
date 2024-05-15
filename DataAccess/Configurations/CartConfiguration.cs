@@ -19,6 +19,12 @@ namespace DataAccess.Configurations
                 .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment: 1);
 
 
+
+            //Relotionship between Cart and User
+            builder.HasOne(x => x.User)
+                .WithOne()
+                .HasForeignKey<Cart>(x => x.UserId);
+
             //Relationship between Carts and Products
             builder.HasMany(x => x.Products)
                 .WithMany(x => x.Carts)

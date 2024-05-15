@@ -24,6 +24,8 @@ namespace DataAccess.Configurations
                 .IsRequired();
             builder.HasIndex(x => new {x.ActivityInfo, x.Deleted})
                 .IsUnique();
+            builder.Property(x => x.IsActive)
+                .HasDefaultValue(false);
 
             //Relationship between About and Activity
             builder.HasOne(x => x.About)

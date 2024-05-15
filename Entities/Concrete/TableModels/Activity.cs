@@ -6,6 +6,7 @@ namespace Entities.Concrete.TableModels
     {
         public int AboutId { get; set; }
         public string ActivityInfo { get; set; }
+        public bool IsActive {  get; set; }
         public virtual About About { get; set; }
     }
 }

@@ -1,11 +1,11 @@
-﻿@model List<CycleCategory>;
+﻿@model List<Testimonial>;
 
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <form action="CycleCategory/Create" method="get">
+                <form action="Testimonial/Create" method="get">
                     <p>
                         <button class="btn btn-primary">@DefaultConstantValue.DEFAULT_BUTTON_NAME_ADD</button>
                     </p>
@@ -14,6 +14,8 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Surname</th>
+                            <th>Feedback</th>
                             <th>Created Date</th>
                             <th>Last Update Date</th>
                             <th></th>
@@ -24,6 +26,8 @@
                         {
                             <tr>
                                 <td>@item.Name</td>
+                                <td>@item.Surname</td>
+                                <td>@item.Feedback</td>
                                 <td>@item.CreatedDate</td>
                                 <td>@item.LastUpdateDate</td>
                                 <td>
@@ -61,7 +65,7 @@
                     let itemTitle = e.currentTarget.attributes[1].value;
                     $.ajax({
                         method: "POST",
-                        url: "cyclecategory/delete/",
+                        url: "testimonial/delete/",
                         data: {
                             id: itemId
                         }
@@ -72,7 +76,7 @@
                         icon: 'success',
 
                     }).then((result) => {
-                        window.location = "cyclecategory"
+                        window.location = "testimonial"
                     })
 
                 }

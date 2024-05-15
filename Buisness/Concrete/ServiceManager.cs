@@ -2,7 +2,6 @@
 using Buisness.BaseMessage;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
-using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.TableModels;
 using System;
@@ -13,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace Buisness.Concrete
 {
-    public class ActivityManager : IActivityService
+    public class ServiceManager : IServiceService
     {
-       public readonly ActivityDal _activityDal = new ActivityDal();
-        public IResult Add(Activity entity)
+        private readonly ServiceDal _aboutDal = new ServiceDal();
+        public IResult Add(Service entity)
         {
-            _activityDal.Add(entity);
+            _aboutDal.Add(entity);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
@@ -26,26 +25,26 @@ namespace Buisness.Concrete
         {
             var data = GetById(id).Data;
             data.Deleted = id;
-            _activityDal.Update(data);
+            _aboutDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IResult Update(Activity entity)
+
+        public IResult Update(Service entity)
         {
             entity.LastUpdateDate = DateTime.Now;
-            _activityDal.Update(entity);
+            _aboutDal.Update(entity);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
-
-        public IDataResult<List<Activity>> GetAll()
+        public IDataResult<List<Service>> GetAll()
         {
-            return new SuccessDataResult<List<Activity>>(_activityDal.GetAll(x => x.Deleted == 0));
+            return new SuccessDataResult<List<Service>>(_aboutDal.GetAll(x => x.Deleted == 0));
         }
 
-        public IDataResult<Activity> GetById(int id)
+        public IDataResult<Service> GetById(int id)
         {
-            return new SuccessDataResult<Activity>(_activityDal.GetById(id));
+            return new SuccessDataResult<Service>(_aboutDal.GetById(id));
         }
 
     }

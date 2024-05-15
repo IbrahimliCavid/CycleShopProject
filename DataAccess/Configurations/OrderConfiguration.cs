@@ -15,13 +15,13 @@ namespace DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-        builder.ToTable("Orders");
+            builder.ToTable("Orders");
             builder.Property(x => x.Id)
-                .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment:1);
-            builder.Property(x=>x.SubTotal)
+                .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment: 1);
+            builder.Property(x => x.SubTotal)
                  .HasPrecision(7, 2)
                 .IsRequired();
-            builder.Property(x=>x.Delivery)
+            builder.Property(x => x.Delivery)
                 .IsRequired();
             builder.Property(x => x.Commision)
                 .HasDefaultValue(1);
@@ -39,8 +39,9 @@ namespace DataAccess.Configurations
 
             //Relationship between Order and ShippingAdress
             builder.HasOne(x => x.ShippingAdress)
-                .WithOne()
-                .HasForeignKey<Order>(x => x.ShippingAdressId);
+           .WithMany() // No navigation property in ShippingAddress class
+           .HasForeignKey(x => x.ShippingAdressId)
+           .OnDelete(DeleteBehavior.NoAction);
 
 
         }

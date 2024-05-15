@@ -8,7 +8,8 @@ namespace Entities.Concrete.TableModels
         {
             Products = new HashSet<Product>();
         }
-
+        public int UserId {  get; set; }
+        public User User { get; set; }
         public virtual ICollection<Product> Products { get; set; }
     }
 }

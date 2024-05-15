@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace Buisness.Concrete
 {
-    public class ActivityManager : IActivityService
+    public class TestimonialManager : ITestimonialService
     {
-       public readonly ActivityDal _activityDal = new ActivityDal();
-        public IResult Add(Activity entity)
+        private readonly TestimonialDal _testimonialDal = new();
+        public IResult Add(Testimonial entity)
         {
-            _activityDal.Add(entity);
+            _testimonialDal.Add(entity);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
@@ -26,26 +26,26 @@ namespace Buisness.Concrete
         {
             var data = GetById(id).Data;
             data.Deleted = id;
-            _activityDal.Update(data);
+            _testimonialDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IResult Update(Activity entity)
+
+        public IResult Update(Testimonial entity)
         {
             entity.LastUpdateDate = DateTime.Now;
-            _activityDal.Update(entity);
+            _testimonialDal.Update(entity);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
-
-        public IDataResult<List<Activity>> GetAll()
+        public IDataResult<List<Testimonial>> GetAll()
         {
-            return new SuccessDataResult<List<Activity>>(_activityDal.GetAll(x => x.Deleted == 0));
+            return new SuccessDataResult<List<Testimonial>>(_testimonialDal.GetAll(x => x.Deleted == 0));
         }
 
-        public IDataResult<Activity> GetById(int id)
+        public IDataResult<Testimonial> GetById(int id)
         {
-            return new SuccessDataResult<Activity>(_activityDal.GetById(id));
+            return new SuccessDataResult<Testimonial>(_testimonialDal.GetById(id));
         }
 
     }

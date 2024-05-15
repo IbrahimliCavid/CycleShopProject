@@ -5,7 +5,7 @@ namespace Entities.Concrete.TableModels
     public class Order : BaseEntity
     {
         public int CartId { get; set; }
-        public int ShippingAdressId { get; set; }
+        public int? ShippingAdressId { get; set; } = null;
         public decimal SubTotal { get; set; }
         public float Delivery { get; set; }
         public float Commision { get; set; }

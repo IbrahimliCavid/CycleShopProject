@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240511143320_InitalMigrationAdded")]
-    partial class InitalMigrationAdded
+    [Migration("20240514142932_MIG_INIT9")]
+    partial class MIG_INIT9
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -213,7 +213,13 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("LastUpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Carts", (string)null);
                 });
@@ -321,7 +327,8 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("LastUpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ShippingAdressId")
+                    b.Property<int?>("ShippingAdressId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<decimal>("SubTotal")
@@ -641,18 +648,29 @@ namespace DataAccess.Migrations
                     b.Navigation("About");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.TableModels.Cart", b =>
+                {
+                    b.HasOne("Entities.Concrete.TableModels.User", "User")
+                        .WithOne()
+                        .HasForeignKey("Entities.Concrete.TableModels.Cart", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Entities.Concrete.TableModels.Order", b =>
                 {
                     b.HasOne("Entities.Concrete.TableModels.Cart", "Cart")
-                        .WithOne()
+                        .WithOne("Order")
                         .HasForeignKey("Entities.Concrete.TableModels.Order", "CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Entities.Concrete.TableModels.ShippingAdress", "ShippingAdress")
-                        .WithOne()
+                        .WithOne("Order")
                         .HasForeignKey("Entities.Concrete.TableModels.Order", "ShippingAdressId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Cart");
@@ -687,9 +705,19 @@ namespace DataAccess.Migrations
                     b.Navigation("Activities");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.TableModels.Cart", b =>
+                {
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("Entities.Concrete.TableModels.CycleCategory", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.TableModels.ShippingAdress", b =>
+                {
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Entities.Concrete.TableModels.User", b =>
