@@ -26,6 +26,9 @@ namespace DataAccess.Configurations
             builder.Property(x=>x.Message)
                 .IsRequired()
                 .HasMaxLength(100);
+            builder.Property(x => x.IsAnswer)
+                .HasDefaultValue(false);
+                
             //Has not relationship
         }
     }

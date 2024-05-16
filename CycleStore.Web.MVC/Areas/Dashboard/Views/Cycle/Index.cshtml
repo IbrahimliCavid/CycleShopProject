@@ -1,11 +1,11 @@
-﻿@model List<CycleCategory>;
+﻿@model List<Product>;
 
 
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <form action="CycleCategory/Create" method="get">
+                <form action="Cycle/Create" method="get">
                     <p>
                         <button class="btn btn-primary">@DefaultConstantValue.DEFAULT_BUTTON_NAME_ADD</button>
                     </p>
@@ -14,8 +14,15 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Created Date</th>
-                            <th>Last Update Date</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>PrecentOfDiscount</th>
+                            <th>NewPrice</th>
+                            <th>IsHomePage</th>
+                            <th>Raiting</th>
+                            <th>Count</th>
+                            <th>Photo</th>
+                            
                             <th></th>
                         </tr>
                     </thead>
@@ -24,8 +31,14 @@
                         {
                             <tr>
                                 <td>@item.Name</td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.LastUpdateDate</td>
+                                <td>@item.Category.Name</td>
+                                <td>@item.Price USD</td>
+                                <td>@item.PrecentOfDiscount%</td>
+                                <td>@item.NewPrice USD</td>
+                                <td>@(item.IsHomePage ? "Active" : "Deactive")</td>
+                                <td>@item.StarRating</td>
+                                <td>@item.Count</td>
+                                <td> <img src="@item.ImgUrl" alt="Product Photo" width="100px"/> </td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>
@@ -61,7 +74,7 @@
                     let itemTitle = e.currentTarget.attributes[1].value;
                     $.ajax({
                         method: "POST",
-                        url: "cyclecategory/delete/",
+                        url: "cycle/delete/",
                         data: {
                             id: itemId
                         }
@@ -72,7 +85,7 @@
                         icon: 'success',
 
                     }).then((result) => {
-                        window.location = "cyclecategory"
+                        window.location = "cycle"
                     })
 
                 }

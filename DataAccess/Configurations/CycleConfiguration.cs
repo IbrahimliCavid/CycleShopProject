@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Configurations
 {
-    public class ProductConfiguration : IEntityTypeConfiguration<Product>
+    public class CycleConfiguration : IEntityTypeConfiguration<Product>
     {
       
         public void Configure(EntityTypeBuilder<Product> builder)
@@ -29,6 +29,8 @@ namespace DataAccess.Configurations
                 .HasMaxLength(200);
             builder.Property(x => x.Price)
                 .IsRequired();
+            builder.Property(x => x.Count)
+                .HasDefaultValue(0);
             builder.Property(x => x.PrecentOfDiscount)
             .HasDefaultValue(0);
             builder.Property(x => x.IsHomePage)

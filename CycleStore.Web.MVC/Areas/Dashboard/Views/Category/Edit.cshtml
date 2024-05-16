@@ -1,16 +1,17 @@
-﻿@model CycleCategory;
+﻿@model Category;
 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" method="post">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label">Name</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-          
+
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <input type="submit" value="@DefaultConstantValue.DEFAULT_BUTTON_NAME_ADD" class="btn btn-primary" />
             </div>
@@ -21,3 +22,4 @@
 <div>
     <a asp-action="Index">@DefaultConstantValue.DEFAULT_BUTTON_NAME_TO_BACK</a>
 </div>
+

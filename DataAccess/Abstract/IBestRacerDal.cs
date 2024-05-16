@@ -3,5 +3,6 @@ using Entities.Concrete.TableModels;
 
 namespace DataAccess.Abstract
 {
-    public interface IBestRacerDal : IBaseRepository<BestRacer> { }
+    public interface IBestRacerDal : IBaseRepository<BestRacer>
+    { }
 }

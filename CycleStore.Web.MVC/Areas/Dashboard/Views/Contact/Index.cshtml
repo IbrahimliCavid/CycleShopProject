@@ -16,6 +16,7 @@
                             <th>Name</th>
                             <th>Surname</th>
                             <th>Message</th>
+                            <th>Is Answer</th>
                             <th>Created Date</th>
                             <th>Last Update Date</th>
                             <th></th>
@@ -28,6 +29,7 @@
                                 <td>@item.Name</td>
                                 <td>@item.Surname</td>
                                 <td>@item.Message</td>
+                                <td>@(item.IsAnswer? "Answered": "No Answer")</td>
                                 <td>@item.CreatedDate</td>
                                 <td>@item.LastUpdateDate</td>
                                 <td>

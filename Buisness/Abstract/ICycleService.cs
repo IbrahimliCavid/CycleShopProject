@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace Buisness.Abstract
 {
-    public interface ICycleCategoryService
+    public interface ICycleService
     {
-        IResult Add(CycleCategory cycleCategory);
+        IResult Add(Product entity);
+        IResult Update(Product entity);
         IResult Delete(int id);
-        IResult Update(CycleCategory cycleCategory);
-
-        IDataResult<CycleCategory> GetById(int id);
-        IDataResult<List<CycleCategory>> GetAll();
+        IDataResult<Product> GetById(int id);
+        IDataResult<List<Product>> GetProductWithCycleCategoryId();
     }
 }

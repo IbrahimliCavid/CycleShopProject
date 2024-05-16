@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete
 {
-    public class ProductDal : BaseRepository<Product, ApplicationDbContext>, IProductDal
+    public class CycleDal : BaseRepository<Cycle, ApplicationDbContext>, ICycleDal
     {
         ApplicationDbContext context = new();
-        public List<Product> GetCycleWithCycleCategories()
+        public List<Cycle> GetCycleWithCycleCategories()
         {
             var data = context.Products
                 .Where(x=>x.Deleted == 0)

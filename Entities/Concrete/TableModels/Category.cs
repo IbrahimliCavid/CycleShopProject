@@ -6,9 +6,9 @@ namespace Entities.Concrete.TableModels
     {
         public CycleCategory()
         {
-            Products = new HashSet<Product>();
+            Products = new HashSet<Cycle>();
         }
         public string Name { get; set; }
-        public ICollection<Product> Products { get; set; }
+        public ICollection<Cycle> Products { get; set; }
     }
 }

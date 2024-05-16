@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
-    public class ProductController : Controller
+    public class CycleController : Controller
     {
-        ProductManager _productManager = new();
-        CycleCategoryManager _cycleCategoryManager = new();
+        CycleManager _productManager = new();
+        CategoryManager _cycleCategoryManager = new();
         public IActionResult Index()
         {
             var data = _productManager.GetProductWithCycleCategoryId().Data;

@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
-    public class CycleCategoryController : Controller
+    public class CategoryController : Controller
     {
-        CycleCategoryManager _cycleCategoryManager = new();
+        CategoryManager _cycleCategoryManager = new();
         public IActionResult Index()
         {
             var data = _cycleCategoryManager.GetAll().Data;

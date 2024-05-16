@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace Buisness.Concrete
 {
-    public class CycleCategoryManager : ICycleCategoryService
+    public class CategoryManager : ICategoryService
     {
-        CycleCategoryDal _cycleCategoryDal = new();
+        CategoryDal _cycleCategoryDal = new();
         public IResult Add(CycleCategory cycleCategory)
         {
           _cycleCategoryDal.Add(cycleCategory);

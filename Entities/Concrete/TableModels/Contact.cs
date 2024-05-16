@@ -7,5 +7,6 @@ namespace Entities.Concrete.TableModels
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Message { get; set; }
+        public bool IsAnswer {  get; set; }
     }
 }

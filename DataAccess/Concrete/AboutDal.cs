@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess.Concret;
+using DataAccess.Abstract;
 using DataAccess.SqlServerDbContext;
 using Entities.Concrete.TableModels;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete
 {
-    public class AboutDal : BaseRepository<About, ApplicationDbContext>
+    public class AboutDal : BaseRepository<About, ApplicationDbContext>, IAboutDal
     {
     }
 

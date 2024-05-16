@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 
 namespace Buisness.Concrete
 {
-    public class ProductManager : IProductService
+    public class CycleManager : ICycleService
     {
-        public readonly ProductDal _prdouctDal = new ProductDal();
+        public readonly CycleDal _prdouctDal = new CycleDal();
         public IResult Add(Product entity)
         {
             _prdouctDal.Add(entity);

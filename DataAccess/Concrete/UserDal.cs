@@ -1,9 +1,12 @@
 ﻿using Core.DataAccess.Concret;
+using DataAccess.Abstract;
 using DataAccess.SqlServerDbContext;
 using Entities.Concrete.TableModels;
 
 namespace DataAccess.Concrete
 {
-    public class UserDal : BaseRepository<User, ApplicationDbContext> { }
+    public class UserDal : BaseRepository<User, ApplicationDbContext>, IUserDal
+    {
+    }
 
 }
