@@ -2,6 +2,7 @@
 using Buisness.BaseMessage;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.TableModels;
 using System;
@@ -14,7 +15,13 @@ namespace Buisness.Concrete
 {
     public class ContactManager : IContactService
     {
-        private readonly ContactDal _contactDal = new ContactDal();
+        private readonly IContactDal _contactDal;
+
+        public ContactManager(IContactDal contactDal)
+        {
+            _contactDal = contactDal;
+        }
+
         public IResult Add(Contact contact)
         {
            _contactDal.Add(contact);

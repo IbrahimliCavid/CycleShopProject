@@ -1,4 +1,4 @@
-﻿@model List<Product>;
+﻿@model List<CycleDto>;
 
 
 <div class="container-fluid">
@@ -31,7 +31,7 @@
                         {
                             <tr>
                                 <td>@item.Name</td>
-                                <td>@item.Category.Name</td>
+                                <td>@item.CategoryName</td>
                                 <td>@item.Price USD</td>
                                 <td>@item.PrecentOfDiscount%</td>
                                 <td>@item.NewPrice USD</td>

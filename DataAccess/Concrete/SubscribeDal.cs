@@ -5,7 +5,7 @@ using Entities.Concrete.TableModels;
 
 namespace DataAccess.Concrete
 {
-    public class SubscribeDal : BaseRepository<Subscribe, ApplicationDbContext>, ISubcribeDal
+    public class SubscribeDal : BaseRepository<Subscribe, ApplicationDbContext>, ISubscribeDal
     { }
 
 }

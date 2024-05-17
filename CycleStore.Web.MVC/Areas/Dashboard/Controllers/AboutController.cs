@@ -1,4 +1,6 @@
-﻿using Buisness.Concrete;
+﻿using Buisness.Abstract;
+using Buisness.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +10,15 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
     [Area("Dashboard")]
     public class AboutController : Controller
     {
-        AboutManager _aboutManager = new AboutManager();
+        private readonly IAboutService _abouService;
+        public AboutController(IAboutService aboutService)
+        {
+            _abouService = aboutService;
+        }
         public IActionResult Index()
         {
-            var data = _aboutManager.GetAll().Data;
+            var data = _abouService.GetAll().Data;
+            ViewBag.ShowButton = data.Count() == 0;
             return View(data);
         }
 
@@ -22,37 +29,34 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(About about)
+        public IActionResult Create(AboutCreateDto dto)
         {
-            var result = _aboutManager.Add(about);
-            if (result.IsSuccess)
+            var result = _abouService.Add(dto);
+            if (!result.IsSuccess)
+            {
+                ModelState.AddModelError("Description", result.Message);
+                return View();
+            }
                 return RedirectToAction("Index");
-            return View(about);
+           
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var data = _aboutManager.GetById(id).Data;
+            var data = _abouService.GetById(id).Data;
             return View(data);
         }
 
         [HttpPost]
         public IActionResult Edit(About about)
         {
-            var result = _aboutManager.Update(about);
+            var result = _abouService.Update(about);
             if (result.IsSuccess)
                 return RedirectToAction("Index");
             return View(about);
         }
 
-        [HttpPost]
-        public IActionResult Delete(int id)
-        {
-            var result = _aboutManager.Delete(id);
-            if (result.IsSuccess)
-                return RedirectToAction("Index");
-            return View(result);
-        }
+       
     }
 }

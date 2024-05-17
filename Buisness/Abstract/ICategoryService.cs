@@ -10,11 +10,11 @@ namespace Buisness.Abstract
 {
     public interface ICategoryService
     {
-        IResult Add(CycleCategory cycleCategory);
+        IResult Add(Category cycleCategory);
         IResult Delete(int id);
-        IResult Update(CycleCategory cycleCategory);
+        IResult Update(Category cycleCategory);
 
-        IDataResult<CycleCategory> GetById(int id);
-        IDataResult<List<CycleCategory>> GetAll();
+        IDataResult<Category> GetById(int id);
+        IDataResult<List<Category>> GetAll();
     }
 }

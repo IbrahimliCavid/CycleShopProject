@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240515162327_BestRacerAddImgUrl")]
-    partial class BestRacerAddImgUrl
+    [Migration("20240517070456_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,19 +25,19 @@ namespace DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CartProduct", b =>
+            modelBuilder.Entity("CartCycle", b =>
                 {
                     b.Property<int>("CartsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductsId")
+                    b.Property<int>("CyclesId")
                         .HasColumnType("int");
 
-                    b.HasKey("CartsId", "ProductsId");
+                    b.HasKey("CartsId", "CyclesId");
 
-                    b.HasIndex("ProductsId");
+                    b.HasIndex("CyclesId");
 
-                    b.ToTable("CartProducts", (string)null);
+                    b.ToTable("CartCycles", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concrete.TableModels.About", b =>
@@ -62,11 +62,6 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("LastUpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Abouts", (string)null);
@@ -80,9 +75,6 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1000L);
 
-                    b.Property<int>("AboutId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ActivityInfo")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -94,7 +86,7 @@ namespace DataAccess.Migrations
                     b.Property<int>("Deleted")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsActive")
+                    b.Property<bool>("IsHomePage")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
@@ -103,8 +95,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AboutId");
 
                     b.HasIndex("ActivityInfo", "Deleted")
                         .IsUnique();
@@ -234,44 +224,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Carts", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concrete.TableModels.Contact", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1000L);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Deleted")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("LastUpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Contacts", (string)null);
-                });
-
-            modelBuilder.Entity("Entities.Concrete.TableModels.CycleCategory", b =>
+            modelBuilder.Entity("Entities.Concrete.TableModels.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -299,6 +252,108 @@ namespace DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Categories", (string)null);
+                });
+
+            modelBuilder.Entity("Entities.Concrete.TableModels.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1000L);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Deleted")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsAnswer")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTime?>("LastUpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts", (string)null);
+                });
+
+            modelBuilder.Entity("Entities.Concrete.TableModels.Cycle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1000L);
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<short>("Count")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("smallint")
+                        .HasDefaultValue((short)0);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Deleted")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsHomePage")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTime?>("LastUpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<float>("PrecentOfDiscount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("real")
+                        .HasDefaultValue(0f);
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<byte>("StarRating")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("Name", "ImgUrl", "Deleted");
+
+                    b.ToTable("Cycles", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concrete.TableModels.Order", b =>
@@ -353,58 +408,6 @@ namespace DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Orders", (string)null);
-                });
-
-            modelBuilder.Entity("Entities.Concrete.TableModels.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1000L);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Deleted")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImgUrl")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<bool>("IsHomePage")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<DateTime?>("LastUpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<float>("PrecentOfDiscount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("real")
-                        .HasDefaultValue(0f);
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("Name", "ImgUrl", "Deleted");
-
-                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concrete.TableModels.Service", b =>
@@ -631,7 +634,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
-            modelBuilder.Entity("CartProduct", b =>
+            modelBuilder.Entity("CartCycle", b =>
                 {
                     b.HasOne("Entities.Concrete.TableModels.Cart", null)
                         .WithMany()
@@ -639,22 +642,11 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Concrete.TableModels.Product", null)
+                    b.HasOne("Entities.Concrete.TableModels.Cycle", null)
                         .WithMany()
-                        .HasForeignKey("ProductsId")
+                        .HasForeignKey("CyclesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Entities.Concrete.TableModels.Activity", b =>
-                {
-                    b.HasOne("Entities.Concrete.TableModels.About", "About")
-                        .WithMany("Activities")
-                        .HasForeignKey("AboutId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("About");
                 });
 
             modelBuilder.Entity("Entities.Concrete.TableModels.Cart", b =>
@@ -666,6 +658,17 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.TableModels.Cycle", b =>
+                {
+                    b.HasOne("Entities.Concrete.TableModels.Category", "Category")
+                        .WithMany("Cycles")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Entities.Concrete.TableModels.Order", b =>
@@ -687,17 +690,6 @@ namespace DataAccess.Migrations
                     b.Navigation("ShippingAdress");
                 });
 
-            modelBuilder.Entity("Entities.Concrete.TableModels.Product", b =>
-                {
-                    b.HasOne("Entities.Concrete.TableModels.CycleCategory", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("Entities.Concrete.TableModels.ShippingAdress", b =>
                 {
                     b.HasOne("Entities.Concrete.TableModels.User", "User")
@@ -709,14 +701,9 @@ namespace DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Entities.Concrete.TableModels.About", b =>
+            modelBuilder.Entity("Entities.Concrete.TableModels.Category", b =>
                 {
-                    b.Navigation("Activities");
-                });
-
-            modelBuilder.Entity("Entities.Concrete.TableModels.CycleCategory", b =>
-                {
-                    b.Navigation("Products");
+                    b.Navigation("Cycles");
                 });
 
             modelBuilder.Entity("Entities.Concrete.TableModels.ShippingAdress", b =>

@@ -1,4 +1,5 @@
-﻿using Buisness.Concrete;
+﻿using Buisness.Abstract;
+using Buisness.Concrete;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +9,16 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
     public class BestRacerController : Controller
     {
        
-        BestRacerManager _bestRacerManager = new BestRacerManager();
+        private readonly IBestRacerService _bestRacerService;
+
+        public BestRacerController(IBestRacerService bestRacerService)
+        {
+            _bestRacerService = bestRacerService;
+        }
+
         public IActionResult Index()
         {
-            var data = _bestRacerManager.GetAll().Data;
+            var data = _bestRacerService.GetAll().Data;
             return View(data);
         }
 
@@ -24,7 +31,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         [HttpPost]
         public IActionResult Create(BestRacer bestRacer)
         {
-            var result = _bestRacerManager.Add(bestRacer);
+            var result = _bestRacerService.Add(bestRacer);
             if (result.IsSuccess)
                 return RedirectToAction("Index");
             return View(bestRacer);
@@ -33,7 +40,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var data = _bestRacerManager.GetById(id).Data;
+            var data = _bestRacerService.GetById(id).Data;
 
             return View(data);
         }
@@ -41,7 +48,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         [HttpPost]
         public IActionResult Edit(BestRacer bestRacer)
         {
-            var result = _bestRacerManager.Update(bestRacer);
+            var result = _bestRacerService.Update(bestRacer);
             if (result.IsSuccess)
                 return RedirectToAction("Index");
             return View(bestRacer);
@@ -50,7 +57,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var result = _bestRacerManager.Delete(id);
+            var result = _bestRacerService.Delete(id);
             if (result.IsSuccess) 
                 return RedirectToAction("Index");
             return View(result);

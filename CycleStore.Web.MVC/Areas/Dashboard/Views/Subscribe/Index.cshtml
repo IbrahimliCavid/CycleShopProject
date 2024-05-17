@@ -5,11 +5,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <form action="Subscribe/Create" method="get">
-                    <p>
-                        <button class="btn btn-primary">@DefaultConstantValue.DEFAULT_BUTTON_NAME_ADD</button>
-                    </p>
-                </form>
+               
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -26,10 +22,7 @@
                                 <td>@item.Email</td>
                                 <td>@item.CreatedDate</td>
                                 <td>@item.LastUpdateDate</td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a> |
+                                <td class="d-flex justify-content-center">
                                     <a item-value="@item.Id" item-title="@item.Email" class="btnDelete">
                                         <i class="fas fa-trash"></i>
                                     </a>

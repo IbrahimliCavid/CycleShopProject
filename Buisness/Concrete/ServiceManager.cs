@@ -2,6 +2,7 @@
 using Buisness.BaseMessage;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.TableModels;
 using System;
@@ -14,7 +15,13 @@ namespace Buisness.Concrete
 {
     public class ServiceManager : IServiceService
     {
-        private readonly ServiceDal _aboutDal = new ServiceDal();
+        private readonly IServiceDal _aboutDal;
+
+        public ServiceManager(IServiceDal aboutDal)
+        {
+            _aboutDal = aboutDal;
+        }
+
         public IResult Add(Service entity)
         {
             _aboutDal.Add(entity);

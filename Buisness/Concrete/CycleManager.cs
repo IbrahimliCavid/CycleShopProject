@@ -2,7 +2,9 @@
 using Buisness.BaseMessage;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -14,10 +16,17 @@ namespace Buisness.Concrete
 {
     public class CycleManager : ICycleService
     {
-        public readonly CycleDal _prdouctDal = new CycleDal();
-        public IResult Add(Product entity)
+        public readonly ICycleDal _prdouctDal;
+
+        public CycleManager(ICycleDal prdouctDal)
         {
-            _prdouctDal.Add(entity);
+            _prdouctDal = prdouctDal;
+        }
+
+        public IResult Add(CycleCreateDto dto)
+        {
+            var model = CycleCreateDto.ToCycle(dto);
+            _prdouctDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
@@ -29,23 +38,24 @@ namespace Buisness.Concrete
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IResult Update(Product entity)
+        public IResult Update(CycleUpdateDto dto)
         {
-            entity.LastUpdateDate = DateTime.Now;
-            _prdouctDal.Update(entity);
+            var model = CycleUpdateDto.ToCycle(dto);
+            model.LastUpdateDate = DateTime.Now;
+            _prdouctDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
 
     
-        public IDataResult<Product> GetById(int id)
+        public IDataResult<Cycle> GetById(int id)
         {
-            return new SuccessDataResult<Product>(_prdouctDal.GetById(id));
+            return new SuccessDataResult<Cycle>(_prdouctDal.GetById(id));
         }
 
-        public IDataResult<List<Product>> GetProductWithCycleCategoryId()
+        public IDataResult<List<CycleDto>> GetProductWithCycleCategoryId()
         {
-            return new SuccessDataResult<List<Product>>(_prdouctDal.GetCycleWithCycleCategories());
+            return new SuccessDataResult<List<CycleDto>>(_prdouctDal.GetCycleWithCycleCategories());
         }
     }
 }

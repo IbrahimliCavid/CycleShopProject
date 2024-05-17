@@ -2,8 +2,11 @@
 using Buisness.BaseMessage;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +17,34 @@ namespace Buisness.Concrete
 {
     public class AboutManager : IAboutService
     {
-        private readonly AboutDal _aboutDal = new AboutDal(); 
-        public IResult Add(About entity)
+        private readonly IAboutDal _aboutDal;
+        private readonly IValidator<About> _validator;
+        public AboutManager(IAboutDal aboutDal, IValidator<About> validator)
         {
-            _aboutDal.Add(entity);
-            return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
-        }
+            _aboutDal = aboutDal;
 
-        public IResult Delete(int id)
+            _validator = validator;
+        }
+        public IResult Add(AboutCreateDto dto)
         {
-            var data = GetById(id).Data;
-            data.Deleted = id;
-            _aboutDal.Update(data);
-            return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
+            var model = AboutCreateDto.ToAbout(dto); 
+
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
+            _aboutDal.Add(model);
+
+            return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
 

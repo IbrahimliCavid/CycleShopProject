@@ -6,10 +6,10 @@ namespace Entities.Concrete.TableModels
     {
         public Cart()
         {
-            Products = new HashSet<Cycle>();
+            Cycles = new HashSet<Cycle>();
         }
         public int UserId {  get; set; }
         public User User { get; set; }
-        public virtual ICollection<Cycle> Products { get; set; }
+        public virtual ICollection<Cycle> Cycles { get; set; }
     }
 }

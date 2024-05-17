@@ -1,4 +1,5 @@
-﻿using Buisness.Concrete;
+﻿using Buisness.Abstract;
+using Buisness.Concrete;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +8,16 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
     [Area("Dashboard")]
     public class ServiceController : Controller
     {
-        ServiceManager _serviceManager = new ServiceManager();
+        private readonly IServiceService _serviceService;
+
+        public ServiceController(IServiceService serviceService)
+        {
+            _serviceService = serviceService;
+        }
+
         public IActionResult Index()
         {
-            var data = _serviceManager.GetAll().Data;
+            var data = _serviceService.GetAll().Data;
             return View(data);
         }
 
@@ -23,7 +30,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         [HttpPost]
         public IActionResult Create(Service service)
         {
-            var result = _serviceManager.Add(service);
+            var result = _serviceService.Add(service);
             if (result.IsSuccess) return RedirectToAction("Index");
             return View(service);
         }
@@ -31,14 +38,14 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var data = _serviceManager.GetById(id).Data;
+            var data = _serviceService.GetById(id).Data;
             return View(data);
         }
 
         [HttpPost]
         public IActionResult Edit(Service service)
         {
-            var result = _serviceManager.Update(service);
+            var result = _serviceService.Update(service);
             if (result.IsSuccess) return RedirectToAction("Index");
             return View(service);
         }
@@ -46,7 +53,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var result = _serviceManager.Delete(id);
+            var result = _serviceService.Delete(id);
             if (result.IsSuccess) return RedirectToAction("Index");
             return View(result);
         }

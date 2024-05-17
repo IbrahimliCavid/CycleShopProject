@@ -15,7 +15,13 @@ namespace Buisness.Concrete
 {
     public class TestimonialManager : ITestimonialService
     {
-        private readonly TestimonialDal _testimonialDal = new();
+        private readonly ITestimonialDal _testimonialDal;
+
+        public TestimonialManager(ITestimonialDal testimonialDal)
+        {
+            _testimonialDal = testimonialDal;
+        }
+
         public IResult Add(Testimonial entity)
         {
             _testimonialDal.Add(entity);

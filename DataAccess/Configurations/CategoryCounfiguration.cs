@@ -23,8 +23,8 @@ namespace DataAccess.Configurations
             builder.HasIndex(x => new { x.Name, x.Deleted })
                 .IsUnique();
            
-            //Relationship between Category and Products
-            builder.HasMany(x=>x.Products)
+            //Relationship between Category and Cycles
+            builder.HasMany(x=>x.Cycles)
                 .WithOne(x=>x.Category)
                 .HasForeignKey(x=>x.CategoryId);
         }

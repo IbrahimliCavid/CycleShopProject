@@ -2,13 +2,13 @@
 
 namespace Entities.Concrete.TableModels
 {
-    public class CycleCategory : BaseEntity
+    public class Category : BaseEntity
     {
-        public CycleCategory()
+        public Category()
         {
-            Products = new HashSet<Cycle>();
+            Cycles = new HashSet<Cycle>();
         }
         public string Name { get; set; }
-        public ICollection<Cycle> Products { get; set; }
+        public ICollection<Cycle> Cycles { get; set; }
     }
 }

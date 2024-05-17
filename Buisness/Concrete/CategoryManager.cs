@@ -2,6 +2,7 @@
 using Buisness.BaseMessage;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.TableModels;
 using System;
@@ -14,14 +15,20 @@ namespace Buisness.Concrete
 {
     public class CategoryManager : ICategoryService
     {
-        CategoryDal _cycleCategoryDal = new();
-        public IResult Add(CycleCategory cycleCategory)
+        private readonly ICategoryDal _cycleCategoryDal;
+
+        public CategoryManager(ICategoryDal cycleCategoryDal)
+        {
+            _cycleCategoryDal = cycleCategoryDal;
+        }
+
+        public IResult Add(Category cycleCategory)
         {
           _cycleCategoryDal.Add(cycleCategory);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
-        public IResult Update(CycleCategory cycleCategory)
+        public IResult Update(Category cycleCategory)
         {
             cycleCategory.LastUpdateDate = DateTime.Now;
             _cycleCategoryDal.Update(cycleCategory);
@@ -35,14 +42,14 @@ namespace Buisness.Concrete
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IDataResult<List<CycleCategory>> GetAll()
+        public IDataResult<List<Category>> GetAll()
         {
-            return new SuccessDataResult<List<CycleCategory>>(_cycleCategoryDal.GetAll(x => x.Deleted == 0));
+            return new SuccessDataResult<List<Category>>(_cycleCategoryDal.GetAll(x => x.Deleted == 0));
         }
 
-        public IDataResult<CycleCategory> GetById(int id)
+        public IDataResult<Category> GetById(int id)
         {
-            return new SuccessDataResult<CycleCategory>(_cycleCategoryDal.GetById(id));
+            return new SuccessDataResult<Category>(_cycleCategoryDal.GetById(id));
         }
 
       

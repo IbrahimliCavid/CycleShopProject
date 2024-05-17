@@ -30,7 +30,7 @@ namespace DataAccess.SqlServerDbContext
         public DbSet<Category> Categories {  get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<Cycle> Products {  get; set; }
+        public DbSet<Cycle> Cycles {  get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ShippingAdress> ShippingAdresses { get; set; }
         public DbSet<Subscribe> Subcribes { get; set; }

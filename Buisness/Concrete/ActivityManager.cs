@@ -15,7 +15,13 @@ namespace Buisness.Concrete
 {
     public class ActivityManager : IActivityService
     {
-       public readonly ActivityDal _activityDal = new ActivityDal();
+       public readonly IActivityDal _activityDal;
+
+        public ActivityManager(IActivityDal activityDal)
+        {
+            _activityDal = activityDal;
+        }
+
         public IResult Add(Activity entity)
         {
             _activityDal.Add(entity);

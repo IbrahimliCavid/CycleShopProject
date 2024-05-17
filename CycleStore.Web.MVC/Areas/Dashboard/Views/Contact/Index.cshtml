@@ -5,18 +5,14 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <form action="Contact/Create" method="get">
-                    <p>
-                        <button class="btn btn-primary">@DefaultConstantValue.DEFAULT_BUTTON_NAME_ADD</button>
-                    </p>
-                </form>
+              
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Surname</th>
                             <th>Message</th>
-                            <th>Is Answer</th>
+                            <th>Status</th>
                             <th>Created Date</th>
                             <th>Last Update Date</th>
                             <th></th>
@@ -29,7 +25,7 @@
                                 <td>@item.Name</td>
                                 <td>@item.Surname</td>
                                 <td>@item.Message</td>
-                                <td>@(item.IsAnswer? "Answered": "No Answer")</td>
+                                <td>@(item.IsAnswer ? "Answered": "No Answer")</td>
                                 <td>@item.CreatedDate</td>
                                 <td>@item.LastUpdateDate</td>
                                 <td>

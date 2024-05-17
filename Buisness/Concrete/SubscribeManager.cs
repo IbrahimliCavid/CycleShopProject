@@ -1,6 +1,8 @@
-﻿using Buisness.BaseMessage;
+﻿using Buisness.Abstract;
+using Buisness.BaseMessage;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.TableModels;
 using System;
@@ -11,12 +13,18 @@ using System.Threading.Tasks;
 
 namespace Buisness.Concrete
 {
-    public class SubscribeManager
+    public class SubscribeManager : ISubscribeService
     {
-        private readonly SubscribeDal _subcribeDal = new SubscribeDal();
+        private readonly ISubscribeDal _subscribeDal;
+
+        public SubscribeManager(ISubscribeDal subscribeDal)
+        {
+            _subscribeDal = subscribeDal;
+        }
+
         public IResult Add(Subscribe entity)
         {
-            _subcribeDal.Add(entity);
+            _subscribeDal.Add(entity);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
@@ -24,7 +32,7 @@ namespace Buisness.Concrete
         {
             var data = GetById(id).Data;
             data.Deleted = id;
-            _subcribeDal.Update(data);
+            _subscribeDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
@@ -32,18 +40,18 @@ namespace Buisness.Concrete
         public IResult Update(Subscribe entity)
         {
             entity.LastUpdateDate = DateTime.Now;
-            _subcribeDal.Update(entity);
+            _subscribeDal.Update(entity);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
         public IDataResult<List<Subscribe>> GetAll()
         {
-            return new SuccessDataResult<List<Subscribe>>(_subcribeDal.GetAll(x => x.Deleted == 0));
+            return new SuccessDataResult<List<Subscribe>>(_subscribeDal.GetAll(x => x.Deleted == 0));
         }
 
         public IDataResult<Subscribe> GetById(int id)
         {
-            return new SuccessDataResult<Subscribe>(_subcribeDal.GetById(id));
+            return new SuccessDataResult<Subscribe>(_subscribeDal.GetById(id));
         }
 
     }

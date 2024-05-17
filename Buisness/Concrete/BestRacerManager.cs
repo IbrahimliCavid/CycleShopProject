@@ -2,6 +2,7 @@
 using Buisness.BaseMessage;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.TableModels;
 using System;
@@ -14,7 +15,13 @@ namespace Buisness.Concrete
 {
     public class BestRacerManager : IBestRacerService
     {
-       public readonly BestRacerDal _bestRacerDal = new BestRacerDal();
+       public readonly IBestRacerDal _bestRacerDal;
+
+        public BestRacerManager(IBestRacerDal bestRacerDal)
+        {
+            _bestRacerDal = bestRacerDal;
+        }
+
         public IResult Add(BestRacer entity)
         {
             _bestRacerDal.Add(entity);

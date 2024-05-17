@@ -1,6 +1,8 @@
-﻿using Buisness.BaseMessage;
+﻿using Buisness.Abstract;
+using Buisness.BaseMessage;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.TableModels;
 using System;
@@ -11,9 +13,15 @@ using System.Threading.Tasks;
 
 namespace Buisness.Concrete
 {
-    public class UserManager
+    public class UserManager : IUserService
     {
-        UserDal _userDal = new UserDal();
+        private readonly IUserDal _userDal;
+
+        public UserManager(IUserDal userDal)
+        {
+            _userDal = userDal;
+        }
+
         public IResult Add(User entity)
         {
             _userDal.Add(entity);

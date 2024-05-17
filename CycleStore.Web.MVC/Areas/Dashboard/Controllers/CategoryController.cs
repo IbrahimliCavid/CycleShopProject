@@ -1,4 +1,5 @@
-﻿using Buisness.Concrete;
+﻿using Buisness.Abstract;
+using Buisness.Concrete;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +8,16 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
     [Area("Dashboard")]
     public class CategoryController : Controller
     {
-        CategoryManager _cycleCategoryManager = new();
+        private readonly ICategoryService _categoryService;
+
+        public CategoryController(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
+
         public IActionResult Index()
         {
-            var data = _cycleCategoryManager.GetAll().Data;
+            var data = _categoryService.GetAll().Data;
             return View(data);
         }
 
@@ -21,9 +28,9 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CycleCategory cycleCategory)
+        public IActionResult Create(Category cycleCategory)
         {
-           var result =  _cycleCategoryManager.Add(cycleCategory);
+           var result = _categoryService.Add(cycleCategory);
             if (result.IsSuccess) return RedirectToAction("Index");
             return View(cycleCategory);
         }
@@ -31,14 +38,14 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var data = _cycleCategoryManager.GetById(id).Data;
+            var data = _categoryService.GetById(id).Data;
             return View(data);
         }
 
         [HttpPost]
-        public IActionResult Edit(CycleCategory bigSale)
+        public IActionResult Edit(Category bigSale)
         {
-            var result = _cycleCategoryManager.Update(bigSale);
+            var result = _categoryService.Update(bigSale);
             if (result.IsSuccess) return RedirectToAction("Index");
             return View(bigSale);
         }
@@ -46,7 +53,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var result = _cycleCategoryManager.Delete(id);
+            var result = _categoryService.Delete(id);
             if (result.IsSuccess) return RedirectToAction("Index");
             return View(result);
         }

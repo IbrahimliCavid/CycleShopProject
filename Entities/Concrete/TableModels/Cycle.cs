@@ -3,18 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Concrete.TableModels
 {
-    public class Product : BaseEntity
+    public class Cycle : BaseEntity
     {
-        public Product()
+        public Cycle()
         {
             Carts = new HashSet<Cart>();
         }
+       
         public string Name { get; set; }
         public int CategoryId { get; set; }
         public string ImgUrl { get; set; }
         public short Count {  get; set; }
      
         public double Price { get; set; }
+
         [NotMapped]
         public double NewPrice
         {
@@ -28,6 +30,6 @@ namespace Entities.Concrete.TableModels
    
         public byte StarRating { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }
-        public virtual CycleCategory Category { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

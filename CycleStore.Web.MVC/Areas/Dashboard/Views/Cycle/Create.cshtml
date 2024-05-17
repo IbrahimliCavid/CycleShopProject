@@ -1,4 +1,4 @@
-﻿@model Cycle;
+﻿@model Cycle
 
 <hr />
 <div class="row">
@@ -6,53 +6,50 @@
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label">Product Name</label>
-                <input asp-for="Name" class="form-control" />
+                <label asp-for="Name" class="control-label">Model</label>
+                <input asp-for="Name" class="form-control" id="answer" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label">Cycle Category</label>
+                <label asp-for="CategoryId" class="control-label">Category</label>
                 <select asp-for="CategoryId" class="form-control">
-                    @foreach (var item in ViewData["CycleCategories"] as IEnumerable<Category>)
+                    @foreach (var item in ViewData["Categories"] as IEnumerable<Category>)
                     {
                         <option value="@item.Id">@item.Name</option>
                     }
                 </select>
             </div>
+
             <div class="form-group">
                 <label asp-for="Price" class="control-label">Price</label>
-                <input asp-for="Price" class="form-control" type="number" step="any" min="1" />
+                <input asp-for="Price" type"date" min="1" class="form-control" id="answer" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="PrecentOfDiscount" class="control-label">Precent Of Discount</label>
-                <input asp-for="PrecentOfDiscount" class="form-control" type="number" step="any" min="0" max="100" />
+                <label asp-for="PrecentOfDiscount" class="control-label">Precenet Of Discount</label>
+                <input asp-for="PrecentOfDiscount" min="0" max="100" class="form-control" id="answer" />
                 <span asp-validation-for="PrecentOfDiscount" class="text-danger"></span>
-            </div>
-          
-              <div class="form-group">
-                <label asp-for="ImgUrl" class="control-label">Photo</label>
-                <input asp-for="ImgUrl" class="form-control"  />
-                <span asp-validation-for="ImgUrl" class="text-danger"></span>
-            </div>
-           
-            <div class="form-group">
-                <label asp-for="StarRating" class="control-label">Rating</label>
-                <input asp-for="StarRating" class="form-control" type="number"  min="1"  max="5"/>
-                <span asp-validation-for="StarRating" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Count" class="control-label">Count</label>
-                <input asp-for="Count" class="form-control" type="number" min="0" />
+                <input asp-for="Count" min="0" max="100" class="form-control" id="answer" />
                 <span asp-validation-for="Count" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StarRating" class="control-label">Raiting</label>
+                <input asp-for="StarRating" min="1" max="5" class="form-control" id="answer" />
+                <span asp-validation-for="StarRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImgUrl" class="control-label">Photo</label>
+                <input asp-for="ImgUrl" min="0" class="form-control" id="answer" />
+                <span asp-validation-for="ImgUrl" class="text-danger"></span>
             </div>
             <div class="form-group d-flex align-items-center">
                 <span style="margin-right:1rem;">Is Home Page?:</span>
-                <input asp-for="IsHomePage" type="checkbox" />
+                <input asp-for="IsHomePage" type="checkbox"  />
             </div>
-
-
-               
 
             <div class="form-group">
                 <input type="submit" value="@DefaultConstantValue.DEFAULT_BUTTON_NAME_ADD" class="btn btn-primary" />

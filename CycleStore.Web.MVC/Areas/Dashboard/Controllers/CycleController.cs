@@ -1,4 +1,6 @@
-﻿using Buisness.Concrete;
+﻿using Buisness.Abstract;
+using Buisness.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,11 +9,18 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
     [Area("Dashboard")]
     public class CycleController : Controller
     {
-        CycleManager _productManager = new();
-        CategoryManager _cycleCategoryManager = new();
+        private readonly ICycleService _cycleService;
+        private readonly ICategoryService _categoryService;
+
+        public CycleController(ICycleService cycleService, ICategoryService categoryService)
+        {
+            _cycleService = cycleService;
+            _categoryService = categoryService;
+        }
+
         public IActionResult Index()
         {
-            var data = _productManager.GetProductWithCycleCategoryId().Data;
+            var data = _cycleService.GetProductWithCycleCategoryId().Data;
             return View(data);
         }
 
@@ -19,40 +28,40 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewData["CycleCategories"] = _cycleCategoryManager.GetAll().Data;
+            ViewData["Categories"] = _categoryService.GetAll().Data;
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public IActionResult Create(CycleCreateDto dto)
         {
-            var result = _productManager.Add(product);
+            var result = _cycleService.Add(dto);
             if (result.IsSuccess) return RedirectToAction("Index");
-            return View(product);
+            return View(dto);
 
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            ViewData["CycleCategories"] = _cycleCategoryManager.GetAll().Data;
-            var data = _productManager.GetById(id).Data;
+            ViewData["Categories"] = _categoryService.GetAll().Data;
+            var data = _cycleService.GetById(id).Data;
             return View(data);
         }
 
         [HttpPost]
-        public IActionResult Edit(Product product)
+        public IActionResult Edit(CycleUpdateDto dto)
         {
-            var result = _productManager.Update(product);
+            var result = _cycleService.Update(dto);
             if (result.IsSuccess) return RedirectToAction("Index");
-            return View(product);
+            return View(dto);
 
         }
 
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var result = _productManager.Delete(id);
+            var result = _cycleService.Delete(id);
             if (result.IsSuccess)
                 return RedirectToAction("Index");
             return View(result);

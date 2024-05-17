@@ -15,7 +15,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Surname</th>
-                            <th>Info</th>
+                            <th>Information</th>
                             <th>Photo</th>
                             <th>Created Date</th>
                             <th>Last Update Date</th>
@@ -28,7 +28,7 @@
                             <tr>
                                 <td>@item.Name</td>
                                 <td>@item.Surname</td>
-                                <td>@item.Info</td>
+                                <td title="@item.Info">@(item.Info.Length > 33 ? item.Info.Substring(0,30)+"..." : item.Info)</td>
                                 <td><img src="@item.ImgUrl" alt="Racer Photo" /></td>
                                 <td>@item.CreatedDate</td>
                                 <td>@item.LastUpdateDate</td>

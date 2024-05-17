@@ -2,6 +2,7 @@
 using Buisness.BaseMessage;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.TableModels;
 using System;
@@ -14,7 +15,13 @@ namespace Buisness.Concrete
 {
     public class BigSaleManager : IBigSaleService
     {
-        BigSaleDal _bigSaleDal = new BigSaleDal();
+        private readonly IBigSaleDal _bigSaleDal;
+
+        public BigSaleManager(IBigSaleDal bigSaleDal)
+        {
+            _bigSaleDal = bigSaleDal;
+        }
+
         public IResult Add(BigSale entity)
         {
             _bigSaleDal.Add(entity);

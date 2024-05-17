@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Configurations
 {
-    public class CycleConfiguration : IEntityTypeConfiguration<Product>
+    public class CycleConfiguration : IEntityTypeConfiguration<Cycle>
     {
       
-        public void Configure(EntityTypeBuilder<Product> builder)
+        public void Configure(EntityTypeBuilder<Cycle> builder)
         {
-            builder.ToTable("Products");
+            builder.ToTable("Cycles");
             builder.Property(x => x.Id)
                 .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment: 1);
             builder.Property(x => x.Name)
