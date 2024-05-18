@@ -1,4 +1,5 @@
 ﻿using Core.Results.Abstract;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace Buisness.Abstract
 {
     public interface IBestRacerService
     {
-        IResult Add(BestRacer entity);
+        IResult Add(BestRacerCreateDto entity);
         IResult Delete(int id);
-        IResult Update(BestRacer entity);
+        IResult Update(BestRacerUpdateDto entity);
 
-        IDataResult<BestRacer> GetById(int id);
-        IDataResult<List<BestRacer>> GetAll();
+        IDataResult<BestRacerDto> GetById(int id);
+        IDataResult<List<BestRacerDto>> GetAll();
     }
 }

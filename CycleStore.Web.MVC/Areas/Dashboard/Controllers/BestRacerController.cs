@@ -1,5 +1,7 @@
 ﻿using Buisness.Abstract;
 using Buisness.Concrete;
+using Buisness.Mapper;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,7 +31,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(BestRacer bestRacer)
+        public IActionResult Create(BestRacerCreateDto bestRacer)
         {
             var result = _bestRacerService.Add(bestRacer);
             if (result.IsSuccess)
@@ -41,12 +43,11 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Edit(int id)
         {
             var data = _bestRacerService.GetById(id).Data;
-
             return View(data);
         }
 
         [HttpPost]
-        public IActionResult Edit(BestRacer bestRacer)
+        public IActionResult Edit(BestRacerUpdateDto bestRacer)
         {
             var result = _bestRacerService.Update(bestRacer);
             if (result.IsSuccess)
@@ -62,5 +63,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
                 return RedirectToAction("Index");
             return View(result);
         }
+     
+
     }
 }

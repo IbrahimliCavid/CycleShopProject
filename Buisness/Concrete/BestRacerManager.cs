@@ -1,9 +1,11 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
+using Buisness.Mapper;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -22,36 +24,41 @@ namespace Buisness.Concrete
             _bestRacerDal = bestRacerDal;
         }
 
-        public IResult Add(BestRacer entity)
+        public IResult Add(BestRacerCreateDto dto)
         {
-            _bestRacerDal.Add(entity);
+            var model = BestRacerCreateDto.ToModel(dto);
+            _bestRacerDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            data.Deleted = id;
-            _bestRacerDal.Update(data);
+            var model = BestRacerDto.ToModel(data);
+            model.Deleted = id;
+            _bestRacerDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IResult Update(BestRacer entity)
+        public IResult Update(BestRacerUpdateDto dto)
         {
-            entity.LastUpdateDate = DateTime.Now;
-            _bestRacerDal.Update(entity);
+            var model = BestRacerUpdateDto.ToModel(dto);
+            model.LastUpdateDate = DateTime.Now;
+            _bestRacerDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
 
-        public IDataResult<List<BestRacer>> GetAll()
+        public IDataResult<List<BestRacerDto>> GetAll()
         {
-            return new SuccessDataResult<List<BestRacer>>(_bestRacerDal.GetAll(x=> x.Deleted == 0));
+            var models = _bestRacerDal.GetAll(x => x.Deleted == 0);
+            return new SuccessDataResult<List<BestRacerDto>>(BestRacerMapper.ToDto(models));
         }
 
-        public IDataResult<BestRacer> GetById(int id)
+        public IDataResult<BestRacerDto> GetById(int id)
         {
-            return new SuccessDataResult<BestRacer>(_bestRacerDal.GetById(id));
+            var model = _bestRacerDal.GetById(id);
+            return new SuccessDataResult<BestRacerDto>(BestRacerMapper.ToDto(model));
         }
 
       
