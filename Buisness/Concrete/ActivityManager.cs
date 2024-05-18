@@ -1,9 +1,11 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
+using Buisness.Mapper;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -22,36 +24,43 @@ namespace Buisness.Concrete
             _activityDal = activityDal;
         }
 
-        public IResult Add(Activity entity)
+        public IResult Add(ActivityCreateDto dto)
         {
-            _activityDal.Add(entity);
+            var model = ActivityCreateDto.ToModel(dto);
+            _activityDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            data.Deleted = id;
-            _activityDal.Update(data);
+            var model = ActivityDto.ToModel(data);
+                model.Deleted = id;
+            _activityDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IResult Update(Activity entity)
+        public IResult Update(ActivityUpdateDto dto)
         {
-            entity.LastUpdateDate = DateTime.Now;
-            _activityDal.Update(entity);
+            var model = ActivityUpdateDto.ToModel(dto);
+            model.LastUpdateDate = DateTime.Now;
+            _activityDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
 
-        public IDataResult<List<Activity>> GetAll()
+        public IDataResult<List<ActivityDto>> GetAll()
         {
-            return new SuccessDataResult<List<Activity>>(_activityDal.GetAll(x => x.Deleted == 0));
+            var models = _activityDal.GetAll(x => x.Deleted == 0);
+
+            return new SuccessDataResult<List<ActivityDto>>(ActivityMapper.ToDto(models));
         }
 
-        public IDataResult<Activity> GetById(int id)
+        public IDataResult<ActivityDto> GetById(int id)
         {
-            return new SuccessDataResult<Activity>(_activityDal.GetById(id));
+            var model = _activityDal.GetById(id);
+
+            return new SuccessDataResult<ActivityDto>(ActivityMapper.ToDto(model));
         }
 
     }

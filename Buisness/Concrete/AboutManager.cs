@@ -1,5 +1,6 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
+using Buisness.Mapper;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
@@ -27,7 +28,7 @@ namespace Buisness.Concrete
         }
         public IResult Add(AboutCreateDto dto)
         {
-            var model = AboutCreateDto.ToAbout(dto); 
+            var model = AboutCreateDto.ToModel(dto); 
 
             var validator = _validator.Validate(model);
 
@@ -48,22 +49,29 @@ namespace Buisness.Concrete
         }
 
 
-        public IResult Update(About entity)
+        public IResult Update(AboutUpdateDto dto)
         {
-            entity.LastUpdateDate = DateTime.Now;
-            _aboutDal.Update(entity);
+            var model = AboutUpdateDto.ToModel(dto);
+           
+            model.LastUpdateDate = DateTime.Now;
+            _aboutDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
-        public IDataResult<List<About>> GetAll()
+        public IDataResult<List<AboutDto>> GetAll()
         {
-            return new SuccessDataResult<List<About>>(_aboutDal.GetAll(x => x.Deleted == 0));
+
+            var models = _aboutDal.GetAll(x => x.Deleted == 0);
+           
+            return new SuccessDataResult<List<AboutDto>>(AboutMapper.ToDto(models));
         }
 
-        public IDataResult<About> GetById(int id)
+        public IDataResult<AboutDto> GetById(int id)
         {
-            return new SuccessDataResult<About>(_aboutDal.GetById(id));
+            var model = _aboutDal.GetById(id);
+            return new SuccessDataResult<AboutDto>(AboutMapper.ToDto(model));
         }
 
+      
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Core.DataAccess.Concret;
 using DataAccess.Abstract;
 using DataAccess.SqlServerDbContext;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;

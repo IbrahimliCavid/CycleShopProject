@@ -1,4 +1,4 @@
-﻿@model List<About>;
+﻿@model List<AboutDto>;
 
 
 <div class="container-fluid">
@@ -18,8 +18,6 @@
                     <thead>
                         <tr>
                             <th>About</th>
-                            <th>Created Date</th>
-                            <th>Last Update Date</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -28,8 +26,6 @@
                         {
                             <tr>
                                 <td title="@item.Description">@(item.Description.Length > 20 ? item.Description.Substring(0, 20) + "..." : item.Description)</td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.LastUpdateDate</td>
                                 <td class="d-flex justify-content-center">
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>

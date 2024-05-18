@@ -12,8 +12,8 @@ namespace Buisness.Abstract
     public interface IAboutService
     {
         IResult Add(AboutCreateDto dto);
-        IResult Update(About dto);
-        IDataResult<About> GetById(int id);
-        IDataResult<List<About>> GetAll();
+        IResult Update(AboutUpdateDto entity);
+        IDataResult<AboutDto> GetById(int id);
+        IDataResult<List<AboutDto>> GetAll();
     }
 }

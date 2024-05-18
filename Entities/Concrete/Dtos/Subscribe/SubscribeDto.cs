@@ -7,20 +7,18 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete.Dtos
 {
-    public class AboutDto
+    public class SubscribeDto
     {
         public int Id { get; set; }
-        public string Description { get; set; }
-        
-        public static About ToModel(AboutDto dto)
+        public string Email { get; set; }
+        public static Subscribe ToModel(SubscribeDto dto)
         {
-            About about = new()
+            Subscribe subscribe = new()
             {
                 Id = dto.Id,
-                Description = dto.Description,
-            
+                Email = dto.Email,
             };
-            return about;
+            return subscribe;
         }
     }
 }

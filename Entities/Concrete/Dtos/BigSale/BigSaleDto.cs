@@ -7,20 +7,18 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete.Dtos
 {
-    public class AboutDto
+    public class BigSaleDto
     {
         public int Id { get; set; }
-        public string Description { get; set; }
-        
-        public static About ToModel(AboutDto dto)
+        public string ImgUrl { get; set; }
+        public static BigSale ToModel(BigSaleDto dto)
         {
-            About about = new()
+            BigSale bigSale = new()
             {
                 Id = dto.Id,
-                Description = dto.Description,
-            
+                ImgUrl = dto.ImgUrl,
             };
-            return about;
+            return bigSale;
         }
     }
 }

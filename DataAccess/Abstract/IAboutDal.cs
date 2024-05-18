@@ -1,4 +1,5 @@
 ﻿using Core.DataAccess.Abstract;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;

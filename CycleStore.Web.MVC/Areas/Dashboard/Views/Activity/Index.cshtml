@@ -1,4 +1,4 @@
-﻿@model List<Activity>;
+﻿@model List<ActivityDto>;
 
 
 <div class="container-fluid">
@@ -15,8 +15,6 @@
                         <tr>
                             <th>Information</th>
                             <th>Home Page</th>
-                            <th>Created Date</th>
-                            <th>Last Update Date</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -26,8 +24,6 @@
                             <tr>
                                 <td>@item.ActivityInfo</td>
                                 <td>@item.IsHomePage</td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.LastUpdateDate</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>
@@ -63,7 +59,7 @@
                     let itemTitle = e.currentTarget.attributes[1].value;
                     $.ajax({
                         method: "POST",
-                        url: "cyclecategory/delete/",
+                        url: "activity/delete/",
                         data: {
                             id: itemId
                         }
@@ -74,7 +70,7 @@
                         icon: 'success',
 
                     }).then((result) => {
-                        window.location = "cyclecategory"
+                        window.location = "activity"
                     })
 
                 }

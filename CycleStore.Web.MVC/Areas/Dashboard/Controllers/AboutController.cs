@@ -1,5 +1,4 @@
 ﻿using Buisness.Abstract;
-using Buisness.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +14,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         {
             _abouService = aboutService;
         }
+
         public IActionResult Index()
         {
             var data = _abouService.GetAll().Data;
@@ -49,12 +49,12 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(About about)
+        public IActionResult Edit(AboutUpdateDto dto)
         {
-            var result = _abouService.Update(about);
+            var result = _abouService.Update(dto);
             if (result.IsSuccess)
                 return RedirectToAction("Index");
-            return View(about);
+            return View(dto);
         }
 
        

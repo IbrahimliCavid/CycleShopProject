@@ -1,4 +1,5 @@
 ﻿using Core.Results.Abstract;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace Buisness.Abstract
     public interface IActivityService
     {
         
-        IResult Add(Activity activity);
+        IResult Add(ActivityCreateDto activity);
         IResult Delete(int id);
-        IResult Update(Activity activity);
-        IDataResult<Activity> GetById(int id);
-        IDataResult<List<Activity>> GetAll();
+        IResult Update(ActivityUpdateDto activity);
+        IDataResult<ActivityDto> GetById(int id);
+        IDataResult<List<ActivityDto>> GetAll();
     }
 }
 
