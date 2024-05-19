@@ -1,4 +1,4 @@
-﻿@model List<Subscribe>;
+﻿@model List<SubscribeDto>;
 
 
 <div class="container-fluid">
@@ -20,8 +20,6 @@
                         {
                             <tr>
                                 <td>@item.Email</td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.LastUpdateDate</td>
                                 <td class="d-flex justify-content-center">
                                     <a item-value="@item.Id" item-title="@item.Email" class="btnDelete">
                                         <i class="fas fa-trash"></i>

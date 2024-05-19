@@ -1,5 +1,6 @@
 ﻿using Buisness.Abstract;
 using Buisness.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,7 +31,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(BigSale bigSale)
+        public IActionResult Create(BigSaleCreateDto bigSale)
         {
             var result = _bigSaleService.Add(bigSale);
             if (result.IsSuccess) return RedirectToAction("Index");
@@ -45,7 +46,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(BigSale bigSale)
+        public IActionResult Edit(BigSaleUpdateDto bigSale)
         {
             var result = _bigSaleService.Update(bigSale);
             if (result.IsSuccess) return RedirectToAction("Index");

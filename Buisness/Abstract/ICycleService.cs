@@ -14,7 +14,7 @@ namespace Buisness.Abstract
         IResult Add(CycleCreateDto dto);
         IResult Update(CycleUpdateDto dto);
         IResult Delete(int id);
-        IDataResult<Cycle> GetById(int id);
+        IDataResult<CycleDto> GetById(int id);
         IDataResult<List<CycleDto>> GetProductWithCycleCategoryId();
     }
 }

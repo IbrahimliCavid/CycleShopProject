@@ -1,9 +1,11 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
+using Buisness.Mapper;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -22,34 +24,39 @@ namespace Buisness.Concrete
             _cycleCategoryDal = cycleCategoryDal;
         }
 
-        public IResult Add(Category cycleCategory)
+        public IResult Add(CategoryCreateDto dto)
         {
-          _cycleCategoryDal.Add(cycleCategory);
+            var model = CategoryMapper.ToModel(dto);
+          _cycleCategoryDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
-        public IResult Update(Category cycleCategory)
+        public IResult Update(CategoryUpdateDto dto)
         {
-            cycleCategory.LastUpdateDate = DateTime.Now;
-            _cycleCategoryDal.Update(cycleCategory);
+            var model = CategoryMapper.ToModel(dto);
+            model.LastUpdateDate = DateTime.Now;
+            _cycleCategoryDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            data.Deleted = id;
-            _cycleCategoryDal.Update(data);
+            var model = CategoryMapper.ToModel(data);
+            model.Deleted = id;
+            _cycleCategoryDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IDataResult<List<Category>> GetAll()
+        public IDataResult<List<CategoryDto>> GetAll()
         {
-            return new SuccessDataResult<List<Category>>(_cycleCategoryDal.GetAll(x => x.Deleted == 0));
+            var models = _cycleCategoryDal.GetAll(x => x.Deleted == 0);
+            return new SuccessDataResult<List<CategoryDto>>(CategoryMapper.ToDto(models));
         }
 
-        public IDataResult<Category> GetById(int id)
+        public IDataResult<CategoryDto> GetById(int id)
         {
-            return new SuccessDataResult<Category>(_cycleCategoryDal.GetById(id));
+            var model = _cycleCategoryDal.GetById(id);
+            return new SuccessDataResult<CategoryDto>(CategoryMapper.ToDto(model));
         }
 
       

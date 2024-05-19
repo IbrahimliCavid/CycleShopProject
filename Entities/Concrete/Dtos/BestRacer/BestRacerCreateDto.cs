@@ -12,21 +12,6 @@ namespace Entities.Concrete.Dtos
         public string InstagramLink { get; set; }
         public string TwitterLink { get; set; }
         public string EmailLink { get; set; }
-        public static BestRacer ToModel(BestRacerCreateDto dto)
-        {
-            BestRacer bestRacer = new()
-            {
-                Name = dto.Name,
-                Surname = dto.Surname,
-                Info = dto.Info,
-                ImgUrl = dto.ImgUrl,
-                FacebookLink = dto.FacebookLink,
-                InstagramLink = dto.InstagramLink,
-                EmailLink = dto.EmailLink,
-                TwitterLink = dto.TwitterLink
-                
-            };
-            return bestRacer;
-        }
+      
     }
 }

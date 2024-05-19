@@ -1,9 +1,11 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
+using Buisness.Mapper;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -22,36 +24,41 @@ namespace Buisness.Concrete
             _testimonialDal = testimonialDal;
         }
 
-        public IResult Add(Testimonial entity)
+        public IResult Add(TestimonialCreateDto dto)
         {
-            _testimonialDal.Add(entity);
+            var model = TestimonialMapping.ToModel(dto);
+            _testimonialDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            data.Deleted = id;
-            _testimonialDal.Update(data);
+            var model = TestimonialMapping.ToModel(data);
+            model.Deleted = id;
+            _testimonialDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
 
-        public IResult Update(Testimonial entity)
+        public IResult Update(TestimonialUpdateDto dto)
         {
-            entity.LastUpdateDate = DateTime.Now;
-            _testimonialDal.Update(entity);
+            var model = TestimonialMapping.ToModel(dto);
+            model.LastUpdateDate = DateTime.Now;
+            _testimonialDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
-        public IDataResult<List<Testimonial>> GetAll()
+        public IDataResult<List<TestimonialDto>> GetAll()
         {
-            return new SuccessDataResult<List<Testimonial>>(_testimonialDal.GetAll(x => x.Deleted == 0));
+            var models = _testimonialDal.GetAll(x => x.Deleted == 0);
+            return new SuccessDataResult<List<TestimonialDto>>(TestimonialMapping.ToDto(models));
         }
 
-        public IDataResult<Testimonial> GetById(int id)
+        public IDataResult<TestimonialDto> GetById(int id)
         {
-            return new SuccessDataResult<Testimonial>(_testimonialDal.GetById(id));
+            var model = _testimonialDal.GetById(id);
+            return new SuccessDataResult<TestimonialDto>(TestimonialMapping.ToDto(model));
         }
 
     }

@@ -19,5 +19,42 @@ namespace Buisness.Mapper
         {
             return models.Select(x => ToDto(x)).ToList();
         }
+        public static Contact ToModel(ContactCreateDto dto)
+        {
+            Contact contact = new()
+            {
+
+                Name = dto.Name,
+                Surname = dto.Surname,
+                Message = dto.Message,
+                IsAnswer = dto.IsAnswer
+            };
+            return contact;
+        }
+
+        public static Contact ToModel(ContactDto dto)
+        {
+            Contact contact = new()
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                Surname = dto.Surname,
+                Message = dto.Message,
+                IsAnswer = dto.IsAnswer
+            };
+            return contact;
+        }
+        public static Contact ToModel(ContactUpdateDto dto)
+        {
+            Contact contact = new()
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                Surname = dto.Surname,
+                Message = dto.Message,
+                IsAnswer = dto.IsAnswer
+            };
+            return contact;
+        }
     }
 }

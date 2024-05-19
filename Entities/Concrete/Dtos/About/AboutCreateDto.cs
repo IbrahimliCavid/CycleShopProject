@@ -10,13 +10,5 @@ namespace Entities.Concrete.Dtos
     public class AboutCreateDto
     {
         public string Description {  get; set; }
-        public static About ToModel(AboutCreateDto dto)
-        {
-            About about = new()
-            {
-                Description = dto.Description,
-            };
-            return about;
-        }
     }
 }

@@ -20,21 +20,6 @@ namespace Entities.Concrete.Dtos
         public byte StarRating { get; set; }
         
 
-        public static Cycle ToCycle(CycleCreateDto dto)
-        {
-            Cycle cycle = new()
-            {
-             
-                Name = dto.Name,
-                CategoryId = dto.CategoryId,
-                ImgUrl = dto.ImgUrl,
-                StarRating = dto.StarRating,
-                Count = dto.Count,
-                Price = dto.Price,
-                PrecentOfDiscount = dto.PrecentOfDiscount,
-                IsHomePage = dto.IsHomePage
-            };
-            return cycle;
-        }
+ 
     }
 }

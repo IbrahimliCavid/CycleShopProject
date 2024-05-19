@@ -1,4 +1,4 @@
-﻿@model List<Testimonial>;
+﻿@model List<TestimonialDto>;
 
 
 <div class="container-fluid">
@@ -12,8 +12,6 @@
                             <th>Name</th>
                             <th>Surname</th>
                             <th>Feedback</th>
-                            <th>Created Date</th>
-                            <th>Last Update Date</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -24,8 +22,6 @@
                                 <td>@item.Name</td>
                                 <td>@item.Surname</td>
                                 <td>@item.Feedback</td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.LastUpdateDate</td>
                                 <td class="d-flex justify-content-center">
                                     <a item-value="@item.Id" item-title="@item.Name" class="btnDelete">
                                         <i class="fas fa-trash"></i>

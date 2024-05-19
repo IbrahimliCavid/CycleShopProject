@@ -21,5 +21,40 @@ namespace Buisness.Mapper
         {
             return models.Select(x => ToDto(x)).ToList();
         }
+
+        public static Testimonial ToModel(TestimonialCreateDto dto)
+        {
+            Testimonial testimonial = new()
+            {
+                Name = dto.Name,
+                Surname = dto.Surname,
+                Feedback = dto.Feedback,
+            };
+            return testimonial;
+        }
+
+        public static Testimonial ToModel(TestimonialDto dto)
+        {
+            Testimonial testimonial = new()
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                Surname = dto.Surname,
+                Feedback = dto.Feedback,
+            };
+            return testimonial;
+        }
+
+        public static Testimonial ToModel(TestimonialUpdateDto dto)
+        {
+            Testimonial testimonial = new()
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                Surname = dto.Surname,
+                Feedback = dto.Feedback,
+            };
+            return testimonial;
+        }
     }
 }

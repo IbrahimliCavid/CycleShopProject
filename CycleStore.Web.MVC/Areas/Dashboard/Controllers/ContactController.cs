@@ -1,5 +1,6 @@
 ﻿using Buisness.Abstract;
 using Buisness.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,11 +32,11 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Contact contact)
+        public IActionResult Edit(ContactUpdateDto dto)
         {
-            var result = _contactService.Update(contact);
+            var result = _contactService.Update(dto);
             if (result.IsSuccess) return RedirectToAction("Index");
-            return View(contact);
+            return View(dto);
         }
 
         [HttpPost]

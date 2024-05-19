@@ -26,7 +26,7 @@ namespace Buisness.Concrete
 
         public IResult Add(BestRacerCreateDto dto)
         {
-            var model = BestRacerCreateDto.ToModel(dto);
+            var model = BestRacerMapper.ToModel(dto);
             _bestRacerDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
@@ -34,7 +34,7 @@ namespace Buisness.Concrete
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            var model = BestRacerDto.ToModel(data);
+            var model = BestRacerMapper.ToModel(data);
             model.Deleted = id;
             _bestRacerDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
@@ -42,7 +42,7 @@ namespace Buisness.Concrete
 
         public IResult Update(BestRacerUpdateDto dto)
         {
-            var model = BestRacerUpdateDto.ToModel(dto);
+            var model = BestRacerMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
             _bestRacerDal.Update(model);
 
@@ -60,7 +60,5 @@ namespace Buisness.Concrete
             var model = _bestRacerDal.GetById(id);
             return new SuccessDataResult<BestRacerDto>(BestRacerMapper.ToDto(model));
         }
-
-      
     }
 }

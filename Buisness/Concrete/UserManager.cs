@@ -1,9 +1,11 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
+using Buisness.Mapper;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -22,34 +24,39 @@ namespace Buisness.Concrete
             _userDal = userDal;
         }
 
-        public IResult Add(User entity)
+        public IResult Add(UserCreateDto dto)
         {
-            _userDal.Add(entity);
+            var model = UserMapper.ToModel(dto);
+            _userDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            data.Deleted = id;
-            _userDal.Update(data);
+            var model = UserMapper.ToModel(data);
+            model.Deleted = id;
+            _userDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
 
         }
-        public IResult Update(User entity)
+        public IResult Update(UserUpdateDto dto)
         {
-            entity.LastUpdateDate = DateTime.Now;
-            _userDal.Update(entity);
+            var model = UserMapper.ToModel(dto);
+            model.LastUpdateDate = DateTime.Now;
+            _userDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
-        public IDataResult<List<User>> GetAll()
+        public IDataResult<List<UserDto>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(x => x.Deleted == 0));
+            var models = _userDal.GetAll(x => x.Deleted == 0);
+            return new SuccessDataResult<List<UserDto>>(UserMapper.ToDto(models));
         }
 
-        public IDataResult<User> GetById(int id)
+        public IDataResult<UserDto> GetById(int id)
         {
-            return new SuccessDataResult<User>(_userDal.GetById(id));
+            var model = _userDal.GetById(id);
+            return new SuccessDataResult<UserDto>(UserMapper.ToDto(model));
         }
 
     }

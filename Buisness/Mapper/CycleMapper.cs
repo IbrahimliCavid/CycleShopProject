@@ -21,5 +21,57 @@ namespace Buisness.Mapper
             };
             return dto;
         }
+
+        public static Cycle ToModel(CycleCreateDto dto)
+        {
+            Cycle cycle = new()
+            {
+
+                Name = dto.Name,
+                CategoryId = dto.CategoryId,
+                ImgUrl = dto.ImgUrl,
+                StarRating = dto.StarRating,
+                Count = dto.Count,
+                Price = dto.Price,
+                PrecentOfDiscount = dto.PrecentOfDiscount,
+                IsHomePage = dto.IsHomePage
+            };
+            return cycle;
+        }
+
+        public static Cycle ToModel(CycleDto dto)
+        {
+            Cycle cycle = new Cycle()
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                CategoryId = dto.CategoryId,
+                ImgUrl = dto.ImgUrl,
+                StarRating = dto.StarRating,
+                Count = dto.Count,
+                Price = dto.Price,
+                PrecentOfDiscount = dto.PrecentOfDiscount,
+                IsHomePage = dto.IsHomePage
+            };
+            return cycle;
+        }
+
+        public static Cycle ToModel(CycleUpdateDto dto)
+        {
+            Cycle cycle = new()
+            {
+
+                Id = dto.Id,
+                Name = dto.Name,
+                CategoryId = dto.CategoryId,
+                ImgUrl = dto.ImgUrl,
+                StarRating = dto.StarRating,
+                Count = dto.Count,
+                Price = dto.Price,
+                PrecentOfDiscount = dto.PrecentOfDiscount,
+                IsHomePage = dto.IsHomePage
+            };
+            return cycle;
+        }
     }
 }

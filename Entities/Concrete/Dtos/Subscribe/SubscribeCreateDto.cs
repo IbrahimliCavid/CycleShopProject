@@ -11,13 +11,6 @@ namespace Entities.Concrete.Dtos
     {
     
         public string Email { get; set; }
-        public static Subscribe ToModel(SubscribeCreateDto dto)
-        {
-            Subscribe subscribe = new()
-            {
-                Email = dto.Email,
-            };
-            return subscribe;
-        }
+     
     }
 }

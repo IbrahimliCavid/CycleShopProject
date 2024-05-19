@@ -1,4 +1,5 @@
 ﻿using Core.Results.Abstract;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace Buisness.Abstract
 {
     public interface ITestimonialService
     {
-        IResult Add(Testimonial entity);
-        IResult Update(Testimonial entity);
+        IResult Add(TestimonialCreateDto dto);
+        IResult Update(TestimonialUpdateDto dto);
         IResult Delete(int id);
-        IDataResult<Testimonial> GetById(int id);
-        IDataResult<List<Testimonial>> GetAll();
+        IDataResult<TestimonialDto> GetById(int id);
+        IDataResult<List<TestimonialDto>> GetAll();
     }
 }

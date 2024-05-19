@@ -14,18 +14,6 @@ namespace Entities.Concrete.Dtos
         public string Description { get; set; }
         public bool IsHomePage { get; set; }
         public string ImgUrl { get; set; }
-        public static Service ToModel(ServiceDto dto)
-        {
-            Service service = new()
-            {
-                Id = dto.Id,
-                Title = dto.Title,
-                Description = dto.Description,
-                IsHomePage = dto.IsHomePage,
-                ImgUrl = dto.ImgUrl,
-
-            };
-            return service;
-        }
+     
     }
 }

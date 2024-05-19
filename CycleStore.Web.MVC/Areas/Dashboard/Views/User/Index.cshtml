@@ -1,4 +1,4 @@
-﻿@model List<User>;
+﻿@model List<UserDto>;
 
 
 <div class="container-fluid">
@@ -12,8 +12,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Parol</th>
-                            <th>Created Date</th>
-                            <th>Last Update Date</th>
+                 
                             <th></th>
                         </tr>
                     </thead>
@@ -24,8 +23,7 @@
                                 <td>@item.UserName</td>
                                 <td>@item.Email</td>
                                 <td>@item.Password</td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.LastUpdateDate</td>
+                              
                                 <td class="d-flex justify-content-center">
                                     <a item-value="@item.Id" item-title="@item.UserName" class="btnDelete">
                                         <i class="fas fa-trash"></i>

@@ -1,9 +1,11 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
+using Buisness.Mapper;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -22,36 +24,41 @@ namespace Buisness.Concrete
             _subscribeDal = subscribeDal;
         }
 
-        public IResult Add(Subscribe entity)
+        public IResult Add(SubscribeCreateDto dto)
         {
-            _subscribeDal.Add(entity);
+            var model = SubscribeMapper.ToModel(dto);
+            _subscribeDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            data.Deleted = id;
-            _subscribeDal.Update(data);
+            var model = SubscribeMapper.ToModel(data);
+            model.Deleted = id;
+            _subscribeDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
 
-        public IResult Update(Subscribe entity)
+        public IResult Update(SubscribeUpdateDto dto)
         {
-            entity.LastUpdateDate = DateTime.Now;
-            _subscribeDal.Update(entity);
+            var model = SubscribeMapper.ToModel(dto);
+            model.LastUpdateDate = DateTime.Now;
+            _subscribeDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
-        public IDataResult<List<Subscribe>> GetAll()
+        public IDataResult<List<SubscribeDto>> GetAll()
         {
-            return new SuccessDataResult<List<Subscribe>>(_subscribeDal.GetAll(x => x.Deleted == 0));
+            var models = _subscribeDal.GetAll(x => x.Deleted == 0);
+            return new SuccessDataResult<List<SubscribeDto>>(SubscribeMapper.ToDto(models));
         }
 
-        public IDataResult<Subscribe> GetById(int id)
+        public IDataResult<SubscribeDto> GetById(int id)
         {
-            return new SuccessDataResult<Subscribe>(_subscribeDal.GetById(id));
+            var model = _subscribeDal.GetById(id);
+            return new SuccessDataResult<SubscribeDto>(SubscribeMapper.ToDto(model));
         }
 
     }

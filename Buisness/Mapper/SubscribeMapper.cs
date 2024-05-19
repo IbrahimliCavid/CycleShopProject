@@ -19,5 +19,34 @@ namespace Buisness.Mapper
         {
             return models.Select(x => ToDto(x)).ToList();
         }
+
+        public static Subscribe ToModel(SubscribeCreateDto dto)
+        {
+            Subscribe subscribe = new()
+            {
+                Email = dto.Email,
+            };
+            return subscribe;
+        }
+
+        public static Subscribe ToModel(SubscribeDto dto)
+        {
+            Subscribe subscribe = new()
+            {
+                Id = dto.Id,
+                Email = dto.Email,
+            };
+            return subscribe;
+        }
+
+        public static Subscribe ToModel(SubscribeUpdateDto dto)
+        {
+            Subscribe subscribe = new()
+            {
+                Id = dto.Id,
+                Email = dto.Email,
+            };
+            return subscribe;
+        }
     }
 }

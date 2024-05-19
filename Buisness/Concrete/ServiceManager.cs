@@ -1,9 +1,11 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
+using Buisness.Mapper;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -22,36 +24,41 @@ namespace Buisness.Concrete
             _aboutDal = aboutDal;
         }
 
-        public IResult Add(Service entity)
+        public IResult Add(ServiceCreateDto dto)
         {
-            _aboutDal.Add(entity);
+            var model = ServiceMapper.ToModel(dto);
+            _aboutDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            data.Deleted = id;
-            _aboutDal.Update(data);
+            var model = ServiceMapper.ToModel(data);
+            model.Deleted = id;
+            _aboutDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
 
-        public IResult Update(Service entity)
+        public IResult Update(ServiceUpdateDto dto)
         {
-            entity.LastUpdateDate = DateTime.Now;
-            _aboutDal.Update(entity);
+            var model = ServiceMapper.ToModel(dto);
+            model.LastUpdateDate = DateTime.Now;
+            _aboutDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
-        public IDataResult<List<Service>> GetAll()
+        public IDataResult<List<ServiceDto>> GetAll()
         {
-            return new SuccessDataResult<List<Service>>(_aboutDal.GetAll(x => x.Deleted == 0));
+            var models = _aboutDal.GetAll(x => x.Deleted == 0);
+            return new SuccessDataResult<List<ServiceDto>>(ServiceMapper.ToDto(models));
         }
 
-        public IDataResult<Service> GetById(int id)
+        public IDataResult<ServiceDto> GetById(int id)
         {
-            return new SuccessDataResult<Service>(_aboutDal.GetById(id));
+            var model = _aboutDal.GetById(id);
+            return new SuccessDataResult<ServiceDto>(ServiceMapper.ToDto(model));
         }
 
     }

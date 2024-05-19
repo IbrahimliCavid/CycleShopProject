@@ -1,9 +1,11 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
+using Buisness.Mapper;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -22,34 +24,41 @@ namespace Buisness.Concrete
             _bigSaleDal = bigSaleDal;
         }
 
-        public IResult Add(BigSale entity)
+        public IResult Add(BigSaleCreateDto dto)
         {
-            _bigSaleDal.Add(entity);
+            var model = BigSaleMapper.ToModel(dto);
+            _bigSaleDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            data.Deleted = id;
-            _bigSaleDal.Update(data);
+            var model = BigSaleMapper.ToModel(data);
+            model.Deleted = id;
+            _bigSaleDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
             
         }
-        public IResult Update(BigSale entity)
+        public IResult Update(BigSaleUpdateDto dto)
         {
-            entity.LastUpdateDate = DateTime.Now;
-            _bigSaleDal.Update(entity);
+            var model = BigSaleMapper.ToModel(dto);
+            model.LastUpdateDate = DateTime.Now;
+            _bigSaleDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
-        public IDataResult<List<BigSale>> GetAll()
+        public IDataResult<List<BigSaleDto>> GetAll()
         {
-            return new  SuccessDataResult<List<BigSale>>(_bigSaleDal.GetAll(x=>x.Deleted == 0));
+            var models = _bigSaleDal.GetAll(x => x.Deleted == 0);
+              
+            return new  SuccessDataResult<List<BigSaleDto>>(BigSaleMapper.ToDto(models));
         }
 
-        public IDataResult<BigSale> GetById(int id)
+        public IDataResult<BigSaleDto> GetById(int id)
         {
-            return new SuccessDataResult<BigSale>(_bigSaleDal.GetById(id));
+            var model = _bigSaleDal.GetById(id);
+            
+            return new SuccessDataResult<BigSaleDto>(BigSaleMapper.ToDto(model));
         }
 
      

@@ -1,4 +1,5 @@
 ﻿using Core.Results.Abstract;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace Buisness.Abstract
 {
     public interface IBigSaleService
     {
-        IResult Add(BigSale entity);
-        IResult Update(BigSale entity);
+        IResult Add(BigSaleCreateDto dto);
+        IResult Update(BigSaleUpdateDto dto);
         IResult Delete(int id);
-        IDataResult<BigSale> GetById(int id);
-        IDataResult<List<BigSale>> GetAll();
+        IDataResult<BigSaleDto> GetById(int id);
+        IDataResult<List<BigSaleDto>> GetAll();
     }
 }

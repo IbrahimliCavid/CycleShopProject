@@ -1,4 +1,4 @@
-﻿@model List<Service>;
+﻿@model List<ServiceDto>;
 
 
 <div class="container-fluid">
@@ -17,8 +17,6 @@
                             <th>Description</th>
                             <th>Home Page</th>
                             <th>Photo</th>
-                            <th>Created Date</th>
-                            <th>Last Update Date</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -30,8 +28,7 @@
                                 <td>@item.Description</td>
                                 <td>@item.IsHomePage</td>
                                 <td><img src="@item.ImgUrl" alt="Service photo" /></td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.LastUpdateDate</td>
+                               
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>

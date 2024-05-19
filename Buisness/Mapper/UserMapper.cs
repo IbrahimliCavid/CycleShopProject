@@ -21,5 +21,40 @@ namespace Buisness.Mapper
         {
             return models.Select(x => ToDto(x)).ToList();
         }
+
+        public static User ToModel(UserCreateDto dto)
+        {
+            User user = new()
+            {
+                UserName = dto.UserName,
+                Email = dto.Email,
+                Password = dto.Password,
+            };
+            return user;
+        }
+
+        public static User ToModel(UserDto dto)
+        {
+            User user = new()
+            {
+                Id = dto.Id,
+                UserName = dto.UserName,
+                Email = dto.Email,
+                Password = dto.Password,
+            };
+            return user;
+        }
+
+        public static User ToModel(UserUpdateDto dto)
+        {
+            User user = new()
+            {
+                Id = dto.Id,
+                UserName = dto.UserName,
+                Email = dto.Email,
+                Password = dto.Password,
+            };
+            return user;
+        }
     }
 }

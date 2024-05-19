@@ -26,7 +26,7 @@ namespace Buisness.Concrete
 
         public IResult Add(ActivityCreateDto dto)
         {
-            var model = ActivityCreateDto.ToModel(dto);
+            var model = ActivityMapper.ToModel(dto);
             _activityDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
@@ -34,7 +34,7 @@ namespace Buisness.Concrete
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            var model = ActivityDto.ToModel(data);
+            var model = ActivityMapper.ToModel(data);
                 model.Deleted = id;
             _activityDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
@@ -42,7 +42,7 @@ namespace Buisness.Concrete
 
         public IResult Update(ActivityUpdateDto dto)
         {
-            var model = ActivityUpdateDto.ToModel(dto);
+            var model = ActivityMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
             _activityDal.Update(model);
 

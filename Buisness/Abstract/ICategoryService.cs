@@ -1,4 +1,5 @@
 ﻿using Core.Results.Abstract;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace Buisness.Abstract
 {
     public interface ICategoryService
     {
-        IResult Add(Category cycleCategory);
+        IResult Add(CategoryCreateDto cycleCategory);
         IResult Delete(int id);
-        IResult Update(Category cycleCategory);
+        IResult Update(CategoryUpdateDto cycleCategory);
 
-        IDataResult<Category> GetById(int id);
-        IDataResult<List<Category>> GetAll();
+        IDataResult<CategoryDto> GetById(int id);
+        IDataResult<List<CategoryDto>> GetAll();
     }
 }

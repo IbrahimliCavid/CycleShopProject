@@ -28,7 +28,7 @@ namespace Buisness.Concrete
         }
         public IResult Add(AboutCreateDto dto)
         {
-            var model = AboutCreateDto.ToModel(dto); 
+            var model = AboutMapper.ToModel(dto); 
 
             var validator = _validator.Validate(model);
 
@@ -51,7 +51,7 @@ namespace Buisness.Concrete
 
         public IResult Update(AboutUpdateDto dto)
         {
-            var model = AboutUpdateDto.ToModel(dto);
+            var model = AboutMapper.ToModel(dto);
            
             model.LastUpdateDate = DateTime.Now;
             _aboutDal.Update(model);

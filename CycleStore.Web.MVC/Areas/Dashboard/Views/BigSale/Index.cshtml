@@ -1,4 +1,4 @@
-﻿@model List<BigSale>;
+﻿@model List<BigSaleDto>;
 
 
 <div class="container-fluid">
@@ -18,8 +18,7 @@
                     <thead>
                         <tr>
                             <th>Photo Url</th>
-                            <th>Created Date</th>
-                            <th>Last Update Date</th>
+                            
                             <th></th>
                         </tr>
                     </thead>
@@ -28,8 +27,6 @@
                         {
                             <tr>
                                 <td><img src="@item.ImgUrl" alt="Big sale photo" /></td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.LastUpdateDate</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>

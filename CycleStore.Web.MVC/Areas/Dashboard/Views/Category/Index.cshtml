@@ -1,4 +1,4 @@
-﻿@model List<Category>;
+﻿@model List<CategoryDto>;
 
 
 <div class="container-fluid">
@@ -14,8 +14,6 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Created Date</th>
-                            <th>Last Update Date</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -24,8 +22,6 @@
                         {
                             <tr>
                                 <td>@item.Name</td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.LastUpdateDate</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>

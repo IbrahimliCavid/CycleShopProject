@@ -19,5 +19,33 @@ namespace Buisness.Mapper
         {
             return models.Select(x => ToDto(x)).ToList();
         }
+
+        public static Category ToModel(CategoryCreateDto dto)
+        {
+            Category category = new()
+            {
+                Name = dto.Name,
+            };
+            return category;
+        }
+
+        public static Category ToModel(CategoryDto dto)
+        {
+            Category category = new()
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+            };
+            return category;
+        }
+        public static Category ToModel(CategoryUpdateDto dto)
+        {
+            Category category = new()
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+            };
+            return category;
+        }
     }
 }

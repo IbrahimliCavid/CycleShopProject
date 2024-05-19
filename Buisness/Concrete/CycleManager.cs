@@ -1,5 +1,6 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
+using Buisness.Mapper;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
@@ -25,7 +26,7 @@ namespace Buisness.Concrete
 
         public IResult Add(CycleCreateDto dto)
         {
-            var model = CycleCreateDto.ToCycle(dto);
+            var model = CycleMapper.ToModel(dto);
             _prdouctDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
@@ -33,14 +34,15 @@ namespace Buisness.Concrete
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            data.Deleted = id;
-            _prdouctDal.Update(data);
+            var model = CycleMapper.ToModel(data);
+            model.Deleted = id;
+            _prdouctDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
         public IResult Update(CycleUpdateDto dto)
         {
-            var model = CycleUpdateDto.ToCycle(dto);
+            var model = CycleMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
             _prdouctDal.Update(model);
 
@@ -48,9 +50,10 @@ namespace Buisness.Concrete
         }
 
     
-        public IDataResult<Cycle> GetById(int id)
+        public IDataResult<CycleDto> GetById(int id)
         {
-            return new SuccessDataResult<Cycle>(_prdouctDal.GetById(id));
+            var model = _prdouctDal.GetById(id);
+            return new SuccessDataResult<CycleDto>(CycleMapper.ToDto(model));
         }
 
         public IDataResult<List<CycleDto>> GetProductWithCycleCategoryId()

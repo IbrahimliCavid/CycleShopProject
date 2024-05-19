@@ -11,14 +11,6 @@ namespace Entities.Concrete.Dtos
     {
         public string Name { get; set; }
         public int Id {  get; set; }
-        public static Category ToModel(CategoryDto dto)
-        {
-            Category category = new()
-            {
-                Id = dto.Id,
-                Name = dto.Name,
-            };
-            return category;
-        }
+      
     }
 }

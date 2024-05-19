@@ -33,21 +33,6 @@ namespace Entities.Concrete.Dtos
 
         public string CategoryName {  get; set; }
 
-        public static Cycle ToCycle(CycleDto dto)
-        {
-            Cycle cycle= new Cycle()
-            {
-                Id = dto.Id,
-                Name = dto.Name,
-                CategoryId = dto.CategoryId,
-                ImgUrl = dto.ImgUrl,
-                StarRating = dto.StarRating,
-                Count = dto.Count,
-                Price = dto.Price,
-                PrecentOfDiscount = dto.PrecentOfDiscount,
-                IsHomePage = dto.IsHomePage
-            };
-            return cycle;
-        }
+       
     }
 }

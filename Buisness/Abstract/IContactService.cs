@@ -1,4 +1,5 @@
 ﻿using Core.Results.Abstract;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace Buisness.Abstract
 {
     public interface IContactService
     {
-        IResult Add(Contact contact);
+        IResult Add(ContactCreateDto dto);
         IResult Delete(int id);
-        IResult Update(Contact contact);
-        IDataResult<Contact> GetById(int id);
-        IDataResult<List<Contact>> GetAll();
+        IResult Update(ContactUpdateDto dto);
+        IDataResult<ContactDto> GetById(int id);
+        IDataResult<List<ContactDto>> GetAll();
         
     }
 }

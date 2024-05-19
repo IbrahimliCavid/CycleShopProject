@@ -11,18 +11,5 @@ namespace Entities.Concrete.Dtos
         public string ImgUrl { get; set; }
 
 
-        public static Service ToModel(ServiceUpdateDto dto)
-        {
-            Service service = new()
-            {
-                Id = dto.Id,
-                Title = dto.Title,
-                Description = dto.Description,
-                IsHomePage = dto.IsHomePage,
-                ImgUrl = dto.ImgUrl,
-
-            };
-            return service;
-        }
     }
 }

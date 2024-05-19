@@ -1,5 +1,6 @@
 ﻿using Buisness.Abstract;
 using Buisness.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,11 +29,11 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Service service)
+        public IActionResult Create(ServiceCreateDto dto)
         {
-            var result = _serviceService.Add(service);
+            var result = _serviceService.Add(dto);
             if (result.IsSuccess) return RedirectToAction("Index");
-            return View(service);
+            return View(dto);
         }
 
         [HttpGet]
@@ -43,11 +44,11 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Service service)
+        public IActionResult Edit(ServiceUpdateDto dto)
         {
-            var result = _serviceService.Update(service);
+            var result = _serviceService.Update(dto);
             if (result.IsSuccess) return RedirectToAction("Index");
-            return View(service);
+            return View(dto);
         }
 
         [HttpPost]

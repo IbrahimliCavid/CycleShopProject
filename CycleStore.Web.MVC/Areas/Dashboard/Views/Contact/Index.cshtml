@@ -1,4 +1,4 @@
-﻿@model List<Contact>;
+﻿@model List<ContactDto>;
 
 
 <div class="container-fluid">
@@ -13,8 +13,7 @@
                             <th>Surname</th>
                             <th>Message</th>
                             <th>Status</th>
-                            <th>Created Date</th>
-                            <th>Last Update Date</th>
+                        
                             <th></th>
                         </tr>
                     </thead>
@@ -26,8 +25,7 @@
                                 <td>@item.Surname</td>
                                 <td>@item.Message</td>
                                 <td>@(item.IsAnswer ? "Answered": "No Answer")</td>
-                                <td>@item.CreatedDate</td>
-                                <td>@item.LastUpdateDate</td>
+                                
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>

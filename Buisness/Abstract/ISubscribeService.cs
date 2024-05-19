@@ -1,4 +1,5 @@
 ﻿using Core.Results.Abstract;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace Buisness.Abstract
 {
     public interface ISubscribeService
     {
-        IResult Add(Subscribe entity);
-        IResult Update(Subscribe entity);
+        IResult Add(SubscribeCreateDto dto);
+        IResult Update(SubscribeUpdateDto dto);
         IResult Delete(int id);
-        IDataResult<Subscribe> GetById(int id);
-        IDataResult<List<Subscribe>> GetAll();
+        IDataResult<SubscribeDto> GetById(int id);
+        IDataResult<List<SubscribeDto>> GetAll();
     }
 }

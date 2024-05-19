@@ -61,6 +61,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
             var result = _bestRacerService.Delete(id);
             if (result.IsSuccess) 
                 return RedirectToAction("Index");
+         
             return View(result);
         }
      

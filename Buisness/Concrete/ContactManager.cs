@@ -1,9 +1,11 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
+using Buisness.Mapper;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
+using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
 using System.Collections.Generic;
@@ -22,34 +24,39 @@ namespace Buisness.Concrete
             _contactDal = contactDal;
         }
 
-        public IResult Add(Contact contact)
+        public IResult Add(ContactCreateDto dto)
         {
-           _contactDal.Add(contact);
+            var model = ContactMapper.ToModel(dto);
+           _contactDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            data.Deleted = id;
-            _contactDal.Update(data);
+            var model = ContactMapper.ToModel(data);
+            model.Deleted = id;
+            _contactDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IResult Update(Contact contact)
+        public IResult Update(ContactUpdateDto dto)
         {
-            contact.LastUpdateDate = DateTime.Now;
-           _contactDal.Update(contact);
+            var model = ContactMapper.ToModel(dto);
+            model.LastUpdateDate = DateTime.Now;
+           _contactDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
-        public IDataResult<List<Contact>> GetAll()
+        public IDataResult<List<ContactDto>> GetAll()
         {
-            return new SuccessDataResult<List<Contact>>(_contactDal.GetAll(x=>x.Deleted == 0));
+            var models = _contactDal.GetAll(x => x.Deleted == 0);
+            return new SuccessDataResult<List<ContactDto>>(ContactMapper.ToDto(models));
         }
 
-        public IDataResult<Contact> GetById(int id)
+        public IDataResult<ContactDto> GetById(int id)
         {
-            return new SuccessDataResult<Contact>(_contactDal.GetById(id));
+            var model = _contactDal.GetById(id);
+            return new SuccessDataResult<ContactDto>(ContactMapper.ToDto(model));
         }
 
     
