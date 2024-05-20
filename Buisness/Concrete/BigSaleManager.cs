@@ -7,6 +7,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,30 @@ namespace Buisness.Concrete
     public class BigSaleManager : IBigSaleService
     {
         private readonly IBigSaleDal _bigSaleDal;
+        private readonly IValidator<BigSale> _validator;
 
-        public BigSaleManager(IBigSaleDal bigSaleDal)
+        public BigSaleManager(IBigSaleDal bigSaleDal, IValidator<BigSale> validator)
         {
             _bigSaleDal = bigSaleDal;
+            _validator = validator;
         }
 
         public IResult Add(BigSaleCreateDto dto)
         {
             var model = BigSaleMapper.ToModel(dto);
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _bigSaleDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
@@ -44,6 +60,20 @@ namespace Buisness.Concrete
         {
             var model = BigSaleMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
+
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _bigSaleDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
@@ -54,11 +84,11 @@ namespace Buisness.Concrete
             return new  SuccessDataResult<List<BigSaleDto>>(BigSaleMapper.ToDto(models));
         }
 
-        public IDataResult<BigSaleDto> GetById(int id)
+        public IDataResult<BigSaleUpdateDto> GetById(int id)
         {
             var model = _bigSaleDal.GetById(id);
             
-            return new SuccessDataResult<BigSaleDto>(BigSaleMapper.ToDto(model));
+            return new SuccessDataResult<BigSaleUpdateDto>(BigSaleMapper.ToUpdateDto(model));
         }
 
      

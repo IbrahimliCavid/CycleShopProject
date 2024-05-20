@@ -25,7 +25,7 @@ namespace DataAccess.Configurations
                 .HasMaxLength(100);
             builder.Property(x=>x.Message)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(2000);
             builder.Property(x => x.IsAnswer)
                 .HasDefaultValue(false);
                 

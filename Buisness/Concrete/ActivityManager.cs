@@ -7,6 +7,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,30 @@ namespace Buisness.Concrete
     public class ActivityManager : IActivityService
     {
        public readonly IActivityDal _activityDal;
+        public readonly IValidator<Activity> _validator;
 
-        public ActivityManager(IActivityDal activityDal)
+        public ActivityManager(IActivityDal activityDal, IValidator<Activity> validator)
         {
             _activityDal = activityDal;
+            _validator = validator;
         }
 
         public IResult Add(ActivityCreateDto dto)
         {
+            
             var model = ActivityMapper.ToModel(dto);
+            var validator = _validator.Validate(model);
+            string errorMessage = string.Empty;
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid) 
+            {
+                return new ErrorResult(errorMessage);
+            }
+            
             _activityDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
@@ -44,6 +60,17 @@ namespace Buisness.Concrete
         {
             var model = ActivityMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
+            var validator = _validator.Validate(model);
+            string errorMessage = string.Empty;
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _activityDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
@@ -56,11 +83,11 @@ namespace Buisness.Concrete
             return new SuccessDataResult<List<ActivityDto>>(ActivityMapper.ToDto(models));
         }
 
-        public IDataResult<ActivityDto> GetById(int id)
+        public IDataResult<ActivityUpdateDto> GetById(int id)
         {
             var model = _activityDal.GetById(id);
 
-            return new SuccessDataResult<ActivityDto>(ActivityMapper.ToDto(model));
+            return new SuccessDataResult<ActivityUpdateDto>(ActivityMapper.ToUpdateDto(model));
         }
 
     }

@@ -7,6 +7,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,31 @@ namespace Buisness.Concrete
     public class UserManager : IUserService
     {
         private readonly IUserDal _userDal;
+        private readonly IValidator<User> _validator;
 
-        public UserManager(IUserDal userDal)
+        public UserManager(IUserDal userDal, IValidator<User> validator)
         {
             _userDal = userDal;
+            _validator = validator;
         }
 
         public IResult Add(UserCreateDto dto)
         {
             var model = UserMapper.ToModel(dto);
+
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _userDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
@@ -44,6 +61,19 @@ namespace Buisness.Concrete
         {
             var model = UserMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _userDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }

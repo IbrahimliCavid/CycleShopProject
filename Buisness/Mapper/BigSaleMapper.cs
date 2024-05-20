@@ -20,6 +20,22 @@ namespace Buisness.Mapper
             return models.Select(x => ToDto(x)).ToList();
         }
 
+
+        public static BigSaleUpdateDto ToUpdateDto(BigSale model)
+        {
+            BigSaleUpdateDto dto = new()
+            {
+                Id = model.Id,
+                ImgUrl = model.ImgUrl,
+            };
+            return dto;
+        }
+
+        public static List<BigSaleUpdateDto> ToUpdateDto(List<BigSale> models)
+        {
+            return models.Select(x => ToUpdateDto(x)).ToList();
+        }
+
         public static BigSale ToModel(BigSaleDto dto)
         {
             BigSale bigSale = new()

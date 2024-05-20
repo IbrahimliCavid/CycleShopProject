@@ -7,6 +7,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,30 @@ namespace Buisness.Concrete
     public class ServiceManager : IServiceService
     {
         private readonly IServiceDal _aboutDal;
+        private readonly IValidator<Service> _validator;
 
-        public ServiceManager(IServiceDal aboutDal)
+        public ServiceManager(IServiceDal aboutDal, IValidator<Service> validator)
         {
             _aboutDal = aboutDal;
+            _validator = validator;
         }
 
         public IResult Add(ServiceCreateDto dto)
         {
             var model = ServiceMapper.ToModel(dto);
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _aboutDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
@@ -45,6 +61,20 @@ namespace Buisness.Concrete
         {
             var model = ServiceMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
+
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _aboutDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);

@@ -7,6 +7,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,30 @@ namespace Buisness.Concrete
     public class TestimonialManager : ITestimonialService
     {
         private readonly ITestimonialDal _testimonialDal;
+        private readonly IValidator<Testimonial> _validator;
 
-        public TestimonialManager(ITestimonialDal testimonialDal)
+        public TestimonialManager(ITestimonialDal testimonialDal, IValidator<Testimonial> validator)
         {
             _testimonialDal = testimonialDal;
+            _validator = validator;
         }
 
         public IResult Add(TestimonialCreateDto dto)
         {
             var model = TestimonialMapping.ToModel(dto);
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _testimonialDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
@@ -45,6 +61,19 @@ namespace Buisness.Concrete
         {
             var model = TestimonialMapping.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _testimonialDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);

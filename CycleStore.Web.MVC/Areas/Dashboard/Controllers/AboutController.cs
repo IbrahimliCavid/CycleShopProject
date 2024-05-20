@@ -52,9 +52,14 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Edit(AboutUpdateDto dto)
         {
             var result = _abouService.Update(dto);
-            if (result.IsSuccess)
-                return RedirectToAction("Index");
-            return View(dto);
+            if (!result.IsSuccess)
+            {
+                ModelState.AddModelError("Description", result.Message);
+                return View(dto);
+            }
+              
+           
+            return RedirectToAction("Index");
         }
 
        

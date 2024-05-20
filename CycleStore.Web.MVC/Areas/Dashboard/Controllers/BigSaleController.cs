@@ -34,8 +34,14 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Create(BigSaleCreateDto bigSale)
         {
             var result = _bigSaleService.Add(bigSale);
-            if (result.IsSuccess) return RedirectToAction("Index");
-            return View(bigSale);
+            if (!result.IsSuccess)
+            {
+                ModelState.AddModelError("ImgUrl", result.Message);
+                return View(bigSale);
+            }
+                
+                return RedirectToAction("Index");
+           
         }
 
         [HttpGet]
@@ -49,8 +55,13 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Edit(BigSaleUpdateDto bigSale)
         {
             var result = _bigSaleService.Update(bigSale);
-            if (result.IsSuccess) return RedirectToAction("Index");
-            return View(bigSale);
+            if (!result.IsSuccess)
+            {
+                ModelState.AddModelError("ImgUrl", result.Message);
+                return View(bigSale);
+            }
+                return RedirectToAction("Index");
+         
         }
 
         [HttpPost]

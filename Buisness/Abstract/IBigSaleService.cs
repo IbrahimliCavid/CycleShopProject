@@ -14,7 +14,7 @@ namespace Buisness.Abstract
         IResult Add(BigSaleCreateDto dto);
         IResult Update(BigSaleUpdateDto dto);
         IResult Delete(int id);
-        IDataResult<BigSaleDto> GetById(int id);
+        IDataResult<BigSaleUpdateDto> GetById(int id);
         IDataResult<List<BigSaleDto>> GetAll();
     }
 }

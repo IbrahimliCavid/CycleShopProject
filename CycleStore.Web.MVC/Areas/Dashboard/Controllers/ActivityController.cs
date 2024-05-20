@@ -32,9 +32,14 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Create(ActivityCreateDto dto)
         {
             var result = _activityService.Add(dto);
-            if (result.IsSuccess)
+            if (!result.IsSuccess)
+            {
+
+                ModelState.AddModelError("ActivityInfo", result.Message);
+                    return View(dto);
+            }
                 return RedirectToAction("Index");
-            return View(dto);
+           
         }
 
         [HttpGet]
@@ -48,9 +53,13 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Edit(ActivityUpdateDto dto)
         {
             var result = _activityService.Update(dto);
-            if (result.IsSuccess)
-                return RedirectToAction("Index");
-            return View(dto);
+            if (!result.IsSuccess)
+            {
+                ModelState.AddModelError("ActivityInfo", result.Message);
+                return View(dto);
+            }
+              
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

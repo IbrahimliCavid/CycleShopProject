@@ -1,5 +1,6 @@
 ﻿using Buisness.Abstract;
 using Buisness.Concrete;
+using Core.Results.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Create()
         {
             ViewData["Categories"] = _categoryService.GetAll().Data;
+
             return View();
         }
 
@@ -36,9 +38,12 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Create(CycleCreateDto dto)
         {
             var result = _cycleService.Add(dto);
-            if (result.IsSuccess) return RedirectToAction("Index");
-            return View(dto);
-
+            if (!result.IsSuccess)
+            {
+                ModelState.AddModelError("Description", result.Message);
+                return View();
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -53,8 +58,12 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Edit(CycleUpdateDto dto)
         {
             var result = _cycleService.Update(dto);
-            if (result.IsSuccess) return RedirectToAction("Index");
-            return View(dto);
+            if (!result.IsSuccess)
+            {
+                ModelState.AddModelError("Description", result.Message);
+                return View();
+            }
+            return RedirectToAction("Index");
 
         }
 

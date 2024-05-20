@@ -18,7 +18,8 @@ namespace DataAccess.Configurations
             builder.Property(x => x.Id)
                 .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment: 1);
             builder.Property(x => x.Email)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(100);
             builder.HasIndex(x => new {x.Email, x.Deleted})
                 .IsUnique();
 

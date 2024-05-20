@@ -26,6 +26,21 @@ namespace Buisness.Mapper
             return models.Select(x => ToDto(x)).ToList();
         }
 
+        public static ActivityUpdateDto ToUpdateDto(Activity model)
+        {
+            ActivityUpdateDto dto = new()
+            {
+                Id = model.Id,
+                ActivityInfo = model.ActivityInfo,
+                IsHomePage = model.IsHomePage,
+            };
+            return dto;
+        }
+
+        public static List<ActivityUpdateDto> ToUpdateDto(List<Activity> models)
+        {
+            return models.Select(x => ToUpdateDto(x)).ToList();
+        }
         public static Activity ToModel(ActivityCreateDto dto)
         {
             Activity model = new()

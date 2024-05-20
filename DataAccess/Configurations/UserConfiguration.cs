@@ -24,7 +24,8 @@ namespace DataAccess.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
             builder.Property(x => x.Password)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(100);
             builder.HasIndex(x => new { x.Email, x.UserName, x.Deleted })
                 .IsUnique();
 

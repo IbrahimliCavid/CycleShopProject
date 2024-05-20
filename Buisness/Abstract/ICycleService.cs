@@ -1,4 +1,5 @@
 ﻿using Core.Results.Abstract;
+using Core.Results.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using System;
@@ -11,10 +12,10 @@ namespace Buisness.Abstract
 {
     public interface ICycleService
     {
-        IResult Add(CycleCreateDto dto);
+       IResult Add(CycleCreateDto dto);
         IResult Update(CycleUpdateDto dto);
         IResult Delete(int id);
-        IDataResult<CycleDto> GetById(int id);
+        IDataResult<CycleUpdateDto> GetById(int id);
         IDataResult<List<CycleDto>> GetProductWithCycleCategoryId();
     }
 }

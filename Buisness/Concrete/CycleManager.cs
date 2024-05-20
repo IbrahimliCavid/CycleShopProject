@@ -7,6 +7,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +19,36 @@ namespace Buisness.Concrete
     public class CycleManager : ICycleService
     {
         public readonly ICycleDal _prdouctDal;
+        public readonly IValidator<Cycle> _validator;
 
-        public CycleManager(ICycleDal prdouctDal)
+        public CycleManager(ICycleDal prdouctDal, IValidator<Cycle> validator)
         {
             _prdouctDal = prdouctDal;
+            _validator = validator;
         }
 
         public IResult Add(CycleCreateDto dto)
         {
             var model = CycleMapper.ToModel(dto);
+
+            var validator = _validator.Validate(model);
+
+
+           
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _prdouctDal.Add(model);
-            return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
+            return null;
         }
 
         public IResult Delete(int id)
@@ -44,16 +64,30 @@ namespace Buisness.Concrete
         {
             var model = CycleMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
+
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _prdouctDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
 
-    
-        public IDataResult<CycleDto> GetById(int id)
+
+        public IDataResult<CycleUpdateDto> GetById(int id)
         {
             var model = _prdouctDal.GetById(id);
-            return new SuccessDataResult<CycleDto>(CycleMapper.ToDto(model));
+            return new SuccessDataResult<CycleUpdateDto>(CycleMapper.ToUpdateDto(model));
         }
 
         public IDataResult<List<CycleDto>> GetProductWithCycleCategoryId()

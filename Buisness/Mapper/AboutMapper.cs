@@ -26,6 +26,24 @@ namespace Buisness.Mapper
             return abouts.Select(x => ToDto(x)).ToList();
         }
 
+
+        public static AboutUpdateDto ToUpdateDto(About about)
+        {
+            AboutUpdateDto dto = new AboutUpdateDto()
+            {
+                Id = about.Id,
+                Description = about.Description,
+            };
+
+            return dto;
+        }
+
+        public static List<AboutUpdateDto> ToUpdateDto(List<About> abouts)
+        {
+            return abouts.Select(x => ToUpdateDto(x)).ToList();
+        }
+
+
         public static About ToModel(AboutCreateDto dto)
         {
             About about = new()

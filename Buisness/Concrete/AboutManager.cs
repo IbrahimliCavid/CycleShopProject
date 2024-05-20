@@ -28,6 +28,8 @@ namespace Buisness.Concrete
         }
         public IResult Add(AboutCreateDto dto)
         {
+            
+           
             var model = AboutMapper.ToModel(dto); 
 
             var validator = _validator.Validate(model);
@@ -54,6 +56,21 @@ namespace Buisness.Concrete
             var model = AboutMapper.ToModel(dto);
            
             model.LastUpdateDate = DateTime.Now;
+           
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
+
             _aboutDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
@@ -66,10 +83,10 @@ namespace Buisness.Concrete
             return new SuccessDataResult<List<AboutDto>>(AboutMapper.ToDto(models));
         }
 
-        public IDataResult<AboutDto> GetById(int id)
+        public IDataResult<AboutUpdateDto> GetById(int id)
         {
             var model = _aboutDal.GetById(id);
-            return new SuccessDataResult<AboutDto>(AboutMapper.ToDto(model));
+            return new SuccessDataResult<AboutUpdateDto>(AboutMapper.ToUpdateDto(model));
         }
 
       

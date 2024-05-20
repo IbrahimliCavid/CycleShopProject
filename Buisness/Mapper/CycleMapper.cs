@@ -22,6 +22,23 @@ namespace Buisness.Mapper
             return dto;
         }
 
+        public static CycleUpdateDto ToUpdateDto(Cycle model)
+        {
+            CycleUpdateDto dto = new()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                CategoryId = model.CategoryId,
+                ImgUrl = model.ImgUrl,
+                StarRating = model.StarRating,
+                Count = model.Count,
+                Price = model.Price,
+                PrecentOfDiscount = model.PrecentOfDiscount,
+                IsHomePage = model.IsHomePage
+            };
+            return dto;
+        }
+
         public static Cycle ToModel(CycleCreateDto dto)
         {
             Cycle cycle = new()

@@ -26,6 +26,28 @@ namespace Buisness.Mapper
         {
             return models.Select(x => ToDto(x)).ToList();
         }
+
+        public static BestRacerUpdateDto ToUpdateDto(BestRacer model)
+        {
+            BestRacerUpdateDto dto = new()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Surname = model.Surname,
+                Info = model.Info,
+                ImgUrl = model.ImgUrl,
+                FacebookLink = model.FacebookLink,
+                InstagramLink = model.InstagramLink,
+                EmailLink = model.EmailLink,
+                TwitterLink = model.TwitterLink
+            };
+            return dto;
+        }
+
+        public static List<BestRacerUpdateDto> ToUpdateDto(List<BestRacer> models)
+        {
+            return models.Select(x => ToUpdateDto(x)).ToList();
+        }
         public static BestRacer ToModel(BestRacerCreateDto dto)
         {
             BestRacer bestRacer = new()

@@ -20,6 +20,20 @@ namespace Buisness.Mapper
             return models.Select(x => ToDto(x)).ToList();
         }
 
+        public static CategoryUpdateDto ToUpdateDto(Category model)
+        {
+            CategoryUpdateDto dto = new()
+            {
+                Id = model.Id,
+                Name = model.Name
+            };
+            return dto;
+        }
+
+        public static List<CategoryUpdateDto> ToUpdateDto(List<Category> models)
+        {
+            return models.Select(x => ToUpdateDto(x)).ToList();
+        }
         public static Category ToModel(CategoryCreateDto dto)
         {
             Category category = new()

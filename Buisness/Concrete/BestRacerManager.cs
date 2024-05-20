@@ -7,6 +7,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,32 @@ namespace Buisness.Concrete
     public class BestRacerManager : IBestRacerService
     {
        public readonly IBestRacerDal _bestRacerDal;
+        public readonly IValidator<BestRacer> _validator;
 
-        public BestRacerManager(IBestRacerDal bestRacerDal)
+        public BestRacerManager(IBestRacerDal bestRacerDal, IValidator<BestRacer> validator)
         {
             _bestRacerDal = bestRacerDal;
+            _validator = validator;
         }
 
         public IResult Add(BestRacerCreateDto dto)
         {
             var model = BestRacerMapper.ToModel(dto);
+
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
+
             _bestRacerDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
@@ -44,6 +62,20 @@ namespace Buisness.Concrete
         {
             var model = BestRacerMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
+
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _bestRacerDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
@@ -55,10 +87,10 @@ namespace Buisness.Concrete
             return new SuccessDataResult<List<BestRacerDto>>(BestRacerMapper.ToDto(models));
         }
 
-        public IDataResult<BestRacerDto> GetById(int id)
+        public IDataResult<BestRacerUpdateDto> GetById(int id)
         {
             var model = _bestRacerDal.GetById(id);
-            return new SuccessDataResult<BestRacerDto>(BestRacerMapper.ToDto(model));
+            return new SuccessDataResult<BestRacerUpdateDto>(BestRacerMapper.ToUpdateDto(model));
         }
     }
 }

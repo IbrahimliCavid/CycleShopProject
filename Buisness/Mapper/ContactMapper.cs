@@ -19,6 +19,7 @@ namespace Buisness.Mapper
         {
             return models.Select(x => ToDto(x)).ToList();
         }
+
         public static Contact ToModel(ContactCreateDto dto)
         {
             Contact contact = new()
@@ -32,6 +33,7 @@ namespace Buisness.Mapper
             return contact;
         }
 
+
         public static Contact ToModel(ContactDto dto)
         {
             Contact contact = new()
@@ -44,6 +46,8 @@ namespace Buisness.Mapper
             };
             return contact;
         }
+
+
         public static Contact ToModel(ContactUpdateDto dto)
         {
             Contact contact = new()

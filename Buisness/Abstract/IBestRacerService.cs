@@ -15,7 +15,7 @@ namespace Buisness.Abstract
         IResult Delete(int id);
         IResult Update(BestRacerUpdateDto entity);
 
-        IDataResult<BestRacerDto> GetById(int id);
+        IDataResult<BestRacerUpdateDto> GetById(int id);
         IDataResult<List<BestRacerDto>> GetAll();
     }
 }

@@ -34,9 +34,13 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Create(BestRacerCreateDto bestRacer)
         {
             var result = _bestRacerService.Add(bestRacer);
-            if (result.IsSuccess)
+            if (!result.IsSuccess)
+            {
+                ModelState.AddModelError("", result.Message);
+                return View(bestRacer);
+            }
                 return RedirectToAction("Index");
-            return View(bestRacer);
+           
         }
 
         [HttpGet]
@@ -50,9 +54,13 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Edit(BestRacerUpdateDto bestRacer)
         {
             var result = _bestRacerService.Update(bestRacer);
-            if (result.IsSuccess)
+            if (!result.IsSuccess)
+            {
+                ModelState.AddModelError("", result.Message);
+                return View(bestRacer);
+            }
                 return RedirectToAction("Index");
-            return View(bestRacer);
+            
         }
 
         [HttpPost]

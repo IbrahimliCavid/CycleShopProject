@@ -7,6 +7,7 @@ using DataAccess.Abstract;
 using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,30 @@ namespace Buisness.Concrete
     public class SubscribeManager : ISubscribeService
     {
         private readonly ISubscribeDal _subscribeDal;
+        private readonly IValidator<Subscribe> _validator;
 
-        public SubscribeManager(ISubscribeDal subscribeDal)
+        public SubscribeManager(ISubscribeDal subscribeDal, IValidator<Subscribe> validator)
         {
             _subscribeDal = subscribeDal;
+            _validator = validator;
         }
 
         public IResult Add(SubscribeCreateDto dto)
         {
             var model = SubscribeMapper.ToModel(dto);
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _subscribeDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
@@ -45,6 +61,19 @@ namespace Buisness.Concrete
         {
             var model = SubscribeMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
+            var validator = _validator.Validate(model);
+
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
             _subscribeDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);

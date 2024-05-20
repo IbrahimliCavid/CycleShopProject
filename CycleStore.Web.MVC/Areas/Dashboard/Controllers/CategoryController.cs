@@ -32,8 +32,13 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Create(CategoryCreateDto dto)
         {
            var result = _categoryService.Add(dto);
-            if (result.IsSuccess) return RedirectToAction("Index");
-            return View(dto);
+            if (!result.IsSuccess)
+            {
+                ModelState.AddModelError("Name", result.Message);
+                return View(dto);
+            } 
+            return RedirectToAction("Index");
+            
         }
 
         [HttpGet]
@@ -47,8 +52,12 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Edit(CategoryUpdateDto dto)
         {
             var result = _categoryService.Update(dto);
-            if (result.IsSuccess) return RedirectToAction("Index");
-            return View(dto);
+            if (!result.IsSuccess)
+            {
+                ModelState.AddModelError("Name", result.Message);
+                return View(dto);
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
