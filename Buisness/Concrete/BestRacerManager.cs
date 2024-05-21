@@ -41,7 +41,6 @@ namespace Buisness.Concrete
                     return error;
                 }
             }
-
             error = null;
             _bestRacerDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);

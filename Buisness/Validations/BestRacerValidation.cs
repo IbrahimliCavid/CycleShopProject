@@ -1,5 +1,6 @@
 ﻿using Buisness.BaseMessage;
 using Core.DefaultValues;
+using DataAccess.Concrete;
 using Entities.Concrete.TableModels;
 using FluentValidation;
 using System;
@@ -50,6 +51,8 @@ namespace Buisness.Validations
             RuleFor(x => x.InstagramLink)
               .NotEmpty()
               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
+               .Must(BeUniqeInstagram)
+              .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA)
               .MinimumLength(3)
               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
               .MaximumLength(150)
@@ -79,6 +82,38 @@ namespace Buisness.Validations
               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
               .MaximumLength(200)
               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_200_MESSAGE);
+        }
+
+        private bool BeUniqeFacebook(string socialLink)
+        {
+            BestRacerDal _bestRacerDal = new();
+            var data = _bestRacerDal.GetAll(x => x.FacebookLink == socialLink && x.Deleted == 0);
+            if (data.Count() != 0) return false;
+            return true;
+        }
+
+        private bool BeUniqeInstagram(string socialLink)
+        {
+            BestRacerDal _bestRacerDal = new();
+            var data = _bestRacerDal.GetAll(x => x.InstagramLink == socialLink && x.Deleted == 0);
+            if (data.Count() != 0) return false;
+            return true;
+        }
+
+        private bool BeUniqeTwitter(string socialLink)
+        {
+            BestRacerDal _bestRacerDal = new();
+            var data = _bestRacerDal.GetAll(x => x.TwitterLink == socialLink && x.Deleted == 0);
+            if (data.Count() != 0) return false;
+            return true;
+        }
+
+        private bool BeUniqeEmail(string socialLink)
+        {
+            BestRacerDal _bestRacerDal = new();
+            var data = _bestRacerDal.GetAll(x => x.EmailLink == socialLink && x.Deleted == 0);
+            if (data.Count() != 0) return false;
+            return true;
         }
     }
 

@@ -57,7 +57,6 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
                 ModelState.AddModelError("Description", result.Message);
                 return View(dto);
             }
-              
            
             return RedirectToAction("Index");
         }

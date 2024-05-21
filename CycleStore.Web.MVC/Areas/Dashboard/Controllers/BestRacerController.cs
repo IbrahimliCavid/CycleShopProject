@@ -5,7 +5,6 @@ using Core.Results.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
 {

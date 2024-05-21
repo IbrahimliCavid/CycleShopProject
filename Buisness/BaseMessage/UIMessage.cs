@@ -13,15 +13,23 @@ namespace Buisness.BaseMessage
         public static readonly string DEFAULT_SUCCESS_DELETE_MESSAGE = "Success Deleted";
         public static readonly string DEFAULT_WARNING_CONFIRM_MESSAGE = "Are you sure?";
         public static readonly string DEFAULT_WARNING_RETURN_MESSAGE = "You will not be able to return!";
-        public static readonly string DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE = "Can't enter less than 3 characters!";
-        public static readonly string DEFAULT_MINIMUM_SYMBOL_COUNT_6_MESSAGE = "Can't enter less than 6 characters!";
-        public static readonly string DEFAULT_MINIMUM_SYMBOL_COUNT_10_MESSAGE = "Can't enter less than 10 characters!";
-        public static readonly string DEFAULT_MAXIMUM_SYMBOL_COUNT_2000_MESSAGE = "Can't enter more than 2000 characters!";
-        public static readonly string DEFAULT_MAXIMUM_SYMBOL_COUNT_500_MESSAGE = "Can't enter more than 500 characters!";
-        public static readonly string DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE = "Can't enter more than 100 characters!";
-        public static readonly string DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE = "Can't enter more than 150 characters!";
-        public static readonly string DEFAULT_MAXIMUM_SYMBOL_COUNT_200_MESSAGE = "Can't enter more than 200 characters!";
-        public static readonly string DEFAULT_INVALID_EMAIL_ADRESS = "Invalid Email!";
-        public static readonly string DEFAULT_NOT_EMPTY_MESSAGE = "Can't be left blank!";
+
+
+
+        public static readonly string DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE = "*Can't enter less than 3 characters!";
+        public static readonly string DEFAULT_MINIMUM_SYMBOL_COUNT_6_MESSAGE = "*Can't enter less than 6 characters!";
+        public static readonly string DEFAULT_MINIMUM_SYMBOL_COUNT_10_MESSAGE = "*Can't enter less than 10 characters!";
+
+
+        public static readonly string DEFAULT_MAXIMUM_SYMBOL_COUNT_2000_MESSAGE = "*Can't enter more than 2000 characters!";
+        public static readonly string DEFAULT_MAXIMUM_SYMBOL_COUNT_500_MESSAGE = "*Can't enter more than 500 characters!";
+        public static readonly string DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE = "*Can't enter more than 100 characters!";
+        public static readonly string DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE = "*Can't enter more than 150 characters!";
+        public static readonly string DEFAULT_MAXIMUM_SYMBOL_COUNT_200_MESSAGE = "*Can't enter more than 200 characters!";
+
+
+        public static readonly string DEFAULT_INVALID_EMAIL_ADRESS = "*Invalid Email!";
+        public static readonly string DEFAULT_NOT_EMPTY_MESSAGE = "*Can't be left blank!";
+        public static readonly string DEFAULT_ERROR_DUBLICATE_DATA = "*This information is already in the database!";
     }
 }

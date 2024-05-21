@@ -39,7 +39,7 @@ namespace Buisness.Concrete
                 foreach (var item in validator.Errors)
                 {
                     error = new ErrorDataResult<string>(item.PropertyName,item.ErrorMessage);
-                    return error;
+                return error;
                 }
             }
 

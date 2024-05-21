@@ -31,6 +31,7 @@ namespace Buisness.Concrete
         {
             
             var model = ActivityMapper.ToModel(dto);
+           
             var validator = _validator.Validate(model);
             string errorMessage = string.Empty;
             foreach (var item in validator.Errors)

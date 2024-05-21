@@ -40,6 +40,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
 
             if (!result.IsSuccess)
             {
+                ModelState.Clear();
                 ModelState.AddModelError($"{error.Data}",error.Message);
                 ViewData["Categories"] = _categoryService.GetAll().Data;
                 return View(dto);

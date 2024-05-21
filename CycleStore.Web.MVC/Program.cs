@@ -1,7 +1,7 @@
 using Buisness.Abstract;
 using Buisness.Concrete;
 using Buisness.Validations;
-using CycleStore.Web.MVC.Extensions;
+using Buisness.Extensions;
 using DataAccess.Abstract;
 using DataAccess.Concrete;
 using DataAccess.SqlServerDbContext;

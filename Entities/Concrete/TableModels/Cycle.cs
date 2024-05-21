@@ -30,6 +30,6 @@ namespace Entities.Concrete.TableModels
    
         public byte StarRating { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }
-        public virtual Category Category { get; set; }
+        public virtual Category Category {get; set;}
     }
 }
