@@ -18,8 +18,6 @@ namespace Entities.Concrete.Dtos
         public float PrecentOfDiscount { get; set; }
         public bool IsHomePage { get; set; }
         public byte StarRating { get; set; }
-        
-
- 
+        public string CategoryName {  get; set; }
     }
 }

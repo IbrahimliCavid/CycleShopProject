@@ -27,24 +27,22 @@ namespace Buisness.Concrete
             _validator = validator;
         }
 
-        public IResult Add(BestRacerCreateDto dto)
+        public IResult Add(BestRacerCreateDto dto, out ErrorDataResult<string> error)
         {
             var model = BestRacerMapper.ToModel(dto);
 
             var validator = _validator.Validate(model);
 
-            string errorMessage = string.Empty;
-
-            foreach (var item in validator.Errors)
-            {
-                errorMessage = item.ErrorMessage;
-            }
-
             if (!validator.IsValid)
             {
-                return new ErrorResult(errorMessage);
+                foreach (var item in validator.Errors)
+                {
+                    error = new ErrorDataResult<string>(item.PropertyName, item.ErrorMessage);
+                    return error;
+                }
             }
 
+            error = null;
             _bestRacerDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
@@ -58,24 +56,24 @@ namespace Buisness.Concrete
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IResult Update(BestRacerUpdateDto dto)
+        public IResult Update(BestRacerUpdateDto dto, out ErrorDataResult<string> error)
         {
             var model = BestRacerMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
 
             var validator = _validator.Validate(model);
 
-            string errorMessage = string.Empty;
-
-            foreach (var item in validator.Errors)
-            {
-                errorMessage = item.ErrorMessage;
-            }
 
             if (!validator.IsValid)
             {
-                return new ErrorResult(errorMessage);
+                foreach (var item in validator.Errors)
+                {
+                    error = new ErrorDataResult<string>(item.PropertyName, item.ErrorMessage);
+                    return error;
+                }
             }
+
+            error = null;
             _bestRacerDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);

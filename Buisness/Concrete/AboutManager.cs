@@ -28,8 +28,6 @@ namespace Buisness.Concrete
         }
         public IResult Add(AboutCreateDto dto)
         {
-            
-           
             var model = AboutMapper.ToModel(dto); 
 
             var validator = _validator.Validate(model);

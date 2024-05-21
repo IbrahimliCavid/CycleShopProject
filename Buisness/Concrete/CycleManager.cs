@@ -27,28 +27,25 @@ namespace Buisness.Concrete
             _validator = validator;
         }
 
-        public IResult Add(CycleCreateDto dto)
+        public IResult Add(CycleCreateDto dto, out ErrorDataResult<string> error)
         {
             var model = CycleMapper.ToModel(dto);
 
             var validator = _validator.Validate(model);
 
 
-           
-
-            string errorMessage = string.Empty;
-
-            foreach (var item in validator.Errors)
-            {
-                errorMessage = item.ErrorMessage;
-            }
-
             if (!validator.IsValid)
             {
-                return new ErrorResult(errorMessage);
+                foreach (var item in validator.Errors)
+                {
+                    error = new ErrorDataResult<string>(item.PropertyName,item.ErrorMessage);
+                    return error;
+                }
             }
+
+            error = null;
             _prdouctDal.Add(model);
-            return null;
+            return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
 
         public IResult Delete(int id)
@@ -60,24 +57,25 @@ namespace Buisness.Concrete
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IResult Update(CycleUpdateDto dto)
+        public IResult Update(CycleUpdateDto dto, out ErrorDataResult<string> error)
         {
             var model = CycleMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
 
             var validator = _validator.Validate(model);
 
-            string errorMessage = string.Empty;
 
-            foreach (var item in validator.Errors)
-            {
-                errorMessage = item.ErrorMessage;
-            }
 
             if (!validator.IsValid)
             {
-                return new ErrorResult(errorMessage);
+                foreach (var item in validator.Errors)
+                {
+                    error = new ErrorDataResult<string>(item.PropertyName, item.ErrorMessage);
+                    return error;
+                }
             }
+
+            error = null;
             _prdouctDal.Update(model);
 
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);

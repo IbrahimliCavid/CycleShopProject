@@ -30,18 +30,19 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Create()
         {
             ViewData["Categories"] = _categoryService.GetAll().Data;
-
             return View();
         }
 
         [HttpPost]
         public IActionResult Create(CycleCreateDto dto)
         {
-            var result = _cycleService.Add(dto);
+            var result = _cycleService.Add(dto, out ErrorDataResult<string> error);
+
             if (!result.IsSuccess)
             {
-                ModelState.AddModelError("Description", result.Message);
-                return View();
+                ModelState.AddModelError($"{error.Data}",error.Message);
+                ViewData["Categories"] = _categoryService.GetAll().Data;
+                return View(dto);
             }
             return RedirectToAction("Index");
         }
@@ -57,11 +58,12 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         [HttpPost]
         public IActionResult Edit(CycleUpdateDto dto)
         {
-            var result = _cycleService.Update(dto);
+            var result = _cycleService.Update(dto, out ErrorDataResult<string> error);
             if (!result.IsSuccess)
             {
-                ModelState.AddModelError("Description", result.Message);
-                return View();
+                ModelState.AddModelError($"{error.Data}", error.Message);
+                ViewData["Categories"] = _categoryService.GetAll().Data;
+                return View(dto);
             }
             return RedirectToAction("Index");
 

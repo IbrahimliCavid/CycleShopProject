@@ -38,13 +38,6 @@ namespace Buisness.Validations
                .MaximumLength(150)
                .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_2000_MESSAGE);
 
-            RuleFor(x => x.ImgUrl)
-              .NotEmpty()
-              .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
-              .MinimumLength(3)
-              .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
-              .MaximumLength(200)
-              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_200_MESSAGE);
 
             RuleFor(x => x.FacebookLink)
               .NotEmpty()
@@ -77,6 +70,15 @@ namespace Buisness.Validations
               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
               .MaximumLength(150)
               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE);
+
+
+            RuleFor(x => x.ImgUrl)
+              .NotEmpty()
+              .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
+              .MinimumLength(3)
+              .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+              .MaximumLength(200)
+              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_200_MESSAGE);
         }
     }
 

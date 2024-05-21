@@ -52,7 +52,19 @@ namespace Buisness.Concrete
         {
             var model = CategoryMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
+            var validator = _validator.Validate(model);
 
+            string errorMessage = string.Empty;
+
+            foreach (var item in validator.Errors)
+            {
+                errorMessage = item.ErrorMessage;
+            }
+
+            if (!validator.IsValid)
+            {
+                return new ErrorResult(errorMessage);
+            }
 
             _cycleCategoryDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);

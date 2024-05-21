@@ -51,7 +51,7 @@ namespace Buisness.Mapper
                 Count = dto.Count,
                 Price = dto.Price,
                 PrecentOfDiscount = dto.PrecentOfDiscount,
-                IsHomePage = dto.IsHomePage
+                IsHomePage = dto.IsHomePage,
             };
             return cycle;
         }
