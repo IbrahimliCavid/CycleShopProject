@@ -29,7 +29,6 @@ namespace DataAccess.Configurations
             builder.Property(x => x.ImgUrl)
                 .IsRequired()
                 .HasMaxLength(200);
-            builder.HasIndex(x => new { x.ImgUrl, x.Deleted });
             //Has not relationship
 
         }

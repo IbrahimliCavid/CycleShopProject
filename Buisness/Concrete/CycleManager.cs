@@ -1,6 +1,8 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
 using Buisness.Mapper;
+using Buisness.Validations;
+using Core.Extenstion;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
@@ -8,6 +10,7 @@ using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,19 +30,21 @@ namespace Buisness.Concrete
             _validator = validator;
         }
 
-        public IResult Add(CycleCreateDto dto, out ErrorDataResult<string> error)
+        public IResult Add(CycleCreateDto dto, IFormFile imgUrl, string webRootPath, out ErrorDataResult<string> error)
         {
+
+            new CycleValidation(true);
             var model = CycleMapper.ToModel(dto);
 
-            var validator = _validator.Validate(model);
+            var result = _validator.Validate(model);
 
-
-            if (!validator.IsValid)
+            model.ImgUrl = PictureHelper.UploadImage(imgUrl, webRootPath);
+            if (!result.IsValid)
             {
-                foreach (var item in validator.Errors)
+                foreach (var item in result.Errors)
                 {
-                    error = new ErrorDataResult<string>(item.PropertyName,item.ErrorMessage);
-                return error;
+                    error = new ErrorDataResult<string>(item.PropertyName, item.ErrorMessage);
+                    return error;
                 }
             }
 
@@ -57,11 +62,20 @@ namespace Buisness.Concrete
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IResult Update(CycleUpdateDto dto, out ErrorDataResult<string> error)
+        public IResult Update(CycleUpdateDto dto, IFormFile imgUrl, string webRootPath, out ErrorDataResult<string> error)
         {
+            new CycleValidation(false);
             var model = CycleMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
-
+            var existData = GetById(model.Id).Data;
+            if (imgUrl == null)
+            {
+                model.ImgUrl = existData.ImgUrl;
+            }
+            else
+            {
+                model.ImgUrl = PictureHelper.UploadImage(imgUrl, webRootPath);
+            }
             var validator = _validator.Validate(model);
 
 
@@ -92,5 +106,7 @@ namespace Buisness.Concrete
         {
             return new SuccessDataResult<List<CycleDto>>(_prdouctDal.GetCycleWithCycleCategories());
         }
+
+       
     }
 }

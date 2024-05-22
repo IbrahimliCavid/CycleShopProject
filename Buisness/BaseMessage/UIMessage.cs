@@ -30,6 +30,12 @@ namespace Buisness.BaseMessage
 
         public static readonly string DEFAULT_INVALID_EMAIL_ADRESS = "*Invalid Email!";
         public static readonly string DEFAULT_NOT_EMPTY_MESSAGE = "*Can't be left blank!";
-        public static readonly string DEFAULT_ERROR_DUBLICATE_DATA = "*This information is already in the database!";
+        public static readonly string DEFAULT_ERROR_DUBLICATE_DATA = "*This is already in the database!";
+
+
+        public const string PASSWORD_NOT_CONTAIN_UPPERCASE = "*Your password must contain at least one uppercase letter!";
+        public const string PASSWORD_NOT_CONTAIN_LOWERCASE = "*Your password must contain at least one lowercase letter!";
+        public const string PASSWORD_NOT_CONTAIN_NUMBER = "*Your password must contain at least one number!";
+        public const string PASSWORD_NOT_CONTAIN_SYMBOL = "*Your password must contain at least one (!.@.#)!";
     }
 }

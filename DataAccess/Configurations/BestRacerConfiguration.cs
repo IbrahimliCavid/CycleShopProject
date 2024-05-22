@@ -42,7 +42,13 @@ namespace DataAccess.Configurations
             builder.Property(x => x.ImgUrl)
                 .IsRequired()
                 .HasMaxLength(200);
-            builder.HasIndex(x => new { x.InstagramLink, x.FacebookLink, x.TwitterLink, x.EmailLink, x.Deleted })
+            builder.HasIndex(x => new { x.InstagramLink,x.Deleted })
+                .IsUnique();  
+            builder.HasIndex(x => new { x.EmailLink, x.Deleted })
+                .IsUnique();  
+            builder.HasIndex(x => new { x.FacebookLink, x.Deleted })
+                .IsUnique();  
+            builder.HasIndex(x => new { x.TwitterLink, x.Deleted })
                 .IsUnique();
             //Has Not Relationship
         }

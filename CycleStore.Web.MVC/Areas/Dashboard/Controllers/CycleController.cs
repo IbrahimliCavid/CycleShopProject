@@ -1,8 +1,6 @@
 ﻿using Buisness.Abstract;
-using Buisness.Concrete;
 using Core.Results.Concrete;
 using Entities.Concrete.Dtos;
-using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
@@ -12,11 +10,12 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
     {
         private readonly ICycleService _cycleService;
         private readonly ICategoryService _categoryService;
-
-        public CycleController(ICycleService cycleService, ICategoryService categoryService)
+        private readonly IWebHostEnvironment _webEnv;
+        public CycleController(ICycleService cycleService, ICategoryService categoryService, IWebHostEnvironment webEnv)
         {
             _cycleService = cycleService;
             _categoryService = categoryService;
+            _webEnv = webEnv;
         }
 
         public IActionResult Index()
@@ -34,9 +33,9 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CycleCreateDto dto)
+        public IActionResult Create(CycleCreateDto dto, IFormFile imgUrl)
         {
-            var result = _cycleService.Add(dto, out ErrorDataResult<string> error);
+            var result = _cycleService.Add(dto, imgUrl, _webEnv.WebRootPath, out ErrorDataResult<string> error);
 
             if (!result.IsSuccess)
             {
@@ -57,9 +56,9 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(CycleUpdateDto dto)
+        public IActionResult Edit(CycleUpdateDto dto, IFormFile imgUrl)
         {
-            var result = _cycleService.Update(dto, out ErrorDataResult<string> error);
+            var result = _cycleService.Update(dto, imgUrl, _webEnv.WebRootPath, out ErrorDataResult<string> error);
             if (!result.IsSuccess)
             {
                 ModelState.AddModelError($"{error.Data}", error.Message);

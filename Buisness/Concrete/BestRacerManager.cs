@@ -1,6 +1,7 @@
 ﻿using Buisness.Abstract;
 using Buisness.BaseMessage;
 using Buisness.Mapper;
+using Core.Extenstion;
 using Core.Results.Abstract;
 using Core.Results.Concrete;
 using DataAccess.Abstract;
@@ -8,6 +9,7 @@ using DataAccess.Concrete;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,12 +29,13 @@ namespace Buisness.Concrete
             _validator = validator;
         }
 
-        public IResult Add(BestRacerCreateDto dto, out ErrorDataResult<string> error)
+        public IResult Add(BestRacerCreateDto dto, IFormFile imgUrl, string webRootPath, out ErrorDataResult<string> error)
         {
+
             var model = BestRacerMapper.ToModel(dto);
 
             var validator = _validator.Validate(model);
-
+            model.ImgUrl = PictureHelper.UploadImage(imgUrl, webRootPath);
             if (!validator.IsValid)
             {
                 foreach (var item in validator.Errors)
@@ -55,11 +58,19 @@ namespace Buisness.Concrete
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
-        public IResult Update(BestRacerUpdateDto dto, out ErrorDataResult<string> error)
+        public IResult Update(BestRacerUpdateDto dto, IFormFile imgUrl, string webRootPath, out ErrorDataResult<string> error)
         {
             var model = BestRacerMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
-
+            var existData = GetById(model.Id).Data;
+            if (imgUrl == null)
+            {
+                model.ImgUrl = existData.ImgUrl;
+            }
+            else
+            {
+                model.ImgUrl = PictureHelper.UploadImage(imgUrl, webRootPath);
+            }
             var validator = _validator.Validate(model);
 
 

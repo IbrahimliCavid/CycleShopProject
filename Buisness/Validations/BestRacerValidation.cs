@@ -46,17 +46,21 @@ namespace Buisness.Validations
               .MinimumLength(3)
               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
               .MaximumLength(150)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE);
+               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE)
+               .Must(BeUniqeFacebook)
+              .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
+            
+
 
             RuleFor(x => x.InstagramLink)
               .NotEmpty()
               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
-               .Must(BeUniqeInstagram)
-              .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA)
               .MinimumLength(3)
               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
               .MaximumLength(150)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE);
+               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE)
+               .Must(BeUniqeInstagram)
+              .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
 
             RuleFor(x => x.TwitterLink)
               .NotEmpty()
@@ -64,7 +68,9 @@ namespace Buisness.Validations
               .MinimumLength(3)
               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
               .MaximumLength(150)
-              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE);
+              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE)
+               .Must(BeUniqeTwitter)
+              .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
 
             RuleFor(x => x.EmailLink)
               .NotEmpty()
@@ -72,16 +78,12 @@ namespace Buisness.Validations
               .MinimumLength(3)
               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
               .MaximumLength(150)
-              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE);
+              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE)
+               .Must(BeUniqeEmail)
+              .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
 
 
-            RuleFor(x => x.ImgUrl)
-              .NotEmpty()
-              .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
-              .MinimumLength(3)
-              .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
-              .MaximumLength(200)
-              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_200_MESSAGE);
+           
         }
 
         private bool BeUniqeFacebook(string socialLink)

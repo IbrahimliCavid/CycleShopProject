@@ -1,9 +1,6 @@
 ﻿using Buisness.Abstract;
-using Buisness.Concrete;
-using Buisness.Mapper;
 using Core.Results.Concrete;
 using Entities.Concrete.Dtos;
-using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
@@ -13,10 +10,11 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
     {
        
         private readonly IBestRacerService _bestRacerService;
-
-        public BestRacerController(IBestRacerService bestRacerService)
+        private readonly IWebHostEnvironment _webEnv;
+        public BestRacerController(IBestRacerService bestRacerService, IWebHostEnvironment webEnv)
         {
             _bestRacerService = bestRacerService;
+            _webEnv = webEnv;
         }
 
         public IActionResult Index()
@@ -32,9 +30,9 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(BestRacerCreateDto bestRacer)
+        public IActionResult Create(BestRacerCreateDto bestRacer, IFormFile imgUrl)
         {
-            var result = _bestRacerService.Add(bestRacer, out ErrorDataResult<string> error);
+            var result = _bestRacerService.Add(bestRacer, imgUrl, _webEnv.WebRootPath, out ErrorDataResult<string> error);
 
             if (!result.IsSuccess)
             {
@@ -53,9 +51,9 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(BestRacerUpdateDto bestRacer)
+        public IActionResult Edit(BestRacerUpdateDto bestRacer, IFormFile imgUrl)
         {
-            var result = _bestRacerService.Update(bestRacer, out ErrorDataResult<string> error);
+            var result = _bestRacerService.Update(bestRacer, imgUrl, _webEnv.WebRootPath, out ErrorDataResult<string> error);
             if (!result.IsSuccess)
             {
                 ModelState.AddModelError($"{error.Data}", error.Message);

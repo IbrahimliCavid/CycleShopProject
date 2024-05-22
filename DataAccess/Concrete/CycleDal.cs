@@ -11,6 +11,10 @@ namespace DataAccess.Concrete
     {
         private readonly ApplicationDbContext _context;
 
+        public CycleDal()
+        {
+
+        }
         public CycleDal(ApplicationDbContext context)
         {
             _context = context;

@@ -10,10 +10,11 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
     public class BigSaleController : Controller
     {
         private readonly IBigSaleService _bigSaleService;
-
-        public BigSaleController(IBigSaleService bigSaleService)
+        private readonly IWebHostEnvironment _webEnv;
+        public BigSaleController(IBigSaleService bigSaleService, IWebHostEnvironment webEnv)
         {
             _bigSaleService = bigSaleService;
+            _webEnv = webEnv;
         }
 
         public IActionResult Index()
@@ -31,9 +32,9 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(BigSaleCreateDto bigSale)
+        public IActionResult Create(BigSaleCreateDto bigSale, IFormFile imgUrl)
         {
-            var result = _bigSaleService.Add(bigSale);
+            var result = _bigSaleService.Add(bigSale, imgUrl, _webEnv.WebRootPath);
             if (!result.IsSuccess)
             {
                 ModelState.AddModelError("ImgUrl", result.Message);
@@ -52,9 +53,9 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(BigSaleUpdateDto bigSale)
+        public IActionResult Edit(BigSaleUpdateDto bigSale, IFormFile imgUrl)
         {
-            var result = _bigSaleService.Update(bigSale);
+            var result = _bigSaleService.Update(bigSale, imgUrl, _webEnv.WebRootPath);
             if (!result.IsSuccess)
             {
                 ModelState.AddModelError("ImgUrl", result.Message);

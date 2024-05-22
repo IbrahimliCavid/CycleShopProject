@@ -46,7 +46,9 @@ namespace DataAccess.Configurations
                 .HasMaxLength(13);
             builder.Property(x => x.UserId)
                 .IsRequired();
-            builder.HasIndex(x=> new {x.PhoneNumber, x.Email, x.Deleted})
+            builder.HasIndex(x=> new {x.PhoneNumber,  x.Deleted})
+                .IsUnique(); 
+            builder.HasIndex(x=> new { x.Email, x.Deleted})
                 .IsUnique();
 
             // No configuration needed here

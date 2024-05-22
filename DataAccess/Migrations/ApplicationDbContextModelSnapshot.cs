@@ -158,7 +158,16 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InstagramLink", "FacebookLink", "TwitterLink", "EmailLink", "Deleted")
+                    b.HasIndex("EmailLink", "Deleted")
+                        .IsUnique();
+
+                    b.HasIndex("FacebookLink", "Deleted")
+                        .IsUnique();
+
+                    b.HasIndex("InstagramLink", "Deleted")
+                        .IsUnique();
+
+                    b.HasIndex("TwitterLink", "Deleted")
                         .IsUnique();
 
                     b.ToTable("BestRacers", (string)null);
@@ -187,8 +196,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ImgUrl", "Deleted");
 
                     b.ToTable("BigSales", (string)null);
                 });
@@ -348,7 +355,8 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("Name", "ImgUrl", "Deleted");
+                    b.HasIndex("Name", "Deleted")
+                        .IsUnique();
 
                     b.ToTable("Cycles", (string)null);
                 });
@@ -446,8 +454,6 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ImgUrl", "Deleted");
-
                     b.ToTable("Services", (string)null);
                 });
 
@@ -520,7 +526,10 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("PhoneNumber", "Email", "Deleted")
+                    b.HasIndex("Email", "Deleted")
+                        .IsUnique();
+
+                    b.HasIndex("PhoneNumber", "Deleted")
                         .IsUnique();
 
                     b.ToTable("ShippingAdresses", (string)null);
@@ -627,7 +636,10 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email", "UserName", "Deleted")
+                    b.HasIndex("Email", "Deleted")
+                        .IsUnique();
+
+                    b.HasIndex("UserName", "Deleted")
                         .IsUnique();
 
                     b.ToTable("Users", (string)null);

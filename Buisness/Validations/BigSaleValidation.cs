@@ -13,13 +13,13 @@ namespace Buisness.Validations
     {
         public BigSaleValidation()
         {
-            RuleFor(x => x.ImgUrl)
-                .NotEmpty()
-                .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
-                .MinimumLength(10)
-                .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_10_MESSAGE)
-                .MaximumLength(100)
-                .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE);
+            //RuleFor(x => x.ImgUrl)
+            //    .NotEmpty()
+            //    .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
+            //    .MinimumLength(10)
+            //    .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_10_MESSAGE)
+            //    .MaximumLength(100)
+            //    .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE);
         }
     }
 }

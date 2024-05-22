@@ -10,10 +10,11 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
     public class ServiceController : Controller
     {
         private readonly IServiceService _serviceService;
-
-        public ServiceController(IServiceService serviceService)
+        private readonly IWebHostEnvironment _webEnv;
+        public ServiceController(IServiceService serviceService, IWebHostEnvironment webEnv)
         {
             _serviceService = serviceService;
+            _webEnv = webEnv;
         }
 
         public IActionResult Index()
@@ -29,9 +30,9 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(ServiceCreateDto dto)
+        public IActionResult Create(ServiceCreateDto dto, IFormFile imgUrl)
         {
-            var result = _serviceService.Add(dto);
+            var result = _serviceService.Add(dto, imgUrl, _webEnv.WebRootPath);
             if (result.IsSuccess) return RedirectToAction("Index");
             return View(dto);
         }
@@ -44,9 +45,10 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(ServiceUpdateDto dto)
+        public IActionResult Edit(ServiceUpdateDto dto, IFormFile imgUrl)
         {
-            var result = _serviceService.Update(dto);
+            var result = _serviceService.Update(dto, imgUrl, _webEnv.WebRootPath);
+
             if (result.IsSuccess) return RedirectToAction("Index");
             return View(dto);
         }

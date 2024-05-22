@@ -26,7 +26,9 @@ namespace DataAccess.Configurations
             builder.Property(x => x.Password)
                 .IsRequired()
                 .HasMaxLength(100);
-            builder.HasIndex(x => new { x.Email, x.UserName, x.Deleted })
+            builder.HasIndex(x => new { x.Email, x.Deleted })
+                .IsUnique();
+            builder.HasIndex(x => new { x.UserName, x.Deleted })
                 .IsUnique();
 
             //Relationship between User and ShippingAdresses

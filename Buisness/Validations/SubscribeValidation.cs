@@ -1,4 +1,5 @@
 ﻿using Buisness.BaseMessage;
+using DataAccess.Concrete;
 using Entities.Concrete.TableModels;
 using FluentValidation;
 
@@ -16,7 +17,17 @@ namespace Buisness.Validations
              .MaximumLength(100)
              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE)
              .EmailAddress()
-             .WithMessage(UIMessage.DEFAULT_INVALID_EMAIL_ADRESS);
+             .WithMessage(UIMessage.DEFAULT_INVALID_EMAIL_ADRESS)
+             .Must(BeUniqe)
+             .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
+        }
+
+        private bool BeUniqe(string email)
+        {
+            SubscribeDal _cycleDal = new SubscribeDal();
+            var data = _cycleDal.GetAll(x => x.Email == email && x.Deleted == 0);
+            if (data.Count() != 0) return false;
+            return true;
         }
     }
 

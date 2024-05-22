@@ -35,7 +35,9 @@ namespace DataAccess.Configurations
             .HasDefaultValue(0);
             builder.Property(x => x.IsHomePage)
                 .HasDefaultValue(false);
-            builder.HasIndex(x => new { x.Name, x.ImgUrl, x.Deleted });
+            builder.HasIndex(x => new { x.Name, x.Deleted })
+                .IsUnique();
+         
 
             // No configuration needed here
             // as it's a mirrored relationship of CategoryConfiguration and CartConfiguration

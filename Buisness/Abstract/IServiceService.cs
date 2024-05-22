@@ -1,6 +1,7 @@
 ﻿using Core.Results.Abstract;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace Buisness.Abstract
 {
     public interface IServiceService
     {
-        IResult Add(ServiceCreateDto dto);
-        IResult Update(ServiceUpdateDto dto);
+        IResult Add(ServiceCreateDto dto, IFormFile imgUrl, string webRootPath);
+        IResult Update(ServiceUpdateDto dto, IFormFile imgUrl, string webRootPath);
         IResult Delete(int id);
         IDataResult<ServiceDto> GetById(int id);
         IDataResult<List<ServiceDto>> GetAll();
