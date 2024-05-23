@@ -1,8 +1,433 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model HomeViewModel  
+ 
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- banner start -->
+<div class="cl-banner">
+    <div class="container-fluid">
+        <div class="cl-banner-shape">
+            <img src="assets/images/banner-shape.png" alt="images">
+        </div>
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="cl-banner-text wow fadeIn" data-wow-delay="0.8s">
+                    <h3>For a better ride</h3>
+                    <h1>Find your <span>mountain</span> bike</h1>
+                    <button class="cl-btn">Shop Now</button>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="cl-banner-img wow fadeInRight" data-wow-delay="1s">
+                    <img src="assets/images/banner-bicycle.png" alt="image">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- banner end -->
+<!-- features start -->
+<div class="cl-features spacer-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="cl-feature-box wow fadeIn">
+                    <div class="cl-feature-img">
+                        <img src="assets/images/fast-delivery.png" alt="image">
+                    </div>
+                    <div class="cl-feature-text">
+                        <a href="javascript:;" class="cl-feature-title">Fast Delivery</a>
+                        <p>lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="cl-feature-box wow fadeIn" data-wow-delay="0.1s">
+                    <div class="cl-feature-img">
+                        <img src="assets/images/genuine.png" alt="image">
+                    </div>
+                    <div class="cl-feature-text">
+                        <a href="javascript:;" class="cl-feature-title">Genuine Product</a>
+                        <p>lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="cl-feature-box wow fadeIn" data-wow-delay="0.2s">
+                    <div class="cl-feature-img">
+                        <img src="assets/images/customer-service.png" alt="image">
+                    </div>
+                    <div class="cl-feature-text">
+                        <a href="javascript:;" class="cl-feature-title">24X7 Support</a>
+                        <p>lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="cl-feature-box wow fadeIn" data-wow-delay="0.3s">
+                    <div class="cl-feature-img">
+                        <img src="assets/images/return.png" alt="image">
+                    </div>
+                    <div class="cl-feature-text">
+                        <a href="javascript:;" class="cl-feature-title">7 Days Return</a>
+                        <p>lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- features end -->
+<!-- about us start -->
+<div class="cl-about spacer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="cl-about-img wow fadeInLeft">
+                    <img src="assets/images/about.jpg" alt="image">
+                    <div class="cl-play-icon">
+                        <a class="cl-popup-youtube" href="https://www.youtube.com/watch?v=TuoNvPPnr2o">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 494.148 494.148">
+                                <path d="M405.284,201.188L130.804,13.28C118.128,4.596,105.356,0,94.74,0C74.216,0,61.52,16.472,61.52,44.044v406.124
+                                        c0,27.54,12.68,43.98,33.156,43.98c10.632,0,23.2-4.6,35.904-13.308l274.608-187.904c17.66-12.104,27.44-28.392,27.44-45.884
+                                        C432.632,229.572,422.964,213.288,405.284,201.188z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="cl-about-content wow fadeInRight">
+                    <div class="cl-heading">
+                        <h1>About Us</h1>
+                        <h4>We have been making bicycles for 25 years</h4>
+                    </div>
+                    @foreach (var item in Model.Abouts)
+                    {
+                        <p>@item.Description</p>
+                    }
+                    <ul>
+                        @foreach (var item in Model.Activities)
+                        {
+                            if (item.IsHomePage)
+                            {
+                                <li><i class="far fa-check-square"></i>@item.ActivityInfo</li>
+                            }
+                           
+                        }
+                      
+                        
+                    </ul>
+                    <a href="about.html" class="cl-btn">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- about us end -->
+<!-- featured products start -->
+<div class="cl-products spacer-top-less">
+    <div class="container">
+        <div class="cl-heading">
+            <h1>Featured Products</h1>
+            <p>lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.Cycles)
+            {
+                if (item.IsHomePage)
+                {
+                    <div class="col-xl-3 col-md-6">
+                        <div class="cl-product-box wow fadeInUp">
+                            <div class="cl-product-img">
+                                <img src="@item.ImgUrl" alt="image">
+                                <div class="cl-product-cart">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                        <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="cl-product-content">
+                                <a href="javascript:;" class="cl-product-title">Road Bike</a>
+                                @if (item.PrecentOfDiscount == 0)
+                                {
+                                    <h4 class="cl-product-price"> $@item.Price</h4>
+                                }
+                                else
+                                {
+                                    <h4 class="cl-product-price"><span>$@item.Price</span> $@item.NewPrice</h4>
+
+                                }
+
+                                <ul class="cl-product-rating">
+                                    <li><i class="far fa-star"></i></li>
+                                    <li><i class="far fa-star"></i></li>
+                                    <li><i class="far fa-star"></i></li>
+                                    <li><i class="far fa-star"></i></li>
+                                    <li><i class="far fa-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            
+           
+        </div>
+    </div>
+</div>
+<!-- featured products end -->
+<!-- bicycle parts name start -->
+<div class="cl-bicycle-parts-name spacer-top spacer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="cl-bicycle-parts-box wow fadeInUp" data-wow-delay="0.1s">
+                    <img src="assets/images/name-bicycle2.png" alt="image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- bicycle parts name end -->
+<!-- Trending products start -->
+<div class="cl-products cl-products-slider spacer-top-less">
+    <div class="container">
+        <div class="cl-heading">
+            <h1>Trending Products</h1>
+            <p>lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="swiper-container wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="cl-product-box">
+                                <div class="cl-product-img">
+                                    <img src="assets/images/bicycle01.jpg" alt="image">
+                                    <div class="cl-product-cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                            <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="cl-product-content">
+                                    <a href="javascript:;" class="cl-product-title">Road Bike</a>
+                                    <h4 class="cl-product-price"><span>$50</span> $40</h4>
+                                    <ul class="cl-product-rating">
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cl-product-box">
+                                <div class="cl-product-img">
+                                    <img src="assets/images/bicycle02.jpg" alt="image">
+                                    <div class="cl-product-cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                            <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="cl-product-content">
+                                    <a href="javascript:;" class="cl-product-title">Mountain Bike</a>
+                                    <h4 class="cl-product-price"><span>$50</span> $40</h4>
+                                    <ul class="cl-product-rating">
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cl-product-box">
+                                <div class="cl-product-img">
+                                    <img src="assets/images/bicycle03.jpg" alt="image">
+                                    <div class="cl-product-cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                            <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="cl-product-content">
+                                    <a href="javascript:;" class="cl-product-title">Hybrid Bike</a>
+                                    <h4 class="cl-product-price"><span>$50</span> $40</h4>
+                                    <ul class="cl-product-rating">
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cl-product-box">
+                                <div class="cl-product-img">
+                                    <img src="assets/images/bicycle04.jpg" alt="image">
+                                    <div class="cl-product-cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                            <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="cl-product-content">
+                                    <a href="javascript:;" class="cl-product-title">Cyclocross Bike</a>
+                                    <h4 class="cl-product-price"><span>$50</span> $40</h4>
+                                    <ul class="cl-product-rating">
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cl-product-box">
+                                <div class="cl-product-img">
+                                    <img src="assets/images/bicycle05.jpg" alt="image">
+                                    <div class="cl-product-cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                            <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="cl-product-content">
+                                    <a href="javascript:;" class="cl-product-title">Folding Bike</a>
+                                    <h4 class="cl-product-price"><span>$50</span> $40</h4>
+                                    <ul class="cl-product-rating">
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cl-product-box">
+                                <div class="cl-product-img">
+                                    <img src="assets/images/bicycle04.jpg" alt="image">
+                                    <div class="cl-product-cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                            <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="cl-product-content">
+                                    <a href="javascript:;" class="cl-product-title">Mountain Bike</a>
+                                    <h4 class="cl-product-price"><span>$50</span> $40</h4>
+                                    <ul class="cl-product-rating">
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cl-product-box">
+                                <div class="cl-product-img">
+                                    <img src="assets/images/bicycle07.jpg" alt="image">
+                                    <div class="cl-product-cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                            <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="cl-product-content">
+                                    <a href="javascript:;" class="cl-product-title">Road Bike</a>
+                                    <h4 class="cl-product-price"><span>$50</span> $40</h4>
+                                    <ul class="cl-product-rating">
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cl-product-box">
+                                <div class="cl-product-img">
+                                    <img src="assets/images/bicycle08.jpg" alt="image">
+                                    <div class="cl-product-cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                            <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="cl-product-content">
+                                    <a href="javascript:;" class="cl-product-title">Road Bike</a>
+                                    <h4 class="cl-product-price"><span>$50</span> $40</h4>
+                                    <ul class="cl-product-rating">
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                        <li><i class="far fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Trending products end -->
+<!-- testimonial start -->
+<div class="cl-testimonial spacer-top-less spacer-bottom">
+    <div class="container">
+        <div class="cl-heading">
+            <h1>Testimonial</h1>
+            <p>lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="swiper-container wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="cl-testi-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 146 124.97">
+                                    <path d="M112.104,116.542 C79.677,140.134 114.662,111.461 122.478,67.008 C118.949,68.209 115.170,68.888 111.229,68.888 C92.034,68.888 76.465,53.467 76.465,34.445 C76.465,15.422 92.026,0.001 111.229,0.001 C130.420,0.001 145.981,15.422 145.981,34.445 C145.981,34.461 145.974,34.478 145.974,34.496 C146.016,35.500 148.060,90.372 112.104,116.542 ZM35.650,116.542 C3.224,140.134 38.200,111.461 46.024,67.008 C42.485,68.209 38.708,68.888 34.767,68.888 C15.572,68.888 0.012,53.467 0.012,34.445 C0.012,15.422 15.572,0.001 34.767,0.001 C53.958,0.001 69.519,15.422 69.519,34.445 C69.519,34.461 69.519,34.478 69.519,34.496 C69.563,35.500 71.605,90.372 35.650,116.542 Z" />
+                                </svg>
+                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                                <h2 class="cl-testi-name">David Parker</h2>
+                                <h5 class="cl-testi-designation">Chief Executive</h5>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="cl-testi-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 146 124.97">
+                                    <path d="M112.104,116.542 C79.677,140.134 114.662,111.461 122.478,67.008 C118.949,68.209 115.170,68.888 111.229,68.888 C92.034,68.888 76.465,53.467 76.465,34.445 C76.465,15.422 92.026,0.001 111.229,0.001 C130.420,0.001 145.981,15.422 145.981,34.445 C145.981,34.461 145.974,34.478 145.974,34.496 C146.016,35.500 148.060,90.372 112.104,116.542 ZM35.650,116.542 C3.224,140.134 38.200,111.461 46.024,67.008 C42.485,68.209 38.708,68.888 34.767,68.888 C15.572,68.888 0.012,53.467 0.012,34.445 C0.012,15.422 15.572,0.001 34.767,0.001 C53.958,0.001 69.519,15.422 69.519,34.445 C69.519,34.461 69.519,34.478 69.519,34.496 C69.563,35.500 71.605,90.372 35.650,116.542 Z" />
+                                </svg>
+                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                                <h2 class="cl-testi-name">David Parker</h2>
+                                <h5 class="cl-testi-designation">Chief Executive</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"><i class="fas fa-angle-right"></i></div>
+                    <div class="swiper-button-prev"><i class="fas fa-angle-left"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- testimonial end -->

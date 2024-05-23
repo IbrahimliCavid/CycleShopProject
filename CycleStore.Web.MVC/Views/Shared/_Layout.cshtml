@@ -1,52 +1,372 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
+<!-- Mirrored from kamleshyadav.com/html/cycling/version-3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 May 2024 14:53:47 GMT -->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FinalProjectWeb</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/FinalProjectWeb.styles.css" asp-append-version="true" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycling - Responsive HTML Template</title>
+    <link rel="icon" type="image/icon" href="assets/images/fav.png">
+   
+    <link href="~/assets/css/all.min.css" rel="stylesheet" />
+    <link href="~/assets/css/animate.css" rel="stylesheet" />
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/css/font.css" rel="stylesheet" />
+    <link href="~/assets/css/magnific-popup.min.css" rel="stylesheet" />
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <link href="~/assets/css/swiper.min.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <!--Loader Start-->
+    <div class="loader_wrapper">
+        <div class='loader'>
+            <img src="~/assets/images/loader.gif" alt="loader">
+        </div>
+    </div>
+    <div class="cl-main-wraper">
+        <!-- top header start -->
+        <div class="cl-top-header">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FinalProjectWeb</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Home">Admin Panel</a>
-                        </li>
-                    </ul>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="cl-top-head-contact">
+                            <ul>
+                                <li><i class="far fa-paper-plane"></i> <a href="https://kamleshyadav.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cba2a5ada48bb2a4beb9a6aaa2a7e5a8a4a6">[email&#160;protected]</a></li>
+                                <li><i class="fas fa-phone-alt"></i> 18009001010</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cl-top-head-social">
+                            <ul>
+                                <li><a href="javascript:;"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="javascript:;"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="javascript:;"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="javascript:;"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="javascript:;"><i class="fab fa-whatsapp"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - FinalProjectWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+        <!-- top header end -->
+        <!-- header start -->
+        <div class="cl-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="cl-logo">
+                            <a href="index.html"><img src="assets/images/logo.png" alt="image"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="cl-main-menu">
+                            <div class="cl-navbar">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li class="cl-has-submenu">
+                                        <a href="javascript:;">Store</a>
+                                        <ul class="cl-mega-menu">
+                                            <li>
+                                                <ul>
+                                                    <li>
+                                                        <a href="javascript:;">Road bikes</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Mountain bikes</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Hybrid bikes</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Cyclocross bikes</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Folding bikes</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <ul>
+                                                    <li>
+                                                        <a href="javascript:;">Bicycle Pedal</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Gear Chain</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Hand Grip</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Seat Cover</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Front Disk</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <ul>
+                                                    <li>
+                                                        <a href="javascript:;">Road bikes</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Mountain bikes</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Hybrid bikes</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Cyclocross bikes</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Folding bikes</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <ul>
+                                                    <li>
+                                                        <a href="javascript:;">Bicycle Pedal</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Gear Chain</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Hand Grip</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Seat Cover</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;">Front Disk</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li class="cl-has-submenu">
+                                        <a href="javascript:;">Pages</a>
+                                        <ul class="cl-sub-menu">
+                                            <li><a href="shop.html">Shop</a></li>
+                                            <li><a href="product-detail.html">Product Detail</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Contact Us</a></li>
+                                </ul>
+                            </div>
+                            <div class="cl-menu-toggle">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="cl-head-icons">
+                                <ul>
+                                    <li>
+                                        <a href="cart.html">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                                <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" class="shp0" d="M19.46 19.13C19.01 19.68 18.34 20 17.63 20L14.1 20C13.67 20 13.32 19.65 13.32 19.22C13.32 18.79 13.67 18.44 14.1 18.44L17.63 18.44C17.96 18.44 18.16 18.25 18.25 18.14C18.41 17.95 18.47 17.7 18.42 17.46C18.33 17.03 18.6 16.62 19.02 16.53C19.45 16.44 19.86 16.71 19.95 17.14C20.09 17.84 19.92 18.57 19.46 19.13ZM9.13 10.66C5.45 11.04 2.35 13.78 1.58 17.46C1.53 17.7 1.59 17.95 1.75 18.14C1.84 18.25 2.04 18.44 2.37 18.44L5.78 18.44C6.21 18.44 6.56 18.79 6.56 19.22C6.56 19.65 6.21 20 5.78 20L2.37 20C1.66 20 0.99 19.68 0.54 19.13C0.08 18.57 -0.1 17.84 0.05 17.14C0.52 14.88 1.76 12.84 3.55 11.37C4.52 10.56 5.64 9.96 6.82 9.57C5.53 8.6 4.69 7.05 4.69 5.31C4.69 2.38 7.07 0 10 0C12.93 0 15.31 2.38 15.31 5.31C15.31 7.05 14.47 8.6 13.18 9.56C15.3 10.26 17.16 11.65 18.45 13.57C18.69 13.92 18.59 14.41 18.23 14.65C17.87 14.89 17.39 14.79 17.15 14.44C15.69 12.27 13.36 10.89 10.79 10.65C9.89 10.52 9.13 10.66 9.13 10.66ZM9.82 9.06C9.88 9.06 9.94 9.06 10 9.06C10.06 9.06 10.12 9.06 10.19 9.06C12.17 8.96 13.75 7.32 13.75 5.31C13.75 3.25 12.07 1.56 10 1.56C7.93 1.56 6.25 3.25 6.25 5.31C6.25 7.32 7.83 8.96 9.82 9.06Z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- header end -->
+        @RenderBody()
+     
+        <!-- footer start -->
+        <div class="cl-footer spacer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="cl-footer-logo cl-footer-widget">
+                            <img src="assets/images/logo.png" alt="image">
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+                            <ul class="cl-social-icons">
+                                <li>
+                                    <a href="javascript:;"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;"><i class="fab fa-google-plus-g"></i></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="cl-footer-widget">
+                            <h2 class="cl-foot-title">Categories</h2>
+                            <div class="cl-footer-links">
+                                <ul>
+                                    <li>
+                                        <a href="javascript:;">Road bikes</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Mountain bikes</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Hybrid bikes</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Cyclocross bikes</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Folding bikes</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="cl-footer-widget">
+                            <h2 class="cl-foot-title">Overviews</h2>
+                            <div class="cl-footer-links">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="about.html">About Us</a>
+                                    </li>
+                                    <li>
+                                        <a href="cart.html">Cart</a>
+                                    </li>
+                                    <li>
+                                        <a href="checkout.html">Checkout</a>
+                                    </li>
+                                    <li>
+                                        <a href="contact.html">Contact Us</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="cl-footer-widget">
+                            <h2 class="cl-foot-title">Newsletter</h2>
+                            <div class="cl-footer-newsletter">
+                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+                                <form>
+                                    <input type="email" placeholder="Email here...">
+                                    <button class="cl-btn">Subscribe</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer end -->
+        <!-- copyright start -->
+        <div class="cl-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="cl-copytext">
+                            <p>Copyright &copy; 2021, Cycling. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- copyright end -->
+        <!-- login modal start -->
+        <div class="modal fade cl-login-modal" id="loginModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <span class="cl-modal-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <div class="modal-body">
+                        <div class="cl-login-form">
+                            <h2 class="cl-login-title">Login</h2>
+                            <form>
+                                <input type="text" placeholder="User Name">
+                                <input type="password" placeholder="Password">
+                                <button class="cl-btn">Login</button>
+                            </form>
+                        </div>
+                        <div class="cl-loginwith-social">
+                            <ul>
+                                <li>
+                                    <a href="javascript:;" class="cl-btn cl-facebook-btn"><i class="fab fa-facebook-f"></i> Facebook</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" class="cl-btn cl-twitter-btn"><i class="fab fa-twitter"></i> Twitter</a>
+                                </li>
+                            </ul>
+                            <a href="javascript:;" class="cl-signup-link" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">Create an account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- login modal end -->
+        <!-- signup modal start -->
+        <div class="modal fade cl-login-modal" id="signupModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <span class="cl-modal-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <div class="modal-body">
+                        <div class="cl-login-form">
+                            <h2 class="cl-login-title">Signup</h2>
+                            <form>
+                                <input type="text" placeholder="User Name">
+                                <input type="email" placeholder="Email">
+                                <input type="password" placeholder="Password">
+                                <button class="cl-btn">Signup</button>
+                            </form>
+                        </div>
+                        <div class="cl-loginwith-social">
+                            <ul>
+                                <li>
+                                    <a href="javascript:;" class="cl-btn cl-facebook-btn"><i class="fab fa-facebook-f"></i> Facebook</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" class="cl-btn cl-twitter-btn"><i class="fab fa-twitter"></i> Twitter</a>
+                                </li>
+                            </ul>
+                            <a href="javascript:;" class="cl-signup-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Already have an account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- signup modal end -->
+    </div>
+    <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="~/assets/js/jquery.js"></script>
+    <script src="~/assets/js/swiper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/wow.js"></script>
+    <script src="~/assets/js/SmoothScroll.min.js"></script>
+    <script src="~/assets/js/magnific-popup.min.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    <script>(function () { if (!document.body) return; var js = "window['__CF$cv$params']={r:'88020a9718e39dc6',t:'MTcxNTA5MzYyNi4xNTUwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='../../../cdn-cgi/challenge-platform/h/b/scripts/jsd/ce7818f50e39/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);"; var _0xh = document.createElement('iframe'); _0xh.height = 1; _0xh.width = 1; _0xh.style.position = 'absolute'; _0xh.style.top = 0; _0xh.style.left = 0; _0xh.style.border = 'none'; _0xh.style.visibility = 'hidden'; document.body.appendChild(_0xh); function handler() { var _0xi = _0xh.contentDocument || _0xh.contentWindow.document; if (_0xi) { var _0xj = _0xi.createElement('script'); _0xj.innerHTML = js; _0xi.getElementsByTagName('head')[0].appendChild(_0xj); } } if (document.readyState !== 'loading') { handler(); } else if (window.addEventListener) { document.addEventListener('DOMContentLoaded', handler); } else { var prev = document.onreadystatechange || function () { }; document.onreadystatechange = function (e) { prev(e); if (document.readyState !== 'loading') { document.onreadystatechange = prev; handler(); } }; } })();</script>
 </body>
+
+<!-- Mirrored from kamleshyadav.com/html/cycling/version-3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 May 2024 14:54:00 GMT -->
 </html>

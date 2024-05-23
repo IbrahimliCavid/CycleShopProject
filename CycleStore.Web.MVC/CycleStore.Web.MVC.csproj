@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />
-    <Folder Include="wwwroot\assets\Images\" />
   </ItemGroup>
 
   <ItemGroup>

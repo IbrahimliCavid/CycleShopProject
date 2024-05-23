@@ -33,7 +33,7 @@ namespace Buisness.Concrete
         public IResult Add(CycleCreateDto dto, IFormFile imgUrl, string webRootPath, out ErrorDataResult<string> error)
         {
 
-            new CycleValidation(true);
+           
             var model = CycleMapper.ToModel(dto);
 
             var result = _validator.Validate(model);
@@ -64,7 +64,6 @@ namespace Buisness.Concrete
 
         public IResult Update(CycleUpdateDto dto, IFormFile imgUrl, string webRootPath, out ErrorDataResult<string> error)
         {
-            new CycleValidation(false);
             var model = CycleMapper.ToModel(dto);
             model.LastUpdateDate = DateTime.Now;
             var existData = GetById(model.Id).Data;

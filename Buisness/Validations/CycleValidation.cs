@@ -7,7 +7,7 @@ namespace Buisness.Validations
 {
     public class CycleValidation : AbstractValidator<Cycle>
     {
-        public CycleValidation(bool isCreate)
+        public CycleValidation()
         {
             RuleFor(x => x.Name)
               .NotEmpty()
@@ -18,7 +18,7 @@ namespace Buisness.Validations
               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE);
 
 
-            if (isCreate)
+            if (false)
             {
                 RuleFor(x => x.Name)
                     .Must(BeUniqe)
