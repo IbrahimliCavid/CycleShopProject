@@ -21,9 +21,9 @@ namespace Buisness.Validations
                .MaximumLength(2000)
                .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_2000_MESSAGE)
                .NotEmpty()
-               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
-               .Must(BeUniqe)
-               .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
+               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE);
+               //.Must(BeUniqe)
+               //.WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
                
         }
 

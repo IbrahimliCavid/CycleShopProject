@@ -26,13 +26,7 @@ namespace Buisness.Validations
                .MaximumLength(500)
                .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_500_MESSAGE);
 
-            RuleFor(x => x.ImgUrl)
-              .NotEmpty()
-              .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
-              .MinimumLength(3)
-              .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
-              .MaximumLength(200)
-              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_200_MESSAGE);
+       
         }
     }
 

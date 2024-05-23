@@ -1,4 +1,5 @@
 ﻿using Buisness.Abstract;
+using Buisness.Validations;
 using Core.Results.Concrete;
 using Entities.Concrete.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +36,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         [HttpPost]
         public IActionResult Create(CycleCreateDto dto, IFormFile imgUrl)
         {
+           
             var result = _cycleService.Add(dto, imgUrl, _webEnv.WebRootPath, out ErrorDataResult<string> error);
 
             if (!result.IsSuccess)

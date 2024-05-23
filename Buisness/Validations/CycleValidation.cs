@@ -40,9 +40,6 @@ namespace Buisness.Validations
              .NotEmpty()
              .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE);
 
-            RuleFor(x => x.PrecentOfDiscount)
-             .NotEmpty()
-             .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE);
 
         }
 

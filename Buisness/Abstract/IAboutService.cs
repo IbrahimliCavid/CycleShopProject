@@ -12,7 +12,7 @@ namespace Buisness.Abstract
     public interface IAboutService
     {
         IResult Add(AboutCreateDto dto);
-        IResult Update(AboutUpdateDto entity);
+        IResult Update(AboutUpdateDto dto);
         IDataResult<AboutUpdateDto> GetById(int id);
         IDataResult<List<AboutDto>> GetAll();
     }
