@@ -22,12 +22,11 @@ namespace Buisness.Validations
              .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
         }
 
-        private bool BeUniqe(string email)
+        private bool BeUniqe(Subscribe subscribe, string email)
         {
             SubscribeDal _cycleDal = new SubscribeDal();
-            var data = _cycleDal.GetAll(x => x.Email == email && x.Deleted == 0);
-            if (data.Count() != 0) return false;
-            return true;
+            var data = _cycleDal.GetAll(x => x.Email == email && x.Deleted == 0 && x.Id != subscribe.Id );
+            return !data.Any();
         }
     }
 

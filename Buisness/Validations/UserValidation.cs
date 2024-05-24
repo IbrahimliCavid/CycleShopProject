@@ -49,19 +49,17 @@ namespace Buisness.Validations
 
 
         }
-        private bool BeUniqeEmail(string email)
+        private bool BeUniqeEmail(User user, string email)
         {
             UserDal _cycleDal = new UserDal();
-            var data = _cycleDal.GetAll(x => x.Email == email && x.Deleted == 0);
-            if (data.Count() != 0) return false;
-            return true;
+            var data = _cycleDal.GetAll(x => x.Email == email && x.Deleted == 0 && x.Id != user.Id);
+            return !data.Any();
         }
-        private bool BeUniqeName(string name)
+        private bool BeUniqeName(User user, string name)
         {
             UserDal _cycleDal = new UserDal();
-            var data = _cycleDal.GetAll(x => x.UserName == name && x.Deleted == 0);
-            if (data.Count() != 0) return false;
-            return true;
+            var data = _cycleDal.GetAll(x => x.UserName == name && x.Deleted == 0 && x.Id != user.Id);
+            return !data.Any();
         }
 
 

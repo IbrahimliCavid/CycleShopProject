@@ -21,19 +21,21 @@ namespace Buisness.Validations
                .MaximumLength(2000)
                .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_2000_MESSAGE)
                .NotEmpty()
-               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE);
-               //.Must(BeUniqe)
-               //.WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
-               
+               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
+               .Must(BeUniqe)
+               .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
+
         }
 
-        private bool BeUniqe(string info)
+        private bool BeUniqe(Activity activity, string info)
         {
             ActivityDal _cycleDal = new ActivityDal();
-            var data = _cycleDal.GetAll(x => x.ActivityInfo == info && x.Deleted == 0);
-            if (data.Count() != 0) return false;
-            return true;
+            var data = _cycleDal.GetAll(x => x.ActivityInfo == info && x.Deleted == 0 && x.Id != activity.Id);
+           return !data.Any();
         }
+
+      
+
 
     }
 }
