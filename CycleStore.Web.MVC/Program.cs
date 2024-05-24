@@ -7,6 +7,8 @@ using DataAccess.Concrete;
 using DataAccess.SqlServerDbContext;
 using Entities.Concrete.TableModels;
 using FluentValidation;
+using Entities.Concrete.MemberShip;
+using System;
 
 namespace CycleStore.Web.MVC
 {
@@ -19,7 +21,13 @@ namespace CycleStore.Web.MVC
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<ApplicationDbContext>();
+
+            builder.Services.AddAuthentication();
+            builder.Services.AddAuthorization();
+
+            builder.Services.AddDbContext<ApplicationDbContext>()
+       .AddIdentity<ApplicationUser, ApplicationRole>()
+           .AddEntityFrameworkStores<ApplicationDbContext>();
 
             //Add custom services
 
@@ -40,7 +48,8 @@ namespace CycleStore.Web.MVC
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            
             app.UseAuthorization();
 
             //app.MapControllerRoute(

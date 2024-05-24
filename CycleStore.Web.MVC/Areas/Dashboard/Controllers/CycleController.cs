@@ -2,11 +2,13 @@
 using Buisness.Validations;
 using Core.Results.Concrete;
 using Entities.Concrete.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
+    [Authorize]
     public class CycleController : Controller
     {
         private readonly ICycleService _cycleService;

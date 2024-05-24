@@ -1,4 +1,6 @@
-﻿using Entities.Concrete.TableModels;
+﻿using Entities.Concrete.MemberShip;
+using Entities.Concrete.TableModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.SqlServerDbContext
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserClaim, ApplicationUserRole, ApplicationUserLogin, ApplicationRoleClaim, ApplicationUserToken>
     {
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -19,8 +21,12 @@ namespace DataAccess.SqlServerDbContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
         }
+
+ 
 
         public DbSet<About> Abouts { get; set; }
         public DbSet<Activity> Activities { get; set; }

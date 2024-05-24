@@ -1,11 +1,13 @@
 ﻿using Buisness.Abstract;
 using Buisness.Concrete;
 using Entities.Concrete.TableModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
+    [Authorize]
     public class UserController : Controller
     {
         private readonly IUserService _userService;
