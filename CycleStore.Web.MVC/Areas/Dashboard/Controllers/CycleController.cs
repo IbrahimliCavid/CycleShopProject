@@ -1,4 +1,5 @@
 ﻿using Buisness.Abstract;
+using Buisness.Mapper;
 using Buisness.Validations;
 using Core.Results.Concrete;
 using Entities.Concrete.Dtos;
@@ -56,7 +57,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         {
             ViewData["Categories"] = _categoryService.GetAll().Data;
             var data = _cycleService.GetById(id).Data;
-            return View(data);
+            return View(CycleMapper.ToUpdateDto(data));
         }
 
         [HttpPost]

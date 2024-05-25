@@ -14,7 +14,7 @@ namespace Buisness.Abstract
         IResult Add(ContactCreateDto dto);
         IResult Delete(int id);
         IResult Update(ContactUpdateDto dto);
-        IDataResult<ContactDto> GetById(int id);
+        IDataResult<Contact> GetById(int id);
         IDataResult<List<ContactDto>> GetAll();
         
     }

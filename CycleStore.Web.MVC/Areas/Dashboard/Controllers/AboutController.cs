@@ -1,4 +1,5 @@
 ﻿using Buisness.Abstract;
+using Buisness.Mapper;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Authorization;
@@ -47,7 +48,8 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
         public IActionResult Edit(int id)
         {
             var data = _abouService.GetById(id).Data;
-            return View(data);
+            
+            return View(AboutMapper.ToUpdateDto(data));
         }
 
         [HttpPost]

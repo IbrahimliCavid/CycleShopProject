@@ -15,7 +15,7 @@ namespace Buisness.Abstract
         IResult Add(BigSaleCreateDto dto, IFormFile imgUrl, string webRootPath);
         IResult Update(BigSaleUpdateDto dto, IFormFile imgUrl, string webRootPath);
         IResult Delete(int id);
-        IDataResult<BigSaleUpdateDto> GetById(int id);
+        IDataResult<BigSale> GetById(int id);
         IDataResult<List<BigSaleDto>> GetAll();
     }
 }

@@ -54,9 +54,8 @@ namespace Buisness.Concrete
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            var model = BigSaleMapper.ToModel(data);
-            model.Deleted = id;
-            _bigSaleDal.Update(model);
+            data.Deleted = id;
+            _bigSaleDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
             
         }
@@ -97,11 +96,9 @@ namespace Buisness.Concrete
             return new  SuccessDataResult<List<BigSaleDto>>(BigSaleMapper.ToDto(models));
         }
 
-        public IDataResult<BigSaleUpdateDto> GetById(int id)
+        public IDataResult<BigSale> GetById(int id)
         {
-            var model = _bigSaleDal.GetById(id);
-            
-            return new SuccessDataResult<BigSaleUpdateDto>(BigSaleMapper.ToUpdateDto(model));
+            return new SuccessDataResult<BigSale>(_bigSaleDal.GetById(id));
         }
 
      

@@ -72,9 +72,8 @@ namespace Buisness.Concrete
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            var model = CategoryMapper.ToModel(data);
-            model.Deleted = id;
-            _cycleCategoryDal.Update(model);
+            data.Deleted = id;
+            _cycleCategoryDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
@@ -84,10 +83,9 @@ namespace Buisness.Concrete
             return new SuccessDataResult<List<CategoryDto>>(CategoryMapper.ToDto(models));
         }
 
-        public IDataResult<CategoryUpdateDto> GetById(int id)
+        public IDataResult<Category> GetById(int id)
         {
-            var model = _cycleCategoryDal.GetById(id);
-            return new SuccessDataResult<CategoryUpdateDto>(CategoryMapper.ToUpdateDto(model));
+            return new SuccessDataResult<Category>(_cycleCategoryDal.GetById(id));
         }
 
       

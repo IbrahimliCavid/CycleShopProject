@@ -15,7 +15,7 @@ namespace Buisness.Abstract
         IResult Add(ServiceCreateDto dto, IFormFile imgUrl, string webRootPath);
         IResult Update(ServiceUpdateDto dto, IFormFile imgUrl, string webRootPath);
         IResult Delete(int id);
-        IDataResult<ServiceDto> GetById(int id);
+        IDataResult<Service> GetById(int id);
         IDataResult<List<ServiceDto>> GetAll();
     }
 }

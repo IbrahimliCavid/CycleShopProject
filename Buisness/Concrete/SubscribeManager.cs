@@ -50,9 +50,8 @@ namespace Buisness.Concrete
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            var model = SubscribeMapper.ToModel(data);
-            model.Deleted = id;
-            _subscribeDal.Update(model);
+            data.Deleted = id;
+            _subscribeDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
@@ -84,10 +83,9 @@ namespace Buisness.Concrete
             return new SuccessDataResult<List<SubscribeDto>>(SubscribeMapper.ToDto(models));
         }
 
-        public IDataResult<SubscribeDto> GetById(int id)
+        public IDataResult<Subscribe> GetById(int id)
         {
-            var model = _subscribeDal.GetById(id);
-            return new SuccessDataResult<SubscribeDto>(SubscribeMapper.ToDto(model));
+            return new SuccessDataResult<Subscribe>(_subscribeDal.GetById(id));
         }
 
     }

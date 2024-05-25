@@ -13,11 +13,11 @@ namespace Buisness.Abstract
 {
     public interface IBestRacerService
     {
-        IResult Add(BestRacerCreateDto entity, IFormFile imgUrl, string webRootPath, out ErrorDataResult<string> error);
+        IResult Add(BestRacerCreateDto dto, IFormFile imgUrl, string webRootPath, out ErrorDataResult<string> error);
         IResult Delete(int id);
-        IResult Update(BestRacerUpdateDto entity, IFormFile imgUrl, string webRootPath, out ErrorDataResult<string> error);
+        IResult Update(BestRacerUpdateDto dto, IFormFile imgUrl, string webRootPath, out ErrorDataResult<string> error);
 
-        IDataResult<BestRacerUpdateDto> GetById(int id);
+        IDataResult<BestRacer> GetById(int id);
         IDataResult<List<BestRacerDto>> GetAll();
     }
 }

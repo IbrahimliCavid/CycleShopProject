@@ -50,9 +50,8 @@ namespace Buisness.Concrete
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            var model = TestimonialMapping.ToModel(data);
-            model.Deleted = id;
-            _testimonialDal.Update(model);
+            data.Deleted = id;
+            _testimonialDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
@@ -84,10 +83,9 @@ namespace Buisness.Concrete
             return new SuccessDataResult<List<TestimonialDto>>(TestimonialMapping.ToDto(models));
         }
 
-        public IDataResult<TestimonialDto> GetById(int id)
+        public IDataResult<Testimonial> GetById(int id)
         {
-            var model = _testimonialDal.GetById(id);
-            return new SuccessDataResult<TestimonialDto>(TestimonialMapping.ToDto(model));
+            return new SuccessDataResult<Testimonial>(_testimonialDal.GetById(id));
         }
 
     }

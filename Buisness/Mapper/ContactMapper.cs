@@ -20,6 +20,18 @@ namespace Buisness.Mapper
             return models.Select(x => ToDto(x)).ToList();
         }
 
+
+        public static ContactUpdateDto ToUpdateDto(Contact model)
+        {
+            ContactUpdateDto dto = new ContactUpdateDto()
+            {
+                Id = model.Id,
+                Name = model.Name,
+            };
+
+            return dto;
+        }
+
         public static Contact ToModel(ContactCreateDto dto)
         {
             Contact contact = new()

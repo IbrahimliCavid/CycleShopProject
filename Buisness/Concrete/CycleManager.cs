@@ -56,9 +56,8 @@ namespace Buisness.Concrete
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            var model = CycleMapper.ToModel(data);
-            model.Deleted = id;
-            _prdouctDal.Update(model);
+            data.Deleted = id;
+            _prdouctDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
@@ -95,10 +94,9 @@ namespace Buisness.Concrete
         }
 
 
-        public IDataResult<CycleUpdateDto> GetById(int id)
+        public IDataResult<Cycle> GetById(int id)
         {
-            var model = _prdouctDal.GetById(id);
-            return new SuccessDataResult<CycleUpdateDto>(CycleMapper.ToUpdateDto(model));
+            return new SuccessDataResult<Cycle>(_prdouctDal.GetById(id));
         }
 
         public IDataResult<List<CycleDto>> GetProductWithCycleCategoryId()

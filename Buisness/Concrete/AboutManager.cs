@@ -81,10 +81,9 @@ namespace Buisness.Concrete
             return new SuccessDataResult<List<AboutDto>>(AboutMapper.ToDto(models));
         }
 
-        public IDataResult<AboutUpdateDto> GetById(int id)
+        public IDataResult<About> GetById(int id)
         {
-            var model = _aboutDal.GetById(id);
-            return new SuccessDataResult<AboutUpdateDto>(AboutMapper.ToUpdateDto(model));
+            return new SuccessDataResult<About>(_aboutDal.GetById(id));
         }
 
       

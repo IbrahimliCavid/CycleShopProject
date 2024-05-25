@@ -51,9 +51,8 @@ namespace Buisness.Concrete
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            var model = UserMapper.ToModel(data);
-            model.Deleted = id;
-            _userDal.Update(model);
+            data.Deleted = id;
+            _userDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
 
         }
@@ -83,10 +82,9 @@ namespace Buisness.Concrete
             return new SuccessDataResult<List<UserDto>>(UserMapper.ToDto(models));
         }
 
-        public IDataResult<UserDto> GetById(int id)
+        public IDataResult<User> GetById(int id)
         {
-            var model = _userDal.GetById(id);
-            return new SuccessDataResult<UserDto>(UserMapper.ToDto(model));
+            return new SuccessDataResult<User>(_userDal.GetById(id));
         }
 
     }

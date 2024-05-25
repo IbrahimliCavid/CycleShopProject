@@ -52,9 +52,9 @@ namespace Buisness.Concrete
         public IResult Delete(int id)
         {
             var data = GetById(id).Data;
-            var model = BestRacerMapper.ToModel(data);
-            model.Deleted = id;
-            _bestRacerDal.Update(model);
+           
+            data.Deleted = id;
+            _bestRacerDal.Update(data);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
         }
 
@@ -95,10 +95,9 @@ namespace Buisness.Concrete
             return new SuccessDataResult<List<BestRacerDto>>(BestRacerMapper.ToDto(models));
         }
 
-        public IDataResult<BestRacerUpdateDto> GetById(int id)
+        public IDataResult<BestRacer> GetById(int id)
         {
-            var model = _bestRacerDal.GetById(id);
-            return new SuccessDataResult<BestRacerUpdateDto>(BestRacerMapper.ToUpdateDto(model));
+            return new SuccessDataResult<BestRacer>(_bestRacerDal.GetById(id));
         }
     }
 }

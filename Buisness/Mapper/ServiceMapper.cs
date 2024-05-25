@@ -23,6 +23,21 @@ namespace Buisness.Mapper
             return models.Select(x => ToDto(x)).ToList();
         }
 
+
+        public static ServiceUpdateDto ToUpdateDto(Service model)
+        {
+            ServiceUpdateDto dto = new()
+            {
+                Id = model.Id,
+                Title = model.Title,
+                IsHomePage = model.IsHomePage,
+                Description = model.Description,
+                ImgUrl = model.ImgUrl
+                
+            };
+            return dto;
+        }
+
         public static Service ToModel(ServiceCreateDto dto)
         {
             Service service = new()

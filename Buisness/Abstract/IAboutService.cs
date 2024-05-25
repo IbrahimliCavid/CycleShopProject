@@ -13,7 +13,7 @@ namespace Buisness.Abstract
     {
         IResult Add(AboutCreateDto dto);
         IResult Update(AboutUpdateDto dto);
-        IDataResult<AboutUpdateDto> GetById(int id);
+        IDataResult<About> GetById(int id);
         IDataResult<List<AboutDto>> GetAll();
     }
 }

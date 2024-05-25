@@ -14,7 +14,7 @@ namespace Buisness.Abstract
         IResult Add(TestimonialCreateDto dto);
         IResult Update(TestimonialUpdateDto dto);
         IResult Delete(int id);
-        IDataResult<TestimonialDto> GetById(int id);
+        IDataResult<Testimonial> GetById(int id);
         IDataResult<List<TestimonialDto>> GetAll();
     }
 }

@@ -14,7 +14,7 @@ namespace Buisness.Abstract
         IResult Add(SubscribeCreateDto dto);
         IResult Update(SubscribeUpdateDto dto);
         IResult Delete(int id);
-        IDataResult<SubscribeDto> GetById(int id);
+        IDataResult<Subscribe> GetById(int id);
         IDataResult<List<SubscribeDto>> GetAll();
     }
 }

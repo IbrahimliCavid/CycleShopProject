@@ -15,7 +15,7 @@ namespace Buisness.Abstract
         IResult Add(ActivityCreateDto activity);
         IResult Delete(int id);
         IResult Update(ActivityUpdateDto activity);
-        IDataResult<ActivityUpdateDto> GetById(int id);
+        IDataResult<Activity> GetById(int id);
         IDataResult<List<ActivityDto>> GetAll();
     }
 }
