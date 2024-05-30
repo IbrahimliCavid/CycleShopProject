@@ -10,14 +10,15 @@ namespace Buisness.Mapper
             CycleDto dto = new()
             {
                 Id = model.Id,
-                Name = model.Name,
+                Model = model.Model,
                 CategoryId = model.CategoryId,
                 ImgUrl = model.ImgUrl,
                 StarRating = model.StarRating,
                 Count = model.Count,
                 Price = model.Price,
                 PrecentOfDiscount = model.PrecentOfDiscount,
-                IsHomePage = model.IsHomePage
+                IsHomePage = model.IsHomePage,
+                IsTrend = model.IsTrend
             };
             return dto;
         }
@@ -27,14 +28,15 @@ namespace Buisness.Mapper
             CycleUpdateDto dto = new()
             {
                 Id = model.Id,
-                Name = model.Name,
+                Model = model.Model,
                 CategoryId = model.CategoryId,
                 ImgUrl = model.ImgUrl,
                 StarRating = model.StarRating,
                 Count = model.Count,
                 Price = model.Price,
                 PrecentOfDiscount = model.PrecentOfDiscount,
-                IsHomePage = model.IsHomePage
+                IsHomePage = model.IsHomePage,
+                IsTrend = model.IsTrend
             };
             return dto;
         }
@@ -44,7 +46,7 @@ namespace Buisness.Mapper
             Cycle cycle = new()
             {
 
-                Name = dto.Name,
+                Model = dto.Model,
                 CategoryId = dto.CategoryId,
                 ImgUrl = dto.ImgUrl,
                 StarRating = dto.StarRating,
@@ -52,6 +54,7 @@ namespace Buisness.Mapper
                 Price = dto.Price,
                 PrecentOfDiscount = dto.PrecentOfDiscount,
                 IsHomePage = dto.IsHomePage,
+                IsTrend = dto.IsTrend
             };
             return cycle;
         }
@@ -61,14 +64,16 @@ namespace Buisness.Mapper
             Cycle cycle = new Cycle()
             {
                 Id = dto.Id,
-                Name = dto.Name,
+                Model = dto.Model,
                 CategoryId = dto.CategoryId,
                 ImgUrl = dto.ImgUrl,
                 StarRating = dto.StarRating,
                 Count = dto.Count,
                 Price = dto.Price,
                 PrecentOfDiscount = dto.PrecentOfDiscount,
-                IsHomePage = dto.IsHomePage
+                IsHomePage = dto.IsHomePage,
+                                IsTrend = dto.IsTrend
+
             };
             return cycle;
         }
@@ -79,14 +84,15 @@ namespace Buisness.Mapper
             {
 
                 Id = dto.Id,
-                Name = dto.Name,
+                Model = dto.Model,
                 CategoryId = dto.CategoryId,
                 ImgUrl = dto.ImgUrl,
                 StarRating = dto.StarRating,
                 Count = dto.Count,
                 Price = dto.Price,
                 PrecentOfDiscount = dto.PrecentOfDiscount,
-                IsHomePage = dto.IsHomePage
+                IsHomePage = dto.IsHomePage,
+                IsTrend = dto.IsTrend
             };
             return cycle;
         }

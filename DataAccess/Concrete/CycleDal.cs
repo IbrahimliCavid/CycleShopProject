@@ -30,7 +30,7 @@ namespace DataAccess.Concrete
                          select new CycleDto
                          {
                              Id = cycle.Id,
-                             Name = cycle.Name,
+                             Model = cycle.Model,
                              CategoryId = cycle.CategoryId,
                              ImgUrl = cycle.ImgUrl,
                              StarRating = cycle.StarRating,
@@ -38,6 +38,7 @@ namespace DataAccess.Concrete
                              Price = cycle.Price,
                              PrecentOfDiscount = cycle.PrecentOfDiscount,
                              IsHomePage = cycle.IsHomePage,
+                             IsTrend = cycle.IsTrend,
                              CategoryName = cycleC.Name
                          };
 

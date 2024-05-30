@@ -15,9 +15,7 @@ namespace Buisness.Validations
               .MinimumLength(3)
               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
               .MaximumLength(100)
-              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE)
-              .Must(BeUniqeName)
-              .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
+              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE);
 
             RuleFor(x => x.Email)
                .NotEmpty()
@@ -27,9 +25,8 @@ namespace Buisness.Validations
                .MaximumLength(100)
                .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE)
                .EmailAddress()
-               .WithMessage(UIMessage.DEFAULT_INVALID_EMAIL_ADRESS)
-               .Must(BeUniqeEmail)
-               .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
+               .WithMessage(UIMessage.DEFAULT_INVALID_EMAIL_ADRESS);
+          
 
             RuleFor(x => x.Password)
                .NotEmpty()
@@ -49,20 +46,6 @@ namespace Buisness.Validations
 
 
         }
-        private bool BeUniqeEmail(User user, string email)
-        {
-            UserDal _cycleDal = new UserDal();
-            var data = _cycleDal.GetAll(x => x.Email == email && x.Deleted == 0 && x.Id != user.Id);
-            return !data.Any();
-        }
-        private bool BeUniqeName(User user, string name)
-        {
-            UserDal _cycleDal = new UserDal();
-            var data = _cycleDal.GetAll(x => x.UserName == name && x.Deleted == 0 && x.Id != user.Id);
-            return !data.Any();
-        }
-
-
     }
 
 

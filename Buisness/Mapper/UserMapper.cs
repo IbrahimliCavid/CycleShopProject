@@ -33,6 +33,18 @@ namespace Buisness.Mapper
             return user;
         }
 
+
+        public static UserUpdateDto ToUpdateDto(User model)
+        {
+            UserUpdateDto dto = new()
+            {
+                Id = model.Id,
+                UserName = model.UserName,
+                Email = model.Email,
+                Password = model.Password,
+            };
+            return dto;
+        }
         public static User ToModel(UserDto dto)
         {
             User user = new()

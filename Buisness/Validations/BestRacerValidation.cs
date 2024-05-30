@@ -42,9 +42,7 @@ namespace Buisness.Validations
               .MinimumLength(3)
               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
               .MaximumLength(150)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE)
-               .Must(BeUniqueFacebook)
-               .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
+               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE);
 
             RuleFor(x => x.InstagramLink)
               .NotEmpty()
@@ -52,57 +50,15 @@ namespace Buisness.Validations
               .MinimumLength(3)
               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
               .MaximumLength(150)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE)
-               .Must(BeUniqueInstagram)
-               .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
+               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE);
 
-            RuleFor(x => x.TwitterLink)
+            RuleFor(x => x.LinkedinLink)
               .NotEmpty()
               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
               .MinimumLength(3)
               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
               .MaximumLength(150)
-              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE)
-              .Must(BeUniqueTwitter)
-              .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
-
-            RuleFor(x => x.EmailLink)
-              .NotEmpty()
-              .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
-              .MinimumLength(3)
-              .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
-              .MaximumLength(150)
-              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE)
-              .Must(BeUniqueEmail)
-              .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
-        }
-
-        private bool BeUniqueFacebook(BestRacer racer, string socialLink)
-        {
-            BestRacerDal _bestRacerDal = new();
-            var data = _bestRacerDal.GetAll(x => x.FacebookLink == socialLink && x.Deleted == 0 && x.Id != racer.Id);
-            return !data.Any();
-        }
-
-        private bool BeUniqueInstagram(BestRacer racer, string socialLink)
-        {
-            BestRacerDal _bestRacerDal = new();
-            var data = _bestRacerDal.GetAll(x => x.InstagramLink == socialLink && x.Deleted == 0 && x.Id != racer.Id);
-            return !data.Any();
-        }
-
-        private bool BeUniqueTwitter(BestRacer racer, string socialLink)
-        {
-            BestRacerDal _bestRacerDal = new();
-            var data = _bestRacerDal.GetAll(x => x.TwitterLink == socialLink && x.Deleted == 0 && x.Id != racer.Id);
-            return !data.Any();
-        }
-
-        private bool BeUniqueEmail(BestRacer racer, string socialLink)
-        {
-            BestRacerDal _bestRacerDal = new();
-            var data = _bestRacerDal.GetAll(x => x.EmailLink == socialLink && x.Deleted == 0 && x.Id != racer.Id);
-            return !data.Any();
+              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE);
         }
     }
 }

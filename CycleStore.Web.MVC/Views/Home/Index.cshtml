@@ -120,7 +120,7 @@
                             </div>
                             <div class="cl-product-content">
                                 <p class="cl-product-title"> @item.CategoryName</p>
-                                <a href="javascript:;" class="cl-product-title">@item.Name</a>
+                                <a href="javascript:;" class="cl-product-title">@item.Model</a>
                                 @if (item.PrecentOfDiscount == 0)
                                 {
                                     <h4 class="cl-product-price"> $@item.Price</h4>
@@ -176,39 +176,43 @@
 
                         @foreach (var item in Model.Cycles)
                         {
-                              <div class="swiper-slide">
-                            <div class="cl-product-box">
-                                <div class="cl-product-img">
-                                        <img src="@item.ImgUrl" alt="image" style="width:246px; height:246px ">
-                                    <div class="cl-product-cart">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
-                                            <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="cl-product-content">
-                                    <a href="javascript:;" class="cl-product-title">@item.Name</a>
-                                    @if (item.PrecentOfDiscount == 0)
-                                        {
-                                            <h4 class="cl-product-price"> $@item.Price</h4>
-                                        }
-
-                                        else
-                                        {
-                                            <h4 class="cl-product-price"><span>$@item.Price</span> $@item.NewPrice</h4>
-
-                                        }
-                                        <ul class="cl-product-rating">
-                                            @for (int i = 0; i < item.StarRating; i++)
+                            if (item.IsTrend)
+                            {
+                                <div class="swiper-slide">
+                                    <div class="cl-product-box">
+                                        <div class="cl-product-img">
+                                            <img src="@item.ImgUrl" alt="image" style="width:246px; height:246px ">
+                                            <div class="cl-product-cart">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                                    <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="cl-product-content">
+                                            <a href="javascript:;" class="cl-product-title">@item.Model</a>
+                                            @if (item.PrecentOfDiscount == 0)
                                             {
-                                                <li><i class="far fa-star" style="color:red;"></i></li>
+                                                <h4 class="cl-product-price"> $@item.Price</h4>
+                                            }
+
+                                            else
+                                            {
+                                                <h4 class="cl-product-price"><span>$@item.Price</span> $@item.NewPrice</h4>
 
                                             }
-                                        
-                                    </ul>
+                                            <ul class="cl-product-rating">
+                                                @for (int i = 0; i < item.StarRating; i++)
+                                                {
+                                                    <li><i class="far fa-star" style="color:red;"></i></li>
+
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            }
+                             
                         }
                     </div>
                       

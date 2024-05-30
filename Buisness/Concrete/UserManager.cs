@@ -33,17 +33,20 @@ namespace Buisness.Concrete
 
             var validator = _validator.Validate(model);
 
-            string errorMessage = string.Empty;
-
+            string errorMessage = "";
+           
+        
             foreach (var item in validator.Errors)
             {
                 errorMessage = item.ErrorMessage;
             }
 
-            if (!validator.IsValid)
+            if (!validator.IsValid || !BeUniqeEmail(model) || !BeUniqeUserName(model))
             {
                 return new ErrorResult(errorMessage);
             }
+            
+          
             _userDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
         }
@@ -69,10 +72,13 @@ namespace Buisness.Concrete
                 errorMessage = item.ErrorMessage;
             }
 
-            if (!validator.IsValid)
+            if (!validator.IsValid || !BeUniqeEmail(model) || !BeUniqeUserName(model))
             {
                 return new ErrorResult(errorMessage);
             }
+    
+        
+
             _userDal.Update(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_UPDATE_MESSAGE);
         }
@@ -87,5 +93,17 @@ namespace Buisness.Concrete
             return new SuccessDataResult<User>(_userDal.GetById(id));
         }
 
+        private bool BeUniqeEmail(User user)
+        {
+            var data = _userDal.GetAll(x => x.Email == user.Email && x.Deleted == 0 && x.Id != user.Id);
+            return !data.Any();
+        }
+        private bool BeUniqeUserName(User user)
+        {
+            var data = _userDal.GetAll(x => x.UserName == user.UserName && x.Deleted == 0 && x.Id != user.Id);
+            return !data.Any();
+        }
+
+        
     }
 }

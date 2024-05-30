@@ -9,6 +9,7 @@ using Entities.Concrete.TableModels;
 using FluentValidation;
 using Entities.Concrete.MemberShip;
 using System;
+using Microsoft.AspNetCore.Identity;
 
 namespace CycleStore.Web.MVC
 {
@@ -29,10 +30,28 @@ namespace CycleStore.Web.MVC
        .AddIdentity<ApplicationUser, ApplicationRole>()
            .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            builder.Services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredLength = 8;
+
+                options.User.RequireUniqueEmail = true;
+            });
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                //options.AccessDeniedPath = "Account/AccountDenied";
+                options.ExpireTimeSpan = TimeSpan.FromHours(2);
+            });
+
             //Add custom services
 
             builder.Services.AddCustomServices();
 
+            
 
             var app = builder.Build();
 

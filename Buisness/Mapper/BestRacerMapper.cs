@@ -16,8 +16,8 @@ namespace Buisness.Mapper
                 ImgUrl = model.ImgUrl,
                 FacebookLink = model.FacebookLink,
                 InstagramLink = model.InstagramLink,
-                EmailLink = model.EmailLink,
-                TwitterLink = model.TwitterLink
+                LinkedinLink = model.LinkedinLink,
+                
             };
             return dto;
         }
@@ -38,8 +38,7 @@ namespace Buisness.Mapper
                 ImgUrl = model.ImgUrl,
                 FacebookLink = model.FacebookLink,
                 InstagramLink = model.InstagramLink,
-                EmailLink = model.EmailLink,
-                TwitterLink = model.TwitterLink
+                LinkedinLink = model.LinkedinLink,
             };
             return dto;
         }
@@ -58,8 +57,7 @@ namespace Buisness.Mapper
                 ImgUrl = dto.ImgUrl,
                 FacebookLink = dto.FacebookLink,
                 InstagramLink = dto.InstagramLink,
-                EmailLink = dto.EmailLink,
-                TwitterLink = dto.TwitterLink
+                LinkedinLink = dto.LinkedinLink,
 
             };
             return bestRacer;
@@ -76,8 +74,7 @@ namespace Buisness.Mapper
                 ImgUrl = dto.ImgUrl,
                 FacebookLink = dto.FacebookLink,
                 InstagramLink = dto.InstagramLink,
-                EmailLink = dto.EmailLink,
-                TwitterLink = dto.TwitterLink
+                LinkedinLink = dto.LinkedinLink,
             };
             return bestRacer;
         }
@@ -92,8 +89,7 @@ namespace Buisness.Mapper
                 ImgUrl = dto.ImgUrl,
                 FacebookLink = dto.FacebookLink,
                 InstagramLink = dto.InstagramLink,
-                EmailLink = dto.EmailLink,
-                TwitterLink = dto.TwitterLink
+                LinkedinLink = dto.LinkedinLink,
             };
             return bestRacer;
         }

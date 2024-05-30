@@ -10,7 +10,7 @@ namespace Entities.Concrete.TableModels
             Carts = new HashSet<Cart>();
         }
        
-        public string Name { get; set; }
+        public string Model { get; set; }
         public int CategoryId { get; set; }
         public string ImgUrl { get; set; }
         public short Count {  get; set; }
@@ -26,6 +26,7 @@ namespace Entities.Concrete.TableModels
             }
         }
         public bool IsHomePage { get; set; }
+        public bool IsTrend {  get; set; }
         public float PrecentOfDiscount { get; set; }
    
         public byte StarRating { get; set; }

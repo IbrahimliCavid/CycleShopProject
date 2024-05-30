@@ -40,7 +40,7 @@ namespace Buisness.Concrete
                 errorMessage = item.ErrorMessage;
             }
 
-            if (!validator.IsValid)
+            if (!validator.IsValid || !BeUniqe(model))
             {
                 return new ErrorResult(errorMessage);
             }
@@ -61,7 +61,7 @@ namespace Buisness.Concrete
                 errorMessage = item.ErrorMessage;
             }
 
-            if (!validator.IsValid)
+            if (!validator.IsValid || !BeUniqe(model))
             {
                 return new ErrorResult(errorMessage);
             }
@@ -88,6 +88,11 @@ namespace Buisness.Concrete
             return new SuccessDataResult<Category>(_cycleCategoryDal.GetById(id));
         }
 
-      
+        private bool BeUniqe(Category category)
+        {
+            CategoryDal _categoryDal = new();
+            var data = _categoryDal.GetAll(x => x.Name == category.Name && x.Deleted == 0 && x.Id != category.Id);
+            return !data.Any();
+        }
     }
 }

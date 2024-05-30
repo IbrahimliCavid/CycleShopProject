@@ -6,9 +6,9 @@
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label">Model</label>
-                <input asp-for="Name" class="form-control" id="answer" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Model" class="control-label">Model</label>
+                <input asp-for="Model" class="form-control" id="answer" />
+                <span asp-validation-for="Model" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label">Category</label>
@@ -54,6 +54,10 @@
             <div class="form-group d-flex align-items-center">
                 <span style="margin-right:1rem;">Is Home Page?:</span>
                 <input asp-for="IsHomePage" type="checkbox" checked="@Model.IsHomePage" />
+            </div>
+            <div class="form-group d-flex align-items-center">
+                <span style="margin-right:1rem;">Is Trend?:</span>
+                <input asp-for="IsTrend" type="checkbox" checked="@Model.IsTrend" />
             </div>
 
             <div class="form-group">

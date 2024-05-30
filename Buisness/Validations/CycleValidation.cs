@@ -9,15 +9,13 @@ namespace Buisness.Validations
     {
         public CycleValidation()
         {
-            RuleFor(x => x.Name)
+            RuleFor(x => x.Model)
               .NotEmpty()
               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
               .MinimumLength(3)
               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
               .MaximumLength(100)
-              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE)
-              .Must(BeUniqe)
-              .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
+              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE);
 
 
 
@@ -38,11 +36,6 @@ namespace Buisness.Validations
 
         }
 
-        private bool BeUniqe(Cycle cycle,  string name)
-        {
-            CycleDal _cycleDal = new CycleDal();
-            var data = _cycleDal.GetAll(x => x.Name == name && x.Deleted == 0 && x.Id != cycle.Id);
-            return !data.Any();
-        }
+       
     }
 }

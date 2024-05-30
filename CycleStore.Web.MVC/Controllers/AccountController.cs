@@ -19,12 +19,16 @@ using Microsoft.AspNetCore.Mvc;
             _signInManager = signInManager;
         }
 
+
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
+
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginDto dto)
@@ -34,26 +38,34 @@ using Microsoft.AspNetCore.Mvc;
                 ApplicationUser user = new();
 
                 user = await _userManager.FindByEmailAsync(dto.Email);
+
                 if (user == null)
                 {
-                    ViewBag.Message = "Email və ya şifrə yalnışdır";
+                    ViewBag.Message = "Email or password incorrect!!!";
+                    goto end;
                 }
-                var result = await _signInManager.PasswordSignInAsync(user, dto.Password, false, false);
 
+                var result = await _signInManager.PasswordSignInAsync(user, dto.Password, false, false);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home", new { area = "Dashboard" });
                 }
+                ViewBag.Message = "Email or password incorrect!!!";
 
             }
+        end:
             return View();
         }
+
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
+
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterDto dto)
@@ -72,7 +84,7 @@ using Microsoft.AspNetCore.Mvc;
 
                 if (!result.Succeeded)
                 {
-                    ViewBag.Message = "Xəta baş verdi";
+                    ViewBag.Message = "Gözlənilməz xəta baş verdi!!!";
 
                     foreach (var item in result.Errors)
                     {
@@ -85,11 +97,12 @@ using Microsoft.AspNetCore.Mvc;
             }
             return View();
         }
+
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-
             return RedirectToAction(nameof(Login));
         }
+  
     }
 }

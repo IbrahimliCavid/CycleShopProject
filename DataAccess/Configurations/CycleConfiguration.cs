@@ -19,7 +19,7 @@ namespace DataAccess.Configurations
             builder.ToTable("Cycles");
             builder.Property(x => x.Id)
                 .UseIdentityColumn(seed: DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment: 1);
-            builder.Property(x => x.Name)
+            builder.Property(x => x.Model)
                 .IsRequired()
                 .HasMaxLength(150);
             builder.Property(x => x.CategoryId)
@@ -34,8 +34,10 @@ namespace DataAccess.Configurations
             builder.Property(x => x.PrecentOfDiscount)
             .HasDefaultValue(0);
             builder.Property(x => x.IsHomePage)
+                .HasDefaultValue(false); 
+            builder.Property(x => x.IsTrend)
                 .HasDefaultValue(false);
-            builder.HasIndex(x => new { x.Name, x.Deleted })
+            builder.HasIndex(x => new { x.Model, x.CategoryId, x.Deleted })
                 .IsUnique();
          
 

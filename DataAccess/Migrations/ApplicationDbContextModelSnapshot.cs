@@ -320,11 +320,6 @@ namespace DataAccess.Migrations
                     b.Property<int>("Deleted")
                         .HasColumnType("int");
 
-                    b.Property<string>("EmailLink")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
                     b.Property<string>("FacebookLink")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -348,6 +343,11 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("LastUpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("LinkedinLink")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -358,15 +358,7 @@ namespace DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("TwitterLink")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("EmailLink", "Deleted")
-                        .IsUnique();
 
                     b.HasIndex("FacebookLink", "Deleted")
                         .IsUnique();
@@ -374,7 +366,7 @@ namespace DataAccess.Migrations
                     b.HasIndex("InstagramLink", "Deleted")
                         .IsUnique();
 
-                    b.HasIndex("TwitterLink", "Deleted")
+                    b.HasIndex("LinkedinLink", "Deleted")
                         .IsUnique();
 
                     b.ToTable("BestRacers", (string)null);
@@ -539,10 +531,15 @@ namespace DataAccess.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<bool>("IsTrend")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
                     b.Property<DateTime?>("LastUpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Model")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
@@ -562,7 +559,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("Name", "Deleted")
+                    b.HasIndex("Model", "CategoryId", "Deleted")
                         .IsUnique();
 
                     b.ToTable("Cycles", (string)null);

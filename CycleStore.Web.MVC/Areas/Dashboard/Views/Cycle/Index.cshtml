@@ -19,6 +19,7 @@
                             <th>PrecentOfDiscount</th>
                             <th>NewPrice</th>
                             <th>IsHomePage</th>
+                            <th>IsTrend</th>
                             <th>Raiting</th>
                             <th>Count</th>
                             <th>Photo</th>
@@ -30,12 +31,13 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.Name</td>
+                                <td>@item.Model</td>
                                 <td>@item.CategoryName</td>
                                 <td>@item.Price USD</td>
                                 <td>@item.PrecentOfDiscount%</td>
                                 <td>@item.NewPrice USD</td>
                                 <td>@(item.IsHomePage ? "Active" : "Deactive")</td>
+                                <td>@(item.IsTrend ? "Yes" : "No")</td>
                                 <td>@item.StarRating</td>
                                 <td>@item.Count</td>
                                 <td> <img src="@item.ImgUrl" alt="Product Photo" width="100px"/> </td>
@@ -43,7 +45,7 @@
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a> |
-                                    <a item-value="@item.Id" item-title="@item.Name" class="btnDelete">
+                                    <a item-value="@item.Id" item-title="@item.Model" class="btnDelete">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>

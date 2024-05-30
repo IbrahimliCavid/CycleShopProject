@@ -39,7 +39,7 @@ namespace Buisness.Concrete
             var result = _validator.Validate(model);
 
             model.ImgUrl = PictureHelper.UploadImage(imgUrl, webRootPath);
-            if (!result.IsValid)
+            if (!result.IsValid || !BeUniqe(model))
             {
                 foreach (var item in result.Errors)
                 {
@@ -78,7 +78,7 @@ namespace Buisness.Concrete
 
 
 
-            if (!validator.IsValid)
+            if (!validator.IsValid || !BeUniqe(model))
             {
                 foreach (var item in validator.Errors)
                 {
@@ -104,6 +104,11 @@ namespace Buisness.Concrete
             return new SuccessDataResult<List<CycleDto>>(_prdouctDal.GetCycleWithCycleCategories());
         }
 
-       
+        private bool BeUniqe(Cycle cycle)
+        {
+            CycleDal _cycleDal = new CycleDal();
+            var data = _cycleDal.GetAll(x => x.Model == cycle.Model && x.Deleted == 0 && x.Id != cycle.Id);
+            return !data.Any();
+        }
     }
 }

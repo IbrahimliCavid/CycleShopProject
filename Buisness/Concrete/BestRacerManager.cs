@@ -44,9 +44,16 @@ namespace Buisness.Concrete
                     return error;
                 }
             }
+            BeUniqueFacebook(dto);
             error = null;
             _bestRacerDal.Add(model);
             return new SuccessResult(UIMessage.DEFAULT_SUCCESS_ADD_MESSAGE);
+        }
+
+        private (bool,string) BeUniqueFacebook(BestRacerCreateDto dto)
+        {
+            var data = _bestRacerDal.GetAll(x => x.FacebookLink == dto.FacebookLink && x.Deleted == 0);
+            return (!data.Any(), UIMessage.DEFAULT_ERROR_DUBLICATE_DATA);
         }
 
         public IResult Delete(int id)

@@ -25,8 +25,6 @@ namespace Buisness.Validations
                .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
                .MaximumLength(500)
                .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_500_MESSAGE);
-
-       
         }
     }
 

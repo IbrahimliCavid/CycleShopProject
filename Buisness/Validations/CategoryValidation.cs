@@ -13,8 +13,6 @@ namespace Buisness.Validations
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
-                .Must(BeUniqe)
-                .WithMessage(UIMessage.DEFAULT_ERROR_DUBLICATE_DATA)
                 .MinimumLength(3)
                 .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
                 .MaximumLength(100)
@@ -22,11 +20,6 @@ namespace Buisness.Validations
 
         }
 
-        private bool BeUniqe(Category category, string name)
-        {
-            CategoryDal _categoryDal = new();
-            var data = _categoryDal.GetAll(x => x.Name == name && x.Deleted == 0 && x.Id != category.Id);
-            return !data.Any();
-        }
+      
     }
 }
