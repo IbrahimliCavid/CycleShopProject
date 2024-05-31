@@ -41,6 +41,7 @@ using Microsoft.AspNetCore.Mvc;
 
                 if (user == null)
                 {
+                  
                     ViewBag.Message = "Email or password incorrect!!!";
                     goto end;
                 }
@@ -84,10 +85,12 @@ using Microsoft.AspNetCore.Mvc;
 
                 if (!result.Succeeded)
                 {
-                    ViewBag.Message = "Gözlənilməz xəta baş verdi!!!";
+                    ModelState.Clear();
+                    ViewBag.Message = "Unexpected Error!!!";
 
                     foreach (var item in result.Errors)
                     {
+                        ModelState.Clear();
                         ModelState.AddModelError(item.Code, item.Description);
                     }
 

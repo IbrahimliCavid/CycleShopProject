@@ -175,7 +175,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                        <a asp-action="Login" asp-controller="Account" >
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" class="shp0" d="M19.46 19.13C19.01 19.68 18.34 20 17.63 20L14.1 20C13.67 20 13.32 19.65 13.32 19.22C13.32 18.79 13.67 18.44 14.1 18.44L17.63 18.44C17.96 18.44 18.16 18.25 18.25 18.14C18.41 17.95 18.47 17.7 18.42 17.46C18.33 17.03 18.6 16.62 19.02 16.53C19.45 16.44 19.86 16.71 19.95 17.14C20.09 17.84 19.92 18.57 19.46 19.13ZM9.13 10.66C5.45 11.04 2.35 13.78 1.58 17.46C1.53 17.7 1.59 17.95 1.75 18.14C1.84 18.25 2.04 18.44 2.37 18.44L5.78 18.44C6.21 18.44 6.56 18.79 6.56 19.22C6.56 19.65 6.21 20 5.78 20L2.37 20C1.66 20 0.99 19.68 0.54 19.13C0.08 18.57 -0.1 17.84 0.05 17.14C0.52 14.88 1.76 12.84 3.55 11.37C4.52 10.56 5.64 9.96 6.82 9.57C5.53 8.6 4.69 7.05 4.69 5.31C4.69 2.38 7.07 0 10 0C12.93 0 15.31 2.38 15.31 5.31C15.31 7.05 14.47 8.6 13.18 9.56C15.3 10.26 17.16 11.65 18.45 13.57C18.69 13.92 18.59 14.41 18.23 14.65C17.87 14.89 17.39 14.79 17.15 14.44C15.69 12.27 13.36 10.89 10.79 10.65C9.89 10.52 9.13 10.66 9.13 10.66ZM9.82 9.06C9.88 9.06 9.94 9.06 10 9.06C10.06 9.06 10.12 9.06 10.19 9.06C12.17 8.96 13.75 7.32 13.75 5.31C13.75 3.25 12.07 1.56 10 1.56C7.93 1.56 6.25 3.25 6.25 5.31C6.25 7.32 7.83 8.96 9.82 9.06Z" />
                                             </svg>
@@ -283,78 +283,15 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="cl-copytext">
-                            <p>Copyright &copy; 2021, Cycling. All Rights Reserved.</p>
+                            <p>Copyright &copy; 2024, Cycling. All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- copyright end -->
-        <!-- login modal start -->
-        <div class="modal fade cl-login-modal" id="loginModal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <span class="cl-modal-close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fas fa-times"></i>
-                    </span>
-                    <div class="modal-body">
-                        <div class="cl-login-form">
-                            <h2 class="cl-login-title">Login</h2>
-                            <form>
-                                <input type="text" placeholder="User Name">
-                                <input type="password" placeholder="Password">
-                                <button class="cl-btn">Login</button>
-                            </form>
-                        </div>
-                        <div class="cl-loginwith-social">
-                            <ul>
-                                <li>
-                                    <a href="javascript:;" class="cl-btn cl-facebook-btn"><i class="fab fa-facebook-f"></i> Facebook</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" class="cl-btn cl-twitter-btn"><i class="fab fa-twitter"></i> Twitter</a>
-                                </li>
-                            </ul>
-                            <a href="javascript:;" class="cl-signup-link" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">Create an account</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- login modal end -->
-        <!-- signup modal start -->
-        <div class="modal fade cl-login-modal" id="signupModal">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <span class="cl-modal-close" data-bs-dismiss="modal" aria-label="Close">
-                        <i class="fas fa-times"></i>
-                    </span>
-                    <div class="modal-body">
-                        <div class="cl-login-form">
-                            <h2 class="cl-login-title">Signup</h2>
-                            <form>
-                                <input type="text" placeholder="User Name">
-                                <input type="email" placeholder="Email">
-                                <input type="password" placeholder="Password">
-                                <button class="cl-btn">Signup</button>
-                            </form>
-                        </div>
-                        <div class="cl-loginwith-social">
-                            <ul>
-                                <li>
-                                    <a href="javascript:;" class="cl-btn cl-facebook-btn"><i class="fab fa-facebook-f"></i> Facebook</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" class="cl-btn cl-twitter-btn"><i class="fab fa-twitter"></i> Twitter</a>
-                                </li>
-                            </ul>
-                            <a href="javascript:;" class="cl-signup-link" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Already have an account</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- signup modal end -->
+       
+       
     </div>
     <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="~/assets/js/jquery.js"></script>

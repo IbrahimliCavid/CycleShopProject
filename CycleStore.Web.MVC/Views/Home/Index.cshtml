@@ -1,5 +1,5 @@
-﻿@model HomeViewModel  
- 
+﻿@model HomeViewModel
+
 
 <!-- banner start -->
 <div class="cl-banner">
@@ -30,7 +30,7 @@
         <div class="row">
             @foreach (var item in Model.Services)
             {
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-3 col-md-6" >
                     <div class="cl-feature-box wow fadeIn">
                         <div class="cl-feature-img">
                             <img src="@item.ImgUrl" alt="image">
@@ -42,9 +42,9 @@
                     </div>
                 </div>
             }
-           
 
-          
+
+
         </div>
     </div>
 </div>
@@ -84,10 +84,10 @@
                             {
                                 <li><i class="far fa-check-square"></i>@item.ActivityInfo</li>
                             }
-                           
+
                         }
-                      
-                        
+
+
                     </ul>
                     <a asp-controller="GlobalAbout" asp-action="Index" class="cl-btn">Read More</a>
                 </div>
@@ -142,8 +142,8 @@
                     </div>
                 }
             }
-            
-           
+
+
         </div>
     </div>
 </div>
@@ -162,7 +162,7 @@
 </div>
 <!-- bicycle parts name end -->
 <!-- Trending products start -->
-<div class="cl-products cl-products-slider spacer-top-less">
+<div class="cl-products cl-products-slider spacer-top-less wow animate__slideInUp" data-wow-delay="0.5s">
     <div class="container">
         <div class="cl-heading">
             <h1>Trending Products</h1>
@@ -172,8 +172,6 @@
             <div class="col-12">
                 <div class="swiper-container wow fadeInUp" data-wow-delay="0.2s">
                     <div class="swiper-wrapper">
-
-
                         @foreach (var item in Model.Cycles)
                         {
                             if (item.IsTrend)
@@ -181,7 +179,7 @@
                                 <div class="swiper-slide">
                                     <div class="cl-product-box">
                                         <div class="cl-product-img">
-                                            <img src="@item.ImgUrl" alt="image" style="width:246px; height:246px ">
+                                            <img src="@item.ImgUrl" alt="image">
                                             <div class="cl-product-cart">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
                                                     <path d="M1619.26,77.86a2.069,2.069,0,1,0,2.11,2.069A2.095,2.095,0,0,0,1619.26,77.86Zm0.63,2.069a0.628,0.628,0,0,1-.63.616,0.616,0.616,0,1,1,0-1.231A0.629,0.629,0,0,1,1619.89,79.929Zm6.03-2.069a2.069,2.069,0,1,0,2.1,2.069A2.088,2.088,0,0,0,1625.92,77.86Zm0.62,2.069a0.625,0.625,0,1,1-.62-0.616A0.619,0.619,0,0,1,1626.54,79.929Zm5.17-15.106a1.267,1.267,0,0,0-.98-0.46H1614.4l-0.3-1.422a1.244,1.244,0,0,0-.74-0.892l-2.32-.991a0.759,0.759,0,0,0-.57-0.009,0.721,0.721,0,0,0-.42.943,0.7,0.7,0,0,0,.4.4l2.22,0.948,2.54,12.106a1.275,1.275,0,0,0,1.25.995h12.69a0.727,0.727,0,1,0,0-1.453h-12.52l-0.23-1.072h12.85a1.264,1.264,0,0,0,1.24-1l1.48-7.059A1.191,1.191,0,0,0,1631.71,64.823Zm-1.24.994-1.39,6.646H1616.1l-1.4-6.646h15.77Z" transform="translate(-1610 -61)"></path>
@@ -212,52 +210,45 @@
                                     </div>
                                 </div>
                             }
-                             
+
                         }
                     </div>
-                      
-                    <div class="swiper-pagination"></div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Trending products end -->
-<!-- testimonial start -->
-<div class="cl-testimonial spacer-top-less spacer-bottom">
-    <div class="container">
-        <div class="cl-heading">
-            <h1>Testimonial</h1>
-            <p>What Our Customers Say About Us</p>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="swiper-container wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="swiper-wrapper">
-                       
-                            @foreach (var item in Model.Testimonials)
-                            {
-                            <div class="swiper-slide">
-                                <div class="cl-testi-box">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 146 124.97">
-                                        <path d="M112.104,116.542 C79.677,140.134 114.662,111.461 122.478,67.008 C118.949,68.209 115.170,68.888 111.229,68.888 C92.034,68.888 76.465,53.467 76.465,34.445 C76.465,15.422 92.026,0.001 111.229,0.001 C130.420,0.001 145.981,15.422 145.981,34.445 C145.981,34.461 145.974,34.478 145.974,34.496 C146.016,35.500 148.060,90.372 112.104,116.542 ZM35.650,116.542 C3.224,140.134 38.200,111.461 46.024,67.008 C42.485,68.209 38.708,68.888 34.767,68.888 C15.572,68.888 0.012,53.467 0.012,34.445 C0.012,15.422 15.572,0.001 34.767,0.001 C53.958,0.001 69.519,15.422 69.519,34.445 C69.519,34.461 69.519,34.478 69.519,34.496 C69.563,35.500 71.605,90.372 35.650,116.542 Z" />
-                                    </svg>
-                                    <p>@item.Feedback</p>
-                                    <h2 class="cl-testi-name">@($"{item.Name}  {item.Surname}")</h2>
-                                </div>
-                            </div>
-
-                            }
-                         
-                      
+            <!-- Trending products end -->
+            <!-- testimonial start -->
+            <div class="cl-testimonial spacer-top-less spacer-bottom">
+                <div class="container">
+                    <div class="cl-heading">
+                        <h1>Testimonial</h1>
+                        <p>What Our Customers Say About Us</p>
                     </div>
-                    <div class="swiper-button-next"><i class="fas fa-angle-right"></i></div>
-                    <div class="swiper-button-prev"><i class="fas fa-angle-left"></i></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="swiper-container wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="swiper-wrapper">
+
+                                    @foreach (var item in Model.Testimonials)
+                                    {
+                                        <div class="swiper-slide">
+                                            <div class="cl-testi-box">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 146 124.97">
+                                                    <path d="M112.104,116.542 C79.677,140.134 114.662,111.461 122.478,67.008 C118.949,68.209 115.170,68.888 111.229,68.888 C92.034,68.888 76.465,53.467 76.465,34.445 C76.465,15.422 92.026,0.001 111.229,0.001 C130.420,0.001 145.981,15.422 145.981,34.445 C145.981,34.461 145.974,34.478 145.974,34.496 C146.016,35.500 148.060,90.372 112.104,116.542 ZM35.650,116.542 C3.224,140.134 38.200,111.461 46.024,67.008 C42.485,68.209 38.708,68.888 34.767,68.888 C15.572,68.888 0.012,53.467 0.012,34.445 C0.012,15.422 15.572,0.001 34.767,0.001 C53.958,0.001 69.519,15.422 69.519,34.445 C69.519,34.461 69.519,34.478 69.519,34.496 C69.563,35.500 71.605,90.372 35.650,116.542 Z" />
+                                                </svg>
+                                                <p>@item.Feedback</p>
+                                                <h2 class="cl-testi-name">@($"{item.Name}  {item.Surname}")</h2>
+                                            </div>
+                                        </div>
+
+                                    }
+
+
+                                </div>
+                                <div class="swiper-button-next"><i class="fas fa-angle-right"></i></div>
+                                <div class="swiper-button-prev"><i class="fas fa-angle-left"></i></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<!-- testimonial end -->
+            <!-- testimonial end -->
