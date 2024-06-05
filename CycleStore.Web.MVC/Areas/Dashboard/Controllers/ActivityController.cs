@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ActivityController : Controller
     {
        private readonly IActivityService _activityService;

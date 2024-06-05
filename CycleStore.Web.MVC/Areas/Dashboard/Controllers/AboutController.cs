@@ -9,7 +9,7 @@ namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
 {
 
     [Area("Dashboard")]
-    [Authorize]
+    [Authorize (Roles = "Admin")]
     public class AboutController : Controller
     {
         private readonly IAboutService _abouService;

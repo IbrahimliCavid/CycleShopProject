@@ -49,7 +49,7 @@ using Microsoft.AspNetCore.Mvc;
                 var result = await _signInManager.PasswordSignInAsync(user, dto.Password, false, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home", new { area = "Dashboard" });
+                    return RedirectToAction("Index", "Home");
                 }
                 ViewBag.Message = "Email or password incorrect!!!";
 
@@ -96,6 +96,17 @@ using Microsoft.AspNetCore.Mvc;
 
                     return View(dto);
                 }
+
+                var roleResult = await _userManager.AddToRoleAsync(user, "User");
+                if (!roleResult.Succeeded) 
+                {
+                    ViewBag.Message = "Unexpected Error!!!";
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.Clear();
+                        ModelState.AddModelError(item.Code, item.Description);
+                    }
+                }
                 return RedirectToAction("Login");
             }
             return View();
@@ -104,7 +115,7 @@ using Microsoft.AspNetCore.Mvc;
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction(nameof(Login));
+            return RedirectToAction("Index" , "Home");
         }
   
     }

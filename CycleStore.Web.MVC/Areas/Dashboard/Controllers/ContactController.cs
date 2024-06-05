@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CycleStore.Web.MVC.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ContactController : Controller
     {
         private readonly IContactService _contactService;
