@@ -71,7 +71,7 @@ namespace CycleStore.Web.MVC
             
             app.UseAuthorization();
 
-            app.UseStatusCodePagesWithReExecute("/NotFound/ErrorNotFound/{0}");
+            //app.UseStatusCodePagesWithReExecute("/NotFound/ErrorNotFound/{0}");
 
             //app.MapControllerRoute(
             //    name: "default",
