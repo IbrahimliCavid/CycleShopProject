@@ -1,0 +1,107 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .jarallax {
+            background: url('../../wwwroot/assets/Images/388d83f6-378c-46a6-a92f-3d7c32907662bicycle03.jpg') no-repeat center center/cover;
+            position: relative;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .overlay {
+            background: black;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .content {
+            z-index: 1;
+        }
+
+        .btn-main {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.25rem;
+            font-size: 1.25rem;
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none;
+        }
+
+            .btn-main:hover {
+                text-decoration: none;
+                background-color: #0056b3;
+                transform: scale(1.05);
+                color: white;
+            }
+
+        .spacer-10 {
+            height: 10px;
+        }
+
+        .spacer-single {
+            display: block;
+            height: 20px;
+        }
+
+        .c1 {
+            font-size: 10rem;
+            font-weight: bold;
+        }
+
+        .c3 {
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- content begin -->
+    <div class="no-bottom no-top" id="content">
+        <div id="top"></div>
+        <section id="section-hero" class="jarallax text-light pt50 pb50 vertical-center" aria-label="section">
+            <div class="overlay"></div>
+            <div class="container content">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1>Ooops! Something Went Wrong</h1>
+                        <p>It looks like this page doesn't exist. Don't worry, our team is on it. Please head back to our homepage and try again.</p>
+                        <a href="/" class="btn-main">Go Back to Homepage</a>
+                        <div class="spacer-10"></div>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <h1 class="s2">
+                            <span class="c1">404</span>
+                            <span class="spacer-single"></span>
+                            <span class="c3">Not Found </span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- content close -->
+</body>
+</html>
