@@ -41,7 +41,6 @@ using Microsoft.AspNetCore.Mvc;
 
                 if (user == null)
                 {
-                  
                     ViewBag.Message = "Email or password incorrect!!!";
                     goto end;
                 }

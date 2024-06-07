@@ -13,18 +13,18 @@ namespace Buisness.Validations
                .NotEmpty()
                .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
                .MinimumLength(3)
-               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "Title"))
                .MaximumLength(200)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_200_MESSAGE);
+               .WithMessage(UIMessage.GetMaxLengthMessage(200, "Title"));
 
 
             RuleFor(x => x.Description)
                .NotEmpty()
                .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
                .MinimumLength(3)
-               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "Description"))
                .MaximumLength(500)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_500_MESSAGE);
+               .WithMessage(UIMessage.GetMaxLengthMessage(500, "Description"));
         }
     }
 

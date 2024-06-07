@@ -17,9 +17,9 @@ namespace Buisness.Validations
         {
             RuleFor(x => x.ActivityInfo)
                .MinimumLength(3)
-               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "Activity information"))
                .MaximumLength(2000)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_2000_MESSAGE)
+               .WithMessage(UIMessage.GetMaxLengthMessage(2000, "Activity information"))
                .NotEmpty()
                .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE);
             

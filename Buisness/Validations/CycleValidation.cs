@@ -13,9 +13,9 @@ namespace Buisness.Validations
               .NotEmpty()
               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
               .MinimumLength(3)
-              .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+              .WithMessage(UIMessage.GetMinLengthMessage(3, "Model"))
               .MaximumLength(100)
-              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE);
+              .WithMessage(UIMessage.GetMaxLengthMessage(100, "Model"));
 
 
 

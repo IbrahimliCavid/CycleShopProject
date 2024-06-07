@@ -6,7 +6,7 @@ namespace Entities.Concrete.Dtos
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Surname { get; set; }
+        public string Email { get; set; }
         public string Message { get; set; }
         public bool IsAnswer { get; set; }
     

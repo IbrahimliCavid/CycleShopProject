@@ -30,12 +30,9 @@ namespace CycleStore.Web.MVC.Controllers
             var result = _contactService.Add(dto);
             if (!result.IsSuccess)
             {
-                ModelState.AddModelError("Name", result.Message);
-                ViewBag.Message = "jksdand";
-                return View(dto);
+                return Json(new { isSuccess = false });
             }
-            return RedirectToAction("Create");
-
+            return Json(new { isSuccess = true });
         }
     }
 }

@@ -12,25 +12,25 @@ namespace Buisness.Validations
               .NotEmpty()
               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
               .MinimumLength(3)
-              .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+              .WithMessage(UIMessage.GetMinLengthMessage(3, "Name"))
               .MaximumLength(100)
-              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE);
+              .WithMessage(UIMessage.GetMaxLengthMessage(100, "Title"));
 
             RuleFor(x => x.Surname)
                .NotEmpty()
                .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
                .MinimumLength(3)
-               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "Surname"))
                .MaximumLength(100)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE);
+               .WithMessage(UIMessage.GetMaxLengthMessage(100, "Surname"));
 
               RuleFor(x => x.Feedback)
                .NotEmpty()
                .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
                .MinimumLength(3)
-               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "Feedback"))
                .MaximumLength(2000)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_2000_MESSAGE);
+               .WithMessage(UIMessage.GetMaxLengthMessage(2000, "Feedback"));
         }
     }
 

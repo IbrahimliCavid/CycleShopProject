@@ -41,6 +41,5 @@ namespace DataAccess.SqlServerDbContext
         public DbSet<ShippingAdress> ShippingAdresses { get; set; }
         public DbSet<Subscribe> Subcribes { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
-        public DbSet<User> Users { get; set; }
     }
 }

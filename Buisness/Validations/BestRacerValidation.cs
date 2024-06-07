@@ -16,49 +16,49 @@ namespace Buisness.Validations
                .NotEmpty()
                .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
                .MinimumLength(3)
-               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "Name"))
                .MaximumLength(150)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE);
+               .WithMessage(UIMessage.GetMaxLengthMessage(150, "Name"));
 
             RuleFor(x => x.Surname)
                .NotEmpty()
                .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
                .MinimumLength(3)
-               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "Surname"))
                .MaximumLength(150)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE);
+               .WithMessage(UIMessage.GetMaxLengthMessage(150, "Surname"));
 
             RuleFor(x => x.Info)
                .NotEmpty()
                .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
                .MinimumLength(3)
-               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "Information"))
                .MaximumLength(150)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_2000_MESSAGE);
+               .WithMessage(UIMessage.GetMaxLengthMessage(150, "Information"));
 
             RuleFor(x => x.FacebookLink)
               .NotEmpty()
               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
               .MinimumLength(3)
-              .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
-              .MaximumLength(150)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE);
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "FacebookLink"))
+               .MaximumLength(150)
+               .WithMessage(UIMessage.GetMaxLengthMessage(150, "FacebookLink"));
 
             RuleFor(x => x.InstagramLink)
               .NotEmpty()
               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
               .MinimumLength(3)
-              .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
-              .MaximumLength(150)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE);
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "InstagramLink"))
+               .MaximumLength(150)
+               .WithMessage(UIMessage.GetMaxLengthMessage(150, "InstagramLink"));
 
             RuleFor(x => x.LinkedinLink)
               .NotEmpty()
               .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
-              .MinimumLength(3)
-              .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
-              .MaximumLength(150)
-              .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_150_MESSAGE);
+             .MinimumLength(3)
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "LinkedinLink"))
+               .MaximumLength(150)
+               .WithMessage(UIMessage.GetMaxLengthMessage(150, "LinkedinLink"));
         }
     }
 }

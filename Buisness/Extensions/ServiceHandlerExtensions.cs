@@ -63,10 +63,7 @@ namespace Buisness.Extensions
             services.AddScoped<ITestimonialDal, TestimonialDal>();
             services.AddScoped<IValidator<Testimonial>, TestimonialValidation>();
 
-            //User Services
-            services.AddScoped<IUserService, UserManager>();
-            services.AddScoped<IUserDal, UserDal>();
-            services.AddScoped<IValidator<User>, UserValidation>();
+            
         }
     }
 }

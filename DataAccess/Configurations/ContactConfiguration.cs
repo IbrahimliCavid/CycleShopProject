@@ -20,7 +20,7 @@ namespace DataAccess.Configurations
             builder.Property(x => x.Name)
                 .IsRequired()
                 .HasMaxLength(100);
-            builder.Property(x => x.Surname)
+            builder.Property(x => x.Email)
                 .IsRequired()
                 .HasMaxLength(100);
             builder.Property(x=>x.Message)

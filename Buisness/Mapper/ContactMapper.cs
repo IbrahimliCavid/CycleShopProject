@@ -10,7 +10,10 @@ namespace Buisness.Mapper
             ContactDto dto = new()
             {
                 Id = model.Id,
-                Name = model.Name
+                Name = model.Name,
+                Email = model.Email,
+                Message = model.Message,
+                IsAnswer = model.IsAnswer,
             };
             return dto;
         }
@@ -38,7 +41,7 @@ namespace Buisness.Mapper
             {
 
                 Name = dto.Name,
-                Surname = dto.Surname,
+               Email = dto.Email,
                 Message = dto.Message,
                 IsAnswer = dto.IsAnswer
             };
@@ -52,7 +55,7 @@ namespace Buisness.Mapper
             {
                 Id = dto.Id,
                 Name = dto.Name,
-                Surname = dto.Surname,
+                Email = dto.Email,
                 Message = dto.Message,
                 IsAnswer = dto.IsAnswer
             };
@@ -66,7 +69,7 @@ namespace Buisness.Mapper
             {
                 Id = dto.Id,
                 Name = dto.Name,
-                Surname = dto.Surname,
+                Email = dto.Email,
                 Message = dto.Message,
                 IsAnswer = dto.IsAnswer
             };

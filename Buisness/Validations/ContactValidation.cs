@@ -13,25 +13,27 @@ namespace Buisness.Validations
                .NotEmpty()
                .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
                .MinimumLength(3)
-               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "Name"))
                .MaximumLength(100)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE);
+               .WithMessage(UIMessage.GetMaxLengthMessage(100, "Name"));
 
-            RuleFor(x => x.Surname)
+            RuleFor(x => x.Email)
                .NotEmpty()
                .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
                .MinimumLength(3)
-               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "Email"))
                .MaximumLength(100)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_100_MESSAGE);
+               .WithMessage(UIMessage.GetMaxLengthMessage(100, "Email"))
+               .EmailAddress()
+               .WithMessage(UIMessage.DEFAULT_INVALID_EMAIL_ADRESS);
 
             RuleFor(x => x.Message)
                .NotEmpty()
                .WithMessage(UIMessage.DEFAULT_NOT_EMPTY_MESSAGE)
                .MinimumLength(3)
-               .WithMessage(UIMessage.DEFAULT_MINIMUM_SYMBOL_COUNT_3_MESSAGE)
+               .WithMessage(UIMessage.GetMinLengthMessage(3, "Message"))
                .MaximumLength(2000)
-               .WithMessage(UIMessage.DEFAULT_MAXIMUM_SYMBOL_COUNT_2000_MESSAGE);
+               .WithMessage(UIMessage.GetMaxLengthMessage(2000, "Message"));
         }
     }
 

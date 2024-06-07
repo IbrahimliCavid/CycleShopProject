@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Abstract;
+using Entities.Concrete.MemberShip;
 
 namespace Entities.Concrete.TableModels
 {
@@ -14,7 +15,7 @@ namespace Entities.Concrete.TableModels
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
         public Order Order { get; set; }
     }
 }
