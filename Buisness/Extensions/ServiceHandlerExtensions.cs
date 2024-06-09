@@ -63,7 +63,12 @@ namespace Buisness.Extensions
             services.AddScoped<ITestimonialDal, TestimonialDal>();
             services.AddScoped<IValidator<Testimonial>, TestimonialValidation>();
 
-            
+            //ShippingAdress Services
+            services.AddScoped<IShippingAdressService, ShippingAdressManager>();
+            services.AddScoped<IShippingAdressDal, ShippingAdressDal>();
+            services.AddScoped<IValidator<ShippingAdress>, ShippingAdressValidation>();
+
+
         }
     }
 }
