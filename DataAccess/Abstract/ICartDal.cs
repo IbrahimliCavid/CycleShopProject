@@ -3,5 +3,8 @@ using Entities.Concrete.TableModels;
 
 namespace DataAccess.Abstract
 {
-    public interface ICartDal : IBaseRepository<Cart> { }
+    public interface ICartDal : IBaseRepository<Cart>
+    {
+       
+    }
 }

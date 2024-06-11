@@ -48,11 +48,17 @@ namespace DataAccess.Configurations
                 .IsRequired();
           
 
-            // No configuration needed here
-            // as it's a mirrored relationship of UserConfiguration and OrderConfiguration
-            builder.HasOne(x => x.Order)
+        
+
+            //Relationship between ShippingAdress and Orders
+            builder.HasMany(x => x.Orders)
                 .WithOne(x => x.ShippingAdress)
-                .HasForeignKey<Order>(x => x.ShippingAdressId);
+                .HasForeignKey(x => x.ShippingAdressId);
+
+            //Relationship between ShippingAdress and User
+            builder.HasOne(x => x.User)
+                .WithOne()
+                .HasForeignKey<ShippingAdress>(x => x.UserId);
         }
     }
 }

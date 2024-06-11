@@ -5,6 +5,10 @@ namespace Entities.Concrete.TableModels
 {
     public class ShippingAdress : BaseEntity
     {
+        public ShippingAdress()
+        {
+            Orders = new HashSet<Order>();
+        }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PostalCode { get; set; }
@@ -16,6 +20,6 @@ namespace Entities.Concrete.TableModels
         public string Email { get; set; }
         public int UserId { get; set; }
         public ApplicationUser User { get; set; }
-        public Order Order { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }

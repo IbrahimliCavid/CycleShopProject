@@ -5,7 +5,7 @@ using Entities.Concrete.TableModels;
 namespace DataAccess.Abstract
 {
     public interface ICycleDal: IBaseRepository<Cycle>
-    {
+    { 
         List<CycleDto> GetCycleWithCycleCategories();
     }
 }

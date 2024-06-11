@@ -1,4 +1,11 @@
-﻿<!-- breadcrumb start -->
+﻿@using Entities.Concrete
+@using Entities.Concrete.TableModels
+@model List<CartItemDto>
+@{
+    var user = (ApplicationUser)ViewData["User"];
+}
+
+<!-- breadcrumb start -->
 <div class="cl-breadcrumb">
     <div class="container-fluid">
         <div class="row">
@@ -29,54 +36,43 @@
                         <h3>My Bag</h3>
                     </div>
                     <ul>
-                        <li>
-                            <div class="cl-cart-list-wrap">
-                                <div class="cl-product-detail-img">
-                                    <img src="/assets/images/bicycle01.jpg" alt="image">
-                                </div>
-                                <div class="cl-product-details">
-                                    <a href="javascript:;" class="cl-product-title">Mountain Bike</a>
-                                    <h4 class="cl-product-price"><span>$50</span> $40</h4>
-                                    <div class="cl-add-product">
-                                        <div class="cl-product-count">
-                                            <button class="cl-sub-count"><i class="fas fa-minus"></i></button>
-                                            <input type="number" value="1" min="1">
-                                            <button class="cl-add-count"><i class="fas fa-plus"></i></button>
+                        @if (Model!=null)
+                        {
+                            @foreach (var item in Model)
+                            {
+                                if (item.UserId == user.Id)
+                                {
+                                    <li>
+                                        <div class="cl-cart-list-wrap">
+                                            <div class="cl-product-detail-img">
+                                                <img src="@item.ImgUrl" alt="image">
+                                            </div>
+                                            <div class="cl-product-details">
+                                                <a href="javascript:;" class="cl-product-title">@item.CategoryName</a>
+                                                <h4 class="cl-product-price"><span>@item.Price</span> @item.NewPrice</h4>
+                                                <div class="cl-add-product">
+                                                    <div class="cl-product-count">
+                                                        <button class="cl-sub-count"><i class="fas fa-minus"></i></button>
+                                                        <input type="number" value="@item.Quantity" min="1">
+                                                        <button class="cl-add-count"><i class="fas fa-plus"></i></button>
+                                                    </div>
+                                                    <div class="cl-wishlist">
+                                                        <i class="far fa-heart"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cl-product-remove">
+                                                <i class="fas fa-times"></i>
+                                            </div>
                                         </div>
-                                        <div class="cl-wishlist">
-                                            <i class="far fa-heart"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cl-product-remove">
-                                    <i class="fas fa-times"></i>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="cl-cart-list-wrap">
-                                <div class="cl-product-detail-img">
-                                    <img src="/assets/images/bicycle01.jpg" alt="image">
-                                </div>
-                                <div class="cl-product-details">
-                                    <a href="javascript:;" class="cl-product-title">Mountain Bike</a>
-                                    <h4 class="cl-product-price"><span>$50</span> $40</h4>
-                                    <div class="cl-add-product">
-                                        <div class="cl-product-count">
-                                            <button class="cl-sub-count"><i class="fas fa-minus"></i></button>
-                                            <input type="number" value="1" min="1">
-                                            <button class="cl-add-count"><i class="fas fa-plus"></i></button>
-                                        </div>
-                                        <div class="cl-wishlist">
-                                            <i class="far fa-heart"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cl-product-remove">
-                                    <i class="fas fa-times"></i>
-                                </div>
-                            </div>
-                        </li>
+                                    </li>
+                                }
+
+                            }
+                        }
+                      
+                       
+
                     </ul>
                 </div>
             </div>

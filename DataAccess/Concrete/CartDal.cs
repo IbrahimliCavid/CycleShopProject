@@ -6,6 +6,8 @@ using Entities.Concrete.TableModels;
 namespace DataAccess.Concrete
 {
     public class CartDal : BaseRepository<Cart, ApplicationDbContext>, ICartDal
-    { }
+    { 
+    
+    }
 
 }

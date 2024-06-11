@@ -33,6 +33,7 @@ namespace DataAccess.SqlServerDbContext
         public DbSet<BestRacer> BestRacers { get; set; }
         public DbSet<BigSale> BigSales { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Category> Categories {  get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Order> Orders { get; set; }

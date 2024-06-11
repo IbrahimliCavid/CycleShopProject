@@ -39,7 +39,7 @@ namespace DataAccess.Configurations
 
             //Relationship between Order and ShippingAdress
             builder.HasOne(x => x.ShippingAdress)
-           .WithMany() // No navigation property in ShippingAddress class
+           .WithMany()
            .HasForeignKey(x => x.ShippingAdressId)
            .OnDelete(DeleteBehavior.NoAction);
 
