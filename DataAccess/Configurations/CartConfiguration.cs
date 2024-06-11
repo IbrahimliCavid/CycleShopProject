@@ -25,10 +25,9 @@ namespace DataAccess.Configurations
                 .WithOne()
                 .HasForeignKey<Cart>(x => x.UserId);
 
-            //Relationship between Carts and Cycles
-            builder.HasMany(x => x.Cycles)
-                .WithMany(x => x.Carts)
-                .UsingEntity(x => x.ToTable("CartCycles"));
+            builder.HasOne(x => x.Cycle)
+                 .WithOne()
+                 .HasForeignKey<Cart>(x => x.CycleId);
 
             //The relationship between Cart and Order is defined in the OrderConfiguration class.
         }

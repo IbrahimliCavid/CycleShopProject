@@ -4,6 +4,7 @@ using DataAccess.SqlServerDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240610123111_CartAddCycles")]
+    partial class CartAddCycles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,21 @@ namespace DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CartCycle", b =>
+                {
+                    b.Property<int>("CartsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CyclesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartsId", "CyclesId");
+
+                    b.HasIndex("CyclesId");
+
+                    b.ToTable("CartCycles", (string)null);
+                });
 
             modelBuilder.Entity("Entities.Concrete.MemberShip.ApplicationRole", b =>
                 {
@@ -395,9 +413,6 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CycleId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Deleted")
                         .HasColumnType("int");
 
@@ -408,9 +423,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CycleId")
-                        .IsUnique();
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -791,6 +803,21 @@ namespace DataAccess.Migrations
                     b.ToTable("Testimonials", (string)null);
                 });
 
+            modelBuilder.Entity("CartCycle", b =>
+                {
+                    b.HasOne("Entities.Concrete.TableModels.Cart", null)
+                        .WithMany()
+                        .HasForeignKey("CartsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Concrete.TableModels.Cycle", null)
+                        .WithMany()
+                        .HasForeignKey("CyclesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Entities.Concrete.MemberShip.ApplicationRoleClaim", b =>
                 {
                     b.HasOne("Entities.Concrete.MemberShip.ApplicationRole", null)
@@ -844,19 +871,11 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concrete.TableModels.Cart", b =>
                 {
-                    b.HasOne("Entities.Concrete.TableModels.Cycle", "Cycle")
-                        .WithOne()
-                        .HasForeignKey("Entities.Concrete.TableModels.Cart", "CycleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Concrete.MemberShip.ApplicationUser", "User")
                         .WithOne()
                         .HasForeignKey("Entities.Concrete.TableModels.Cart", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cycle");
 
                     b.Navigation("User");
                 });

@@ -5,12 +5,10 @@ namespace Entities.Concrete.TableModels
 {
     public class Cart : BaseEntity
     {
-        public Cart()
-        {
-            Cycles = new HashSet<Cycle>();
-        }
+       
         public int UserId {  get; set; }
+        public int CycleId {  get; set; }
         public ApplicationUser User { get; set; }
-        public virtual ICollection<Cycle> Cycles { get; set; }
+        public  Cycle Cycle { get; set; }
     }
 }

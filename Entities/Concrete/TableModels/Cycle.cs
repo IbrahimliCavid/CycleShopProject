@@ -5,10 +5,7 @@ namespace Entities.Concrete.TableModels
 {
     public class Cycle : BaseEntity
     {
-        public Cycle()
-        {
-            Carts = new HashSet<Cart>();
-        }
+        
        
         public string Model { get; set; }
         public int CategoryId { get; set; }
@@ -28,9 +25,7 @@ namespace Entities.Concrete.TableModels
         public bool IsHomePage { get; set; }
         public bool IsTrend {  get; set; }
         public float PrecentOfDiscount { get; set; }
-   
         public byte StarRating { get; set; }
-        public virtual ICollection<Cart> Carts { get; set; }
         public virtual Category Category {get; set;}
     }
 }

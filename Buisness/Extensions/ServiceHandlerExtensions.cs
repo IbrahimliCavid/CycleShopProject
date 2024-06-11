@@ -67,6 +67,11 @@ namespace Buisness.Extensions
             services.AddScoped<IShippingAdressService, ShippingAdressManager>();
             services.AddScoped<IShippingAdressDal, ShippingAdressDal>();
             services.AddScoped<IValidator<ShippingAdress>, ShippingAdressValidation>();
+            
+            //ShippingAdress Services
+            services.AddScoped<ICartService, CartManager>();
+            services.AddScoped<ICartDal, CartDal>();
+            services.AddScoped<IValidator<Cart>, CartValidation>();
 
 
         }

@@ -544,11 +544,11 @@ namespace DataAccess.Migrations
                 table: "CartCycles",
                 column: "CyclesId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Carts_UserId",
-                table: "Carts",
-                column: "UserId",
-                unique: true);
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_Carts_UserId",
+            //    table: "Carts",
+            //    column: "UserId",
+            //    unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_Name_Deleted",

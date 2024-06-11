@@ -1,11 +1,13 @@
 ﻿using Buisness.Abstract;
 using Entities.Concrete.Dtos;
 using Entities.Concrete.MemberShip;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CycleStore.Web.MVC.Controllers
 {
+    [Authorize]
     public class GlobalShippingAdressController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
