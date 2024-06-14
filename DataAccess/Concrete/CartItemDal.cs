@@ -41,8 +41,11 @@ namespace DataAccess.Concrete
                              Price = cartItem.Cycle.Price,
                              NewPrice = cartItem.Cycle.NewPrice,
                              ImgUrl = cartItem.Cycle.ImgUrl,
+                             CategoryName = cartItem.Cycle.Category.Name,
                              StarRating = cartItem.Cycle.StarRating,
-                             UserId = cartItem.Cart.UserId
+                             UserId = cartItem.Cart.UserId,
+                             Model = cartItem.Cycle.Model,
+                             PrecentOfDiscount = cartItem.Cycle.PrecentOfDiscount,
                          };
             return result.ToList();
 

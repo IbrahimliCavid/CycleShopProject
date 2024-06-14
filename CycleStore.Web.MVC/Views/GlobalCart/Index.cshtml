@@ -1,4 +1,6 @@
-﻿@using Entities.Concrete
+﻿@using Buisness.BaseMessage
+@using Core.DefaultValues
+@using Entities.Concrete
 @using Entities.Concrete.TableModels
 @model List<CartItemDto>
 @{
@@ -14,7 +16,7 @@
                     <h1>Cart</h1>
                     <ul>
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="/">Home</a>
                         </li>
                         <li>
                             <a href="javascript:;">Cart</a>
@@ -36,11 +38,11 @@
                         <h3>My Bag</h3>
                     </div>
                     <ul>
-                        @if (Model!=null)
+                        @if (Model != null)
                         {
                             @foreach (var item in Model)
                             {
-                                if (item.UserId == user.Id)
+                                if (item.UserId == user?.Id)
                                 {
                                     <li>
                                         <div class="cl-cart-list-wrap">
@@ -49,19 +51,26 @@
                                             </div>
                                             <div class="cl-product-details">
                                                 <a href="javascript:;" class="cl-product-title">@item.CategoryName</a>
-                                                <h4 class="cl-product-price"><span>@item.Price</span> @item.NewPrice</h4>
+                                                <p>@item.Model</p>
+                                                @if (item.PrecentOfDiscount == 0)
+                                                {
+                                                    <h4 class="cl-product-price">
+                                                        @(item.Price * item.Quantity)
+                                                    </h4>
+                                                } else{
+                                                    <h4 class="cl-product-price"><span>@(item.Price * item.Quantity)</span> @(item.NewPrice * item.Quantity)</h4>
+
+                                                }
                                                 <div class="cl-add-product">
                                                     <div class="cl-product-count">
-                                                        <button class="cl-sub-count"><i class="fas fa-minus"></i></button>
+                                                        <button class="cl-sub-count btnMinus" data-item-id="@item.CycleId"><i class="fas fa-minus"></i></button>
                                                         <input type="number" value="@item.Quantity" min="1">
-                                                        <button class="cl-add-count"><i class="fas fa-plus"></i></button>
+                                                        <button class="cl-add-count btnPlus" data-item-id="@item.CycleId"><i class="fas fa-plus"></i></button>
                                                     </div>
-                                                    <div class="cl-wishlist">
-                                                        <i class="far fa-heart"></i>
-                                                    </div>
+                                                   
                                                 </div>
                                             </div>
-                                            <div class="cl-product-remove">
+                                            <div class="cl-product-remove btnRemove" data-item-id="@item.Id">
                                                 <i class="fas fa-times"></i>
                                             </div>
                                         </div>
@@ -159,3 +168,122 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+            $(".btnPlus").click(function (e) {
+                e.preventDefault();
+                let itemId = $(this).data("item-id");
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("PlusBike", "GlobalCart")',
+                    data: {
+                        id: itemId
+                    },
+                    success: function (response) {
+                        if (response.isSuccess) {
+
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Product could not be added to the cart!',
+                                icon: 'error',
+                                confirmButtonText: 'Try Again'
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Product could not be added to the cart!',
+                            icon: 'error',
+                            confirmButtonText: 'Try Again'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+@section ScriptMinus {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+            $(".btnMinus").click(function (e) {
+                e.preventDefault();
+                let itemId = $(this).data("item-id");
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("MinusBike", "GlobalCart")',
+                    data: {
+                        id: itemId
+                    },
+                    success: function (response) {
+                        if (response.isSuccess) {
+
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Product could not be added to the cart!',
+                                icon: 'error',
+                                confirmButtonText: 'Try Again'
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Product could not be added to the cart!',
+                            icon: 'error',
+                            confirmButtonText: 'Try Again'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+@section ScriptRemove {
+    <script>
+        $(".btnRemove").click(function (e) {
+            Swal.fire({
+                title: '@UIMessage.DEFAULT_WARNING_CONFIRM_MESSAGE',
+                text: "@UIMessage.DEFAULT_WARNING_RETURN_MESSAGE",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonText: "@DefaultConstantValue.DEFAULT_BUTTON_NAME_CANCEL",
+                cancelButtonColor: '#d33',
+                confirmButtonText: '@DefaultConstantValue.DEFAULT_BUTTON_NAME_CONFIRM '
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let itemId = $(this).data("item-id");
+                    $.ajax({
+                        method: "POST",
+                        url: "GlobalCart/RemoveBike/",
+                        data: {
+                            id: itemId
+                        }
+                    })
+                    Swal.fire({
+                        title: '@UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE',
+                        text: "'" + itemTitle + "' @UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE",
+                        icon: 'success',
+
+                    }).then((result) => {
+                        window.location = "Index"
+                    })
+
+                }
+            })
+        })
+    </script>
+
+
+}
+

@@ -4,6 +4,7 @@ using Entities.Concrete.MemberShip;
 using Entities.Concrete.TableModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace CycleStore.Web.MVC.Controllers
 {
@@ -34,59 +35,78 @@ namespace CycleStore.Web.MVC.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
             var cart = _cartService.GetAll().Data.Find(x => x.UserId == user?.Id);
-
             if (cart == null)
             {
                 Cart newCart = new()
                 {
                     UserId = user.Id
                 };
-
-                CartItem newCartItem = new CartItem()
-                {
-                    CartId = newCart.Id,
-                    CycleId = id,
-                };
+                
                 _cartService.Add(newCart);
-                var data = _cartItemService.GetAll().Data.Find(x=>x.CartId == newCartItem.CartId && x.CycleId == newCartItem.CycleId);
+                cart = newCart; 
+            }
 
-                if (data == null )
-                {
-                    _cartItemService.Add(newCartItem);
-                }
-                else
-                {
-                    data.Quantity++;
+            CartItem newCartItem = new CartItem()
+            {
+                CartId = cart.Id,
+                CycleId = id,
+                Quantity = 1
+            };
+            var existingCartItem = _cartItemService.GetAll().Data.Find(x => x.CartId == newCartItem.CartId && x.CycleId == newCartItem.CycleId);
 
-                    _cartItemService.Update(data);
-                }
-              
-
+            if (existingCartItem == null)
+            {
+                var result = _cartItemService.Add(newCartItem);
+                if (!result.IsSuccess) return Json(new { isSuccess = false });
+                return Json(new { isSuccess = true });
             }
             else
             {
-
-                CartItem newCartItem = new CartItem()
-                {
-                    CartId = cart.Id,
-                    CycleId = id,
-                };
-                var data = _cartItemService.GetAll().Data.Find(x => x.CartId == newCartItem.CartId && x.CycleId == newCartItem.CycleId);
-
-                if (data == null)
-                {
-                    _cartItemService.Add(newCartItem);
-                }
-                else
-                {
-                    data.Quantity++;
-                    _cartItemService.Update(data);
-                }
-
+                existingCartItem.Quantity++;
+                var result = _cartItemService.Update(existingCartItem);
+                if (!result.IsSuccess) return Json(new { isSuccess = false });
+                return Json(new { isSuccess = true });
             }
-            return View("Index");
-            
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> PlusBike(int id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var existingCartItem = _cartItemService.GetAll().Data.Find(x =>x.UserId == user.Id && x.CycleId == id);
+            if (existingCartItem != null)
+            {
+                existingCartItem.Quantity++;
+                var result = _cartItemService.Update(existingCartItem);
+                if (!result.IsSuccess) return Json(new { isSuccess = false });
+                return Json(new { isSuccess = true });
+            }
+
+            return Json(new { isSuccess = false });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MinusBike(int id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var existingCartItem = _cartItemService.GetAll().Data.Find(x => x.UserId == user.Id && x.CycleId == id);
+            if (existingCartItem != null && existingCartItem.Quantity > 1)
+            {
+                existingCartItem.Quantity--;
+                var result = _cartItemService.Update(existingCartItem);
+                if (!result.IsSuccess) return Json(new { isSuccess = false });
+                return Json(new { isSuccess = true });
+            }
+
+            return Json(new { isSuccess = false });
+        }
+
+        [HttpPost]
+        public IActionResult RemoveBike(int id)
+        {
+            var result = _cartItemService.Delete(id);
+            if (!result.IsSuccess) return Json(new { isSuccess = false });
+            return Json(new { isSuccess = true });
         }
     }
 }

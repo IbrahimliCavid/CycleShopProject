@@ -43,5 +43,17 @@ namespace Buisness.Concrete
           
             return new SuccessDataResult<List<CartItemDto>>(_cartItemDal.GetCartWithCartItems());
         }
+
+        public IResult Delete(int id)
+        {
+            var data = GetById(id).Data;
+            data.Deleted = id;
+            _cartItemDal.Update(data);
+            return new SuccessResult(UIMessage.DEFAULT_SUCCESS_DELETE_MESSAGE);
+        }
+        public IDataResult<CartItem> GetById(int id)
+        {
+            return new SuccessDataResult<CartItem>(_cartItemDal.GetById(id));
+        }
     }
 }

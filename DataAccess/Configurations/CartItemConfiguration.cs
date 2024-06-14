@@ -15,10 +15,15 @@ namespace DataAccess.Configurations
         public void Configure(EntityTypeBuilder<CartItem> builder)
         {
             builder.ToTable("CartItems");
+
             builder.Property(x => x.Id)
                 .UseIdentityColumn(seed:DefaultConstantValue.DEFAULT_PRAYMARY_KEY_SEED_VALUE, increment:1);
+
             builder.Property(x => x.Quantity)
                 .HasDefaultValue(1);
+
+            builder.HasIndex(x => new { x.CycleId, x.CartId})
+                .IsUnique();
 
             //Relotionship between CartItem and Cart
             builder.HasOne(x => x.Cart)

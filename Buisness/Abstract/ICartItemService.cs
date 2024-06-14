@@ -14,5 +14,8 @@ namespace Buisness.Abstract
         IResult Add(CartItem cartItem);
         IDataResult<List<CartItemDto>> GetAll();
         IResult Update(CartItemDto dto);
+        IResult Delete(int id);
+        IDataResult<CartItem> GetById(int id);
+
     }
 }

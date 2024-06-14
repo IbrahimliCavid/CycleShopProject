@@ -16,6 +16,7 @@ namespace Entities.Concrete.Dtos
         public int CategoryId { get; set; }
         public string ImgUrl { get; set; }
         public double Price { get; set; }
+        public float PrecentOfDiscount { get; set; }
         public double NewPrice
         {
             get
@@ -24,7 +25,6 @@ namespace Entities.Concrete.Dtos
             }
             set { }
         }
-        public float PrecentOfDiscount { get; set; }
         public byte StarRating { get; set; }
         public string CategoryName { get; set; }
         public int UserId { get; set; }
