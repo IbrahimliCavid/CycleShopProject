@@ -2,24 +2,25 @@
 using DataAccess.Abstract;
 using Entities.Concrete.MemberShip;
 using Entities.Concrete.TableModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace CycleStore.Web.MVC.Controllers
 {
+    [Authorize]
+
     public class GlobalCartController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ICartService _cartService;
-        private readonly ICycleService _cycleService;
         private readonly ICartItemService _cartItemService;
 
-        public GlobalCartController(UserManager<ApplicationUser> userManager, ICartService cartService, ICycleService cycleService, ICartItemService cartItemService)
+        public GlobalCartController(UserManager<ApplicationUser> userManager, ICartService cartService, ICartItemService cartItemService)
         {
             _userManager = userManager;
             _cartService = cartService;
-            _cycleService = cycleService;
             _cartItemService = cartItemService;
         }
 

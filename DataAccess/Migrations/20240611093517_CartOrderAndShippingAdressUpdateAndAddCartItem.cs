@@ -81,7 +81,7 @@ namespace DataAccess.Migrations
                 name: "IX_CartItems_CycleId",
                 table: "CartItems",
                 column: "CycleId",
-                unique: true);
+                unique: false);
         }
 
         /// <inheritdoc />

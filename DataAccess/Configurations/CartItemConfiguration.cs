@@ -22,8 +22,8 @@ namespace DataAccess.Configurations
             builder.Property(x => x.Quantity)
                 .HasDefaultValue(1);
 
-            builder.HasIndex(x => new { x.CycleId, x.CartId})
-                .IsUnique();
+            //builder.HasIndex(x => new { x.CycleId, x.CartId})
+            //    .IsUnique();
 
             //Relotionship between CartItem and Cart
             builder.HasOne(x => x.Cart)
