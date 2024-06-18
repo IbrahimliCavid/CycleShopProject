@@ -25,7 +25,7 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td title="@item.Description">@(item.Description.Length > 20 ? item.Description.Substring(0, 20) + "..." : item.Description)</td>
+                                <td title="@Html.Raw(item.Description)">@(item.Description.Length > 20 ? item.Description.Substring(0, 20) + "..." : item.Description)</td>
                                 <td class="d-flex justify-content-center">
                                     <a asp-action="Edit" asp-route-id="@item.Id">
                                         <i class="fa-solid fa-pen-to-square"></i>

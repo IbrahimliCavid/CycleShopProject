@@ -26,6 +26,7 @@
 <!-- banner end -->
 <!-- features start -->
 <div class="cl-features spacer-top">
+    @await Component.InvokeAsync("Test")
     <div class="container">
         <div class="row">
             @foreach (var item in Model.Services)
@@ -82,7 +83,7 @@
                         {
                             if (item.IsHomePage)
                             {
-                                <li><i class="far fa-check-square"></i>@item.ActivityInfo</li>
+                                <li><i class="far fa-check-square"></i>@Html.Raw(item.ActivityInfo)</li>
                             }
 
                         }

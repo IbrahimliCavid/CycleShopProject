@@ -22,7 +22,7 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.ActivityInfo</td>
+                                <td>@Html.Raw(item.ActivityInfo)</td>
                                 <td>@item.IsHomePage</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id">

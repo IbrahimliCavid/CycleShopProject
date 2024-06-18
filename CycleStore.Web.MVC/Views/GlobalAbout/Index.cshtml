@@ -74,7 +74,7 @@
                     <ul>
                         @foreach (var item in Model.Activities)
                         {
-                            <li><i class="far fa-check-square"></i>@item.ActivityInfo</li>
+                            <li><i class="far fa-check-square"></i>@Html.Raw(item.ActivityInfo)</li>
                         }
                     </ul>
 
